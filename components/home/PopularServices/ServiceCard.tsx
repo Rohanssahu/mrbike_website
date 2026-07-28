@@ -33,24 +33,21 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
           <p className="text-muted-foreground text-sm">{service.shortDescription}</p>
         </div>
 
-        <div className="text-muted-foreground flex items-center justify-between text-xs">
+        <div className="text-muted-foreground flex items-center text-xs">
           <span className="flex items-center gap-1">
             <Clock className="size-3.5" aria-hidden="true" />
             {service.durationMinutes.min}–{service.durationMinutes.max} min
-          </span>
-          <span className="text-foreground font-semibold">
-            Starting {formatINR(service.startingPrice)}
           </span>
         </div>
 
         <Button
           size="sm"
-          variant={service.cta === "book" ? "default" : "outline"}
+          variant="outline"
           className="w-full"
           nativeButton={false}
           render={<Link href={`/services/${service.slug}`} />}
         >
-          {service.cta === "book" ? "Book Now" : "Learn More"}
+          Learn More
         </Button>
       </CardContent>
     </Card>

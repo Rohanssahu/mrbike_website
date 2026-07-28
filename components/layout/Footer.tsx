@@ -1,33 +1,42 @@
 import Link from "next/link";
 
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/config/site";
 
 /**
  * Minimal placeholder footer for Phase 4A. The full sitemap footer
  * (services/cities/brands/blog links) is a separate homepage section
- * scoped for a later phase — this only closes out the page shell.
+ * scoped for a later phase — this only closes out the page shell. Carries
+ * the sitewide Download App CTA per Phase 4 §5 ("every page — not just the
+ * homepage — should include at least one Download App prompt").
  */
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-border/60 bg-muted/30 border-t">
-      <Container className="text-muted-foreground flex flex-col items-center justify-between gap-4 py-10 text-sm sm:flex-row">
-        <p>
-          &copy; {year} {siteConfig.legalName}. All rights reserved.
-        </p>
-        <nav aria-label="Legal" className="flex items-center gap-4">
-          <Link href="/privacy-policy" className="hover:text-foreground">
-            Privacy Policy
-          </Link>
-          <Link href="/terms-and-conditions" className="hover:text-foreground">
-            Terms
-          </Link>
-          <Link href="/contact" className="hover:text-foreground">
-            Contact
-          </Link>
-        </nav>
+      <Container className="flex flex-col items-center gap-6 py-10">
+        <Button nativeButton={false} render={<Link href="/download" />}>
+          Download App
+        </Button>
+
+        <div className="text-muted-foreground flex flex-col items-center justify-between gap-4 text-sm sm:w-full sm:flex-row">
+          <p>
+            &copy; {year} {siteConfig.legalName}. All rights reserved.
+          </p>
+          <nav aria-label="Legal" className="flex items-center gap-4">
+            <Link href="/privacy-policy" className="hover:text-foreground">
+              Privacy Policy
+            </Link>
+            <Link href="/terms-and-conditions" className="hover:text-foreground">
+              Terms
+            </Link>
+            <Link href="/contact" className="hover:text-foreground">
+              Contact
+            </Link>
+          </nav>
+        </div>
       </Container>
     </footer>
   );

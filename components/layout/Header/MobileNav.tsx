@@ -18,7 +18,7 @@ import {
 import { MAIN_NAV_LINKS } from "@/constants/navigation";
 import { cn } from "@/lib/utils";
 
-/** Sheet-based mobile menu: nav links + the same Download/Partner CTAs as the desktop header. */
+/** Sheet-based mobile menu: nav links + the same Download App CTA as the desktop header. */
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -56,13 +56,6 @@ export function MobileNav() {
         </nav>
 
         <SheetFooter className="gap-2">
-          <SheetClose
-            nativeButton={false}
-            render={<Link href="/partner" />}
-            className={cn(buttonVariants({ variant: "outline" }), "h-11 w-full")}
-          >
-            Partner With Us
-          </SheetClose>
           <SheetClose
             nativeButton={false}
             render={<Link href="/download" />}

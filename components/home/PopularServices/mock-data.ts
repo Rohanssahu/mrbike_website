@@ -19,9 +19,6 @@ export interface ServiceRecord {
   icon: LucideIcon;
   shortDescription: string;
   durationMinutes: { min: number; max: number };
-  startingPrice: number;
-  /** "book" for high-intent/urgent services, "learn" for descriptive/considered ones (Phase 3 §5). */
-  cta: "book" | "learn";
 }
 
 /**
@@ -36,8 +33,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: Wrench,
     shortDescription: "A complete multi-point checkup and tune-up for your bike.",
     durationMinutes: { min: 60, max: 90 },
-    startingPrice: 499,
-    cta: "learn",
   },
   {
     id: "service_doorstep-repair",
@@ -46,8 +41,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: Home,
     shortDescription: "General repairs handled right at your home or office.",
     durationMinutes: { min: 30, max: 60 },
-    startingPrice: 199,
-    cta: "learn",
   },
   {
     id: "service_oil-change",
@@ -56,8 +49,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: Droplet,
     shortDescription: "Engine oil and filter replacement with genuine oil.",
     durationMinutes: { min: 20, max: 30 },
-    startingPrice: 299,
-    cta: "book",
   },
   {
     id: "service_battery-replacement",
@@ -66,8 +57,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: BatteryCharging,
     shortDescription: "Fast diagnosis and swap for a dead or dying battery.",
     durationMinutes: { min: 20, max: 40 },
-    startingPrice: 799,
-    cta: "book",
   },
   {
     id: "service_brake-service",
@@ -76,8 +65,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: Disc,
     shortDescription: "Pad, cable, and disc inspection for safer stopping.",
     durationMinutes: { min: 30, max: 45 },
-    startingPrice: 249,
-    cta: "learn",
   },
   {
     id: "service_chain-cleaning",
@@ -86,8 +73,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: Cog,
     shortDescription: "Deep clean, lube, and adjustment for a smoother ride.",
     durationMinutes: { min: 20, max: 30 },
-    startingPrice: 149,
-    cta: "learn",
   },
   {
     id: "service_bike-wash",
@@ -96,8 +81,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: SprayCan,
     shortDescription: "A thorough exterior wash and detailing session.",
     durationMinutes: { min: 30, max: 45 },
-    startingPrice: 179,
-    cta: "learn",
   },
   {
     id: "service_pickup-drop",
@@ -106,8 +89,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: Truck,
     shortDescription: "Can't wait around? We collect and return your bike.",
     durationMinutes: { min: 15, max: 30 },
-    startingPrice: 99,
-    cta: "book",
   },
   {
     id: "service_emergency-breakdown",
@@ -116,8 +97,6 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: Siren,
     shortDescription: "Stranded on the road? Get urgent, on-the-spot help.",
     durationMinutes: { min: 20, max: 40 },
-    startingPrice: 349,
-    cta: "book",
   },
   {
     id: "service_puncture-repair",
@@ -126,7 +105,5 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     icon: CircleDot,
     shortDescription: "Quick tube/tyre fix so you're back on the road fast.",
     durationMinutes: { min: 15, max: 25 },
-    startingPrice: 129,
-    cta: "book",
   },
 ];

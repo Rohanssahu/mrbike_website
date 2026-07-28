@@ -3,12 +3,12 @@ export interface NavLink {
   href: string;
 }
 
-/** Primary header nav — mirrors the sitemap hubs from the approved Phase 2 blueprint. */
+/** Primary header nav — mirrors the sitemap hubs from the approved Phase 4 direction change. */
 export const MAIN_NAV_LINKS: NavLink[] = [
+  { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Cities", href: "/cities" },
   { label: "Brands", href: "/brands" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "How It Works", href: "/how-it-works" },
+  { label: "Cities", href: "/cities" },
   { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];

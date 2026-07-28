@@ -30,9 +30,6 @@ export function Header() {
         <Navigation className="hidden lg:flex" />
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Button variant="outline" nativeButton={false} render={<Link href="/partner" />}>
-            Partner With Us
-          </Button>
           <Button nativeButton={false} render={<Link href="/download" />}>
             Download App
           </Button>

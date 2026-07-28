@@ -2,36 +2,31 @@ import {
   BrandsWeService,
   CitiesWeServe,
   CustomerReviews,
-  FeaturedGarages,
   Hero,
   HowItWorks,
   PopularServices,
-  Serviceability,
   TrustBand,
   WhyChooseUs,
 } from "@/components/home";
-import { Container } from "@/components/shared/Container";
 
 /**
- * Homepage — Phase 4C scope adds Brands We Service, Cities We Serve,
- * Featured Garages, and Customer Reviews. Remaining sections (Download App,
- * Become a Partner, Blogs, FAQs, final CTA) land in a later phase, per the
- * approved section order in docs/phase-3-homepage-ux.md §2.
+ * Homepage — re-sequenced per the approved direction change
+ * (docs/phase-4-direction-change.md §4). The Serviceability widget and
+ * Featured Garages are removed entirely (§2/§12): the site never checks
+ * location-gated availability or surfaces individual garage listings, since
+ * booking only happens in the app. Remaining sections (Blog, FAQs, a
+ * dedicated Download App section, final CTA) land in Phase 5D/5E.
  */
 export default function Home() {
   return (
     <>
       <Hero />
-      <Container id="serviceability" className="relative z-10 -mt-10 lg:-mt-16">
-        <Serviceability />
-      </Container>
       <PopularServices />
       <HowItWorks />
       <WhyChooseUs />
       <TrustBand />
       <BrandsWeService />
       <CitiesWeServe />
-      <FeaturedGarages />
       <CustomerReviews />
     </>
   );

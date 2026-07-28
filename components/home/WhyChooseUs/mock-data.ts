@@ -36,7 +36,7 @@ export const WHY_CHOOSE_US_FEATURES: FeatureRecord[] = [
     icon: IndianRupee,
     title: "Transparent Pricing",
     description:
-      "See the price before you book. No verbal haggling and no surprise charges on the final bill.",
+      "See the price upfront in the app. No verbal haggling and no surprise charges on the final bill.",
   },
   {
     id: "service-warranty",
