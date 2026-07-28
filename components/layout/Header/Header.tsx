@@ -1,0 +1,45 @@
+import { Wrench } from "lucide-react";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/shared/Container";
+import { siteConfig } from "@/config/site";
+
+import { MobileNav } from "./MobileNav";
+import { Navigation } from "./Navigation";
+
+/**
+ * Sticky, translucent header. Server component: the only interactive parts
+ * (active nav state, mobile menu) are isolated into their own client islands.
+ */
+export function Header() {
+  return (
+    <header className="border-border/60 bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 border-b backdrop-blur">
+      <Container className="flex h-16 items-center justify-between gap-4">
+        <Link
+          href="/"
+          className="font-heading text-foreground flex shrink-0 items-center gap-2 text-lg font-semibold"
+          aria-label={`${siteConfig.name} — home`}
+        >
+          <span className="bg-primary text-primary-foreground flex size-8 items-center justify-center rounded-lg">
+            <Wrench className="size-4" aria-hidden="true" />
+          </span>
+          <span className="hidden sm:inline">{siteConfig.name}</span>
+        </Link>
+
+        <Navigation className="hidden lg:flex" />
+
+        <div className="hidden items-center gap-2 lg:flex">
+          <Button variant="outline" nativeButton={false} render={<Link href="/partner" />}>
+            Partner With Us
+          </Button>
+          <Button nativeButton={false} render={<Link href="/download" />}>
+            Download App
+          </Button>
+        </div>
+
+        <MobileNav />
+      </Container>
+    </header>
+  );
+}
