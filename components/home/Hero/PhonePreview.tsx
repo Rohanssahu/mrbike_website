@@ -1,9 +1,13 @@
-import { MapPin, Navigation, Star } from "lucide-react";
+import { MapPin, Navigation } from "lucide-react";
 
 /**
  * Phone-mockup placeholder showing the app's live-tracking screen — the most
  * concrete, differentiated thing the app does (Phase 3 §3 "App preview concept").
  * Built from styled primitives rather than a screenshot asset, which doesn't exist yet.
+ * Deliberately generic (no named mechanic, no star rating, no specific ETA) —
+ * per the zero-fabrication rule, an illustrative mockup still shouldn't
+ * assert a specific person, rating, or timing as if it were real (Phase 5F
+ * production cleanup).
  */
 export function PhonePreview() {
   return (
@@ -26,14 +30,8 @@ export function PhonePreview() {
         </div>
 
         <div className="border-border bg-card space-y-2 border-t p-3">
-          <div className="flex items-center justify-between">
-            <span className="text-foreground text-xs font-semibold">Rahul is on the way</span>
-            <span className="text-muted-foreground flex items-center gap-0.5 text-xs">
-              <Star className="size-3 fill-current" />
-              4.9
-            </span>
-          </div>
-          <p className="text-muted-foreground text-[11px]">Arriving in 12 min · Gachibowli</p>
+          <span className="text-foreground text-xs font-semibold">Your mechanic is on the way</span>
+          <p className="text-muted-foreground text-[11px]">Live location shared until arrival</p>
         </div>
       </div>
     </div>

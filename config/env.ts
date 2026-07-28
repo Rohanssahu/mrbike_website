@@ -17,5 +17,5 @@ export const env = {
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
   googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "support@mrbikedoctor.com",
-  contactPhone: process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "",
+  contactPhone: process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+91 72075 45464",
 } as const;

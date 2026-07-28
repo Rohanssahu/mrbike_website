@@ -1,20 +1,20 @@
-import { MapPin, ShieldCheck, Star } from "lucide-react";
+import { MapPin, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/Container";
-import { Stat } from "@/components/shared/Stat";
 
 import { HeroIllustration } from "./HeroIllustration";
 import { PhonePreview } from "./PhonePreview";
 
-const STATS = [
-  { value: "50,000+", label: "Bikes serviced" },
-  { value: "4.8★", label: "Average rating" },
-  { value: "30 min", label: "Avg. response time" },
-];
-
+/**
+ * No stats row here on purpose — "bikes serviced," "average rating," and
+ * "response time" are unverified numbers no team has confirmed, so per the
+ * site's zero-fabrication rule they're omitted entirely rather than shown
+ * as placeholder text in the hero. Reinstate with real, sourced figures
+ * once available (Phase 5F production cleanup).
+ */
 export function Hero() {
   return (
     <section className="relative overflow-hidden py-16 md:py-24">
@@ -59,19 +59,9 @@ export function Hero() {
 
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="secondary" className="gap-1">
-              <Star className="size-3.5 fill-current" aria-hidden="true" />
-              4.8 rating
-            </Badge>
-            <Badge variant="secondary" className="gap-1">
               <ShieldCheck className="size-3.5" aria-hidden="true" />
               Verified mechanics
             </Badge>
-          </div>
-
-          <div className="border-border mt-2 grid w-full max-w-md grid-cols-3 gap-4 border-t pt-6">
-            {STATS.map((stat) => (
-              <Stat key={stat.label} value={stat.value} label={stat.label} />
-            ))}
           </div>
         </div>
 

@@ -3,6 +3,14 @@ export interface SocialLink {
   url: string;
 }
 
+export interface PostalAddress {
+  streetAddress: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode: string;
+  addressCountry: string;
+}
+
 export interface SiteConfig {
   name: string;
   legalName: string;
@@ -15,6 +23,7 @@ export interface SiteConfig {
   themeColor: string;
   contactEmail: string;
   contactPhone: string;
+  address?: PostalAddress;
   social: SocialLink[];
   ios: { url: string };
   android: { url: string };

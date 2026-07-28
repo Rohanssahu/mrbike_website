@@ -1,8 +1,9 @@
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Clock } from "lucide-react";
 import Link from "next/link";
 
 import type { CityRecord } from "@/components/home/CitiesWeServe/mock-data";
 import { Badge } from "@/components/ui/badge";
+import { LinkTile } from "@/components/shared/LinkTile";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
@@ -72,16 +73,7 @@ export function CityDetail({ city, areas }: CityDetailProps) {
           <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {areas.map((area) => (
               <li key={area.id}>
-                <Link
-                  href={`/cities/${city.slug}/${area.slug}`}
-                  className="group border-border bg-card hover:border-primary/40 flex items-center justify-between rounded-lg border p-4 text-sm transition-colors hover:shadow-sm"
-                >
-                  <span className="font-heading text-foreground font-semibold">{area.name}</span>
-                  <ArrowRight
-                    className="text-muted-foreground group-hover:text-primary size-4"
-                    aria-hidden="true"
-                  />
-                </Link>
+                <LinkTile href={`/cities/${city.slug}/${area.slug}`} label={area.name} />
               </li>
             ))}
           </ul>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-hidden="true">
+  <title>Decorative dot-grid backdrop</title>
+  <defs>
+    <pattern id="mbd-dot-grid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#0f172a" fill-opacity="0.12" />
+    </pattern>
+  </defs>
+  <rect width="120" height="120" fill="url(#mbd-dot-grid)" />
+</svg>

@@ -1,5 +1,6 @@
 import { Section } from "@/components/shared/Section";
-import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
+
+import { PendingLegalReview } from "./PendingLegalReview";
 
 interface LegalHeroProps {
   title: string;
@@ -19,7 +20,7 @@ export function LegalHero({ title, intro }: LegalHeroProps) {
         </h1>
         <p className="text-muted-foreground mt-4 text-lg">{intro}</p>
         <div className="mt-6 max-w-md">
-          <TodoPlaceholder what="effective/last-updated date" />
+          <PendingLegalReview what="the effective/last-updated date" />
         </div>
       </div>
     </Section>

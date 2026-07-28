@@ -25,7 +25,14 @@ export const siteConfig: SiteConfig = {
   themeColor: "#0f172a",
   contactEmail: env.contactEmail,
   contactPhone: env.contactPhone,
-  social: [],
+  address: {
+    streetAddress: "Beside Infosys SEZ Campus, Pocharam",
+    addressLocality: "Secunderabad",
+    addressRegion: "Telangana",
+    postalCode: "500088",
+    addressCountry: "IN",
+  },
+  social: [{ name: "LinkedIn", url: "https://www.linkedin.com/in/mr-bike-doctor-b48573219/" }],
   ios: { url: env.iosAppUrl },
   android: { url: env.androidAppUrl },
 };

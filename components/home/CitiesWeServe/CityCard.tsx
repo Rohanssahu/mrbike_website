@@ -1,6 +1,7 @@
 import { CheckCircle2, Clock, MapPin } from "lucide-react";
 import Link from "next/link";
 
+import { AREAS } from "@/components/cities/mock-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -16,6 +17,7 @@ interface CityCardProps {
 export function CityCard({ city, className }: CityCardProps) {
   const isLive = city.status === "live";
   const StatusIcon = isLive ? CheckCircle2 : Clock;
+  const areaCount = AREAS.filter((area) => area.citySlug === city.slug).length;
 
   return (
     <div
@@ -46,7 +48,7 @@ export function CityCard({ city, className }: CityCardProps) {
         <h3 className="font-heading text-foreground text-base font-semibold">{city.name}</h3>
         <p className="text-muted-foreground text-sm">
           {isLive
-            ? `${city.areasCovered} areas covered · ${city.garageCount}+ verified garages`
+            ? `${areaCount} area${areaCount === 1 ? "" : "s"} covered · Verified mechanics`
             : `${city.state} — launching soon`}
         </p>
       </div>

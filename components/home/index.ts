@@ -8,3 +8,5 @@ export * from "./TrustBand";
 export * from "./BrandsWeService";
 export * from "./CitiesWeServe";
 export * from "./CustomerReviews";
+export * from "./BlogTeaser";
+export * from "./FaqTeaser";

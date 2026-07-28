@@ -6,9 +6,6 @@ export interface CityRecord {
   name: string;
   state: string;
   status: CityStatus;
-  /** Only meaningful once `status` is "live" (Phase 2.5 §3 City `stats`). */
-  areasCovered?: number;
-  garageCount?: number;
 }
 
 /**
@@ -16,6 +13,11 @@ export interface CityRecord {
  * every other entry is honestly "coming soon", per Phase 2 §7/§8 (never fake
  * a city as live ahead of ops readiness). Adding a record here is the whole
  * "launch" action; the section itself needs no code change to support it.
+ *
+ * No `areasCovered`/`garageCount` fields — those previously held invented
+ * numbers (10 areas, 150+ garages) with no real source and were removed in
+ * the Phase 5F production cleanup. `CityCard` computes a real area count
+ * from `components/cities/mock-data.ts`'s `AREAS` instead.
  */
 export const CITIES: CityRecord[] = [
   {
@@ -24,8 +26,6 @@ export const CITIES: CityRecord[] = [
     name: "Hyderabad",
     state: "Telangana",
     status: "live",
-    areasCovered: 10,
-    garageCount: 150,
   },
   {
     id: "city_bengaluru",

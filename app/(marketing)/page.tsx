@@ -1,9 +1,11 @@
 import {
   AppFeatures,
   AppShowcase,
+  BlogTeaser,
   BrandsWeService,
   CitiesWeServe,
   CustomerReviews,
+  FaqTeaser,
   Hero,
   HowItWorks,
   PopularServices,
@@ -19,8 +21,10 @@ import { DownloadAppCta } from "@/components/shared/DownloadAppCta";
  * location-gated availability or surfaces individual garage listings, since
  * booking only happens in the app. AppShowcase and AppFeatures showcase the
  * real, shipped app (real screenshots, real icons — no mockups) right after
- * the Hero, since the app itself is the product being sold here. Remaining
- * sections (Blog, FAQs, final CTA) land in Phase 5D/5E.
+ * the Hero, since the app itself is the product being sold here. BlogTeaser
+ * and FaqTeaser (Phase 5F) close out the approved §4 section order and the
+ * internal-linking gap those two pages had (previously reachable only via
+ * header nav / footer, not the homepage).
  */
 export default function Home() {
   return (
@@ -35,6 +39,8 @@ export default function Home() {
       <BrandsWeService />
       <CitiesWeServe />
       <CustomerReviews />
+      <BlogTeaser />
+      <FaqTeaser />
       <DownloadAppCta />
     </>
   );

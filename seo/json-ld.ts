@@ -13,6 +13,12 @@ export function organizationSchema(): JsonLdSchema {
     description: siteConfig.description,
     email: siteConfig.contactEmail,
     ...(siteConfig.contactPhone && { telephone: siteConfig.contactPhone }),
+    ...(siteConfig.address && {
+      address: {
+        "@type": "PostalAddress",
+        ...siteConfig.address,
+      },
+    }),
     sameAs: siteConfig.social.map((link) => link.url),
   };
 }
@@ -159,17 +165,14 @@ export function breadcrumbSchema(items: Array<{ name: string; path: string }>): 
   };
 }
 
-/**
- * Person schema for the Founder page. Accepts placeholder values today
- * (Phase 4 §7's Founder entity has no real data yet) — callers should pass
- * real name/jobTitle/image once the business supplies them.
- */
+/** Person schema for the Founder page. */
 export function personSchema(person: {
   name: string;
   jobTitle?: string;
   description?: string;
   image?: string;
   path?: string;
+  sameAs?: string[];
 }): JsonLdSchema {
   return {
     "@context": "https://schema.org",
@@ -179,6 +182,7 @@ export function personSchema(person: {
     ...(person.description && { description: person.description }),
     ...(person.image && { image: new URL(person.image, siteConfig.url).toString() }),
     ...(person.path && { url: new URL(person.path, siteConfig.url).toString() }),
+    ...(person.sameAs && person.sameAs.length > 0 && { sameAs: person.sameAs }),
     worksFor: {
       "@type": "Organization",
       name: siteConfig.name,

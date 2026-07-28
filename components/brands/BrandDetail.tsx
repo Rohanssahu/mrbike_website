@@ -1,7 +1,8 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 import type { BrandRecord } from "@/components/home/BrandsWeService/mock-data";
+import { LinkTile } from "@/components/shared/LinkTile";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
@@ -58,16 +59,7 @@ export function BrandDetail({ brand, models }: BrandDetailProps) {
           <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {models.map((model) => (
               <li key={model.id}>
-                <Link
-                  href={`/brands/${brand.slug}/${model.slug}`}
-                  className="group border-border bg-card hover:border-primary/40 flex items-center justify-between rounded-lg border p-4 text-sm transition-colors hover:shadow-sm"
-                >
-                  <span className="font-heading text-foreground font-semibold">{model.name}</span>
-                  <ArrowRight
-                    className="text-muted-foreground group-hover:text-primary size-4"
-                    aria-hidden="true"
-                  />
-                </Link>
+                <LinkTile href={`/brands/${brand.slug}/${model.slug}`} label={model.name} />
               </li>
             ))}
           </ul>

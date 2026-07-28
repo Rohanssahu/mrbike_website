@@ -24,7 +24,10 @@ export function PostCard({ post, className }: PostCardProps) {
 
         <div className="flex flex-1 flex-col gap-1.5">
           <h3 className="font-heading text-foreground text-base font-semibold">
-            <Link href={`/blog/${post.categorySlug}/${post.slug}`} className="hover:underline">
+            <Link
+              href={`/blog/${post.categorySlug}/${post.slug}`}
+              className="focus-visible:ring-ring/50 rounded-xs outline-none hover:underline focus-visible:ring-3"
+            >
               {post.title}
             </Link>
           </h3>

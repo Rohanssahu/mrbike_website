@@ -28,7 +28,7 @@ export function CategoryChips({ activeCategorySlug, className }: CategoryChipsPr
             key={category.id}
             href={`/blog/${category.slug}`}
             className={cn(
-              "rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
+              "focus-visible:ring-ring/50 rounded-full border px-3 py-1.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3",
               isActive
                 ? "border-primary bg-primary text-primary-foreground"
                 : "border-border bg-card text-foreground hover:border-primary/40",

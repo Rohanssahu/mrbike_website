@@ -50,6 +50,13 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-brand-navy: var(--color-brand-navy);
+  --color-brand-navy-light: var(--color-brand-navy-light);
+  --color-brand-navy-soft: var(--color-brand-navy-soft);
+  --color-brand-yellow: var(--color-brand-yellow);
+  --color-brand-yellow-dark: var(--color-brand-yellow-dark);
+  --color-brand-yellow-soft: var(--color-brand-yellow-soft);
 }
 
 :root {
@@ -89,6 +96,21 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /**
+   * Brand illustration palette — used by assets/illustrations/** and their
+   * component wrappers only. Kept separate from the shadcn UI tokens above
+   * (which stay neutral grayscale by design) so illustrations can carry the
+   * MR Bike Doctor navy/yellow identity without recoloring the whole UI.
+   * Source: siteConfig.themeColor (#0f172a) + the app's bold-yellow icon
+   * family (see brand-assets-source-of-truth memory).
+   */
+  --color-brand-navy: #0f172a;
+  --color-brand-navy-light: #1e293b;
+  --color-brand-navy-soft: #334155;
+  --color-brand-yellow: #facc15;
+  --color-brand-yellow-dark: #eab308;
+  --color-brand-yellow-soft: #fef9c3;
 }
 
 .dark {
