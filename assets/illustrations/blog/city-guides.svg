@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>Simplified city skyline with a bike and location pin in front, representing city guides</title>
+  <defs>
+    <linearGradient id="cg-navy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="cg-yellow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#facc15" />
+      <stop offset="100%" stop-color="#eab308" />
+    </linearGradient>
+    <filter id="cg-shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <g id="backdrop">
+    <ellipse cx="200" cy="160" rx="155" ry="112" fill="#1e293b" fill-opacity="0.05" />
+  </g>
+
+  <g id="skyline" fill="url(#cg-navy)" fill-opacity="0.85">
+    <rect x="90" y="130" width="40" height="110" rx="4" />
+    <rect x="136" y="90" width="46" height="150" rx="4" />
+    <rect x="188" y="115" width="38" height="125" rx="4" />
+    <rect x="232" y="70" width="42" height="170" rx="4" />
+    <rect x="280" y="140" width="34" height="100" rx="4" />
+  </g>
+
+  <g id="windows" fill="#facc15" fill-opacity="0.55">
+    <rect x="98" y="145" width="8" height="8" rx="1.5" />
+    <rect x="114" y="145" width="8" height="8" rx="1.5" />
+    <rect x="98" y="165" width="8" height="8" rx="1.5" />
+    <rect x="114" y="165" width="8" height="8" rx="1.5" />
+    <rect x="146" y="108" width="8" height="8" rx="1.5" />
+    <rect x="164" y="108" width="8" height="8" rx="1.5" />
+    <rect x="146" y="128" width="8" height="8" rx="1.5" />
+    <rect x="164" y="128" width="8" height="8" rx="1.5" />
+    <rect x="242" y="90" width="8" height="8" rx="1.5" />
+    <rect x="258" y="90" width="8" height="8" rx="1.5" />
+    <rect x="242" y="110" width="8" height="8" rx="1.5" />
+    <rect x="258" y="110" width="8" height="8" rx="1.5" />
+  </g>
+
+  <g id="pin" filter="url(#cg-shadow)">
+    <path
+      d="M262 178c14 0 25 11 25 24.5 0 18.4-25 39.5-25 39.5s-25-21.1-25-39.5c0-13.5 11-24.5 25-24.5Z"
+      fill="url(#cg-yellow)"
+    />
+    <circle cx="262" cy="202" r="9" fill="#0f172a" fill-opacity="0.75" />
+  </g>
+
+  <g id="bike" filter="url(#cg-shadow)">
+    <circle cx="130" cy="248" r="24" fill="none" stroke="url(#cg-navy)" stroke-width="5" />
+    <circle cx="196" cy="248" r="24" fill="none" stroke="url(#cg-navy)" stroke-width="5" />
+    <path
+      d="M130 248 L160 208 L196 248 M160 208 L172 248"
+      fill="none"
+      stroke="url(#cg-navy)"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+</svg>

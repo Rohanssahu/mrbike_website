@@ -1,6 +1,8 @@
 import { ArrowLeft, CheckCircle2, Clock } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
+import urbanServiceIllustration from "@/assets/illustrations/cities/urban-service.svg";
 import type { CityRecord } from "@/components/home/CitiesWeServe/mock-data";
 import { Badge } from "@/components/ui/badge";
 import { LinkTile } from "@/components/shared/LinkTile";
@@ -25,7 +27,15 @@ export function CityDetail({ city, areas }: CityDetailProps) {
 
   return (
     <>
-      <Section className="pb-0 md:pb-0" aria-labelledby="city-detail-heading">
+      <Section className="relative overflow-hidden pb-0 md:pb-0" aria-labelledby="city-detail-heading">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <Image
+            src={urbanServiceIllustration}
+            alt=""
+            className="absolute top-1/2 right-0 w-full max-w-md -translate-y-1/2 opacity-[0.07] sm:max-w-lg"
+          />
+        </div>
+
         <Link
           href="/cities"
           className="text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-1 text-sm"

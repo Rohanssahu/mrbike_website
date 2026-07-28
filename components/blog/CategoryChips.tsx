@@ -1,8 +1,27 @@
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 
+import batteryEvCare from "@/assets/illustrations/blog/battery-ev-care.svg";
+import brandGuides from "@/assets/illustrations/blog/brand-guides.svg";
+import cityGuides from "@/assets/illustrations/blog/city-guides.svg";
+import costGuides from "@/assets/illustrations/blog/cost-guides.svg";
+import maintenanceTips from "@/assets/illustrations/blog/maintenance-tips.svg";
+import ridingSafety from "@/assets/illustrations/blog/riding-safety.svg";
+import seasonalCare from "@/assets/illustrations/blog/seasonal-care.svg";
 import { cn } from "@/lib/utils";
 
 import { BLOG_CATEGORIES, BLOG_POSTS } from "./mock-data";
+
+/** One illustration per real blog category slug (assets/illustrations/blog). */
+const CATEGORY_ILLUSTRATIONS: Record<string, StaticImageData> = {
+  "maintenance-tips": maintenanceTips,
+  "seasonal-care": seasonalCare,
+  "brand-guides": brandGuides,
+  "city-guides": cityGuides,
+  "riding-safety": ridingSafety,
+  "battery-ev-care": batteryEvCare,
+  "cost-guides": costGuides,
+};
 
 interface CategoryChipsProps {
   activeCategorySlug?: string;
@@ -23,17 +42,23 @@ export function CategoryChips({ activeCategorySlug, className }: CategoryChipsPr
     <div className={cn("flex flex-wrap gap-2", className)}>
       {categoriesWithPosts.map((category) => {
         const isActive = category.slug === activeCategorySlug;
+        const illustration = CATEGORY_ILLUSTRATIONS[category.slug];
         return (
           <Link
             key={category.id}
             href={`/blog/${category.slug}`}
             className={cn(
-              "focus-visible:ring-ring/50 rounded-full border px-3 py-1.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3",
+              "focus-visible:ring-ring/50 flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium outline-none transition-colors focus-visible:ring-3",
               isActive
                 ? "border-primary bg-primary text-primary-foreground"
                 : "border-border bg-card text-foreground hover:border-primary/40",
             )}
           >
+            {illustration && (
+              <span className="relative size-5 shrink-0 overflow-hidden rounded-full" aria-hidden="true">
+                <Image src={illustration} alt="" fill className="object-cover" sizes="20px" />
+              </span>
+            )}
             {category.name}
           </Link>
         );

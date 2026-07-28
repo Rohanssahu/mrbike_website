@@ -1,0 +1,30 @@
+import type { SVGProps } from "react";
+
+/** Doorstep Repair — a door with a threshold line and a wrench leaning against it. */
+export function DoorstepRepairIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+    >
+      <g id="door">
+        <rect x="6" y="3" width="10" height="17" rx="1" />
+        <circle cx="13.5" cy="12" r="0.8" fill="currentColor" stroke="none" />
+      </g>
+      <g id="threshold">
+        <line x1="3" y1="21" x2="21" y2="21" />
+      </g>
+      <g id="wrench">
+        <line x1="3.2" y1="18.5" x2="6.5" y2="15.2" strokeWidth={2} />
+        <circle cx="3" cy="18.8" r="1.1" />
+        <circle cx="6.7" cy="15" r="1.1" />
+      </g>
+    </svg>
+  );
+}

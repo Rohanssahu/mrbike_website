@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
+import helpCenterIllustration from "@/assets/illustrations/faq/help-center.svg";
 import { JsonLd } from "@/components/seo/json-ld";
 import { FAQ_CATEGORIES, FAQS, FaqCategorySection } from "@/components/faq";
 import { DownloadAppCta } from "@/components/shared";
@@ -32,16 +34,26 @@ export default function FaqPage() {
       />
 
       <Section className="pb-0 md:pb-0" aria-labelledby="faq-hero-heading">
-        <div className="max-w-3xl">
-          <h1
-            id="faq-hero-heading"
-            className="font-heading text-foreground text-4xl font-bold sm:text-5xl"
-          >
-            Frequently Asked Questions
-          </h1>
-          <p className="text-muted-foreground mt-4 text-lg">
-            Answers to the questions we hear most about booking, service, coverage, and accounts.
-          </p>
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[3fr_2fr]">
+          <div className="max-w-3xl">
+            <h1
+              id="faq-hero-heading"
+              className="font-heading text-foreground text-4xl font-bold sm:text-5xl"
+            >
+              Frequently Asked Questions
+            </h1>
+            <p className="text-muted-foreground mt-4 text-lg">
+              Answers to the questions we hear most about booking, service, coverage, and accounts.
+            </p>
+          </div>
+
+          <Image
+            src={helpCenterIllustration}
+            alt=""
+            aria-hidden="true"
+            className="mx-auto w-full max-w-sm lg:max-w-none"
+            priority
+          />
         </div>
       </Section>
 

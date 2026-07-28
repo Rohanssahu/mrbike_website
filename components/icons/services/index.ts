@@ -1,0 +1,10 @@
+export { BikeServiceIcon } from "./BikeServiceIcon";
+export { DoorstepRepairIcon } from "./DoorstepRepairIcon";
+export { OilChangeIcon } from "./OilChangeIcon";
+export { BatteryReplacementIcon } from "./BatteryReplacementIcon";
+export { BrakeServiceIcon } from "./BrakeServiceIcon";
+export { ChainCleaningIcon } from "./ChainCleaningIcon";
+export { BikeWashIcon } from "./BikeWashIcon";
+export { PickupDropIcon } from "./PickupDropIcon";
+export { EmergencyBreakdownIcon } from "./EmergencyBreakdownIcon";
+export { PunctureRepairIcon } from "./PunctureRepairIcon";

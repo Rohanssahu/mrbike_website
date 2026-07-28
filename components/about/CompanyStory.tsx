@@ -1,3 +1,6 @@
+import Image from "next/image";
+
+import teamIllustration from "@/assets/illustrations/about/team-illustration.svg";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
@@ -30,13 +33,22 @@ export function CompanyStory() {
         description="MR Bike Doctor connects riders with verified bike mechanics through a mobile app, built around convenience, transparency, and doorstep service."
       />
 
-      <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {WHAT_WE_ARE.map((point) => (
-          <li key={point} className="border-border bg-card text-muted-foreground rounded-lg border p-4 text-sm">
-            {point}
-          </li>
-        ))}
-      </ul>
+      <div className="mt-8 grid grid-cols-1 items-center gap-10 lg:grid-cols-[3fr_2fr]">
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {WHAT_WE_ARE.map((point) => (
+            <li key={point} className="border-border bg-card text-muted-foreground rounded-lg border p-4 text-sm">
+              {point}
+            </li>
+          ))}
+        </ul>
+
+        <Image
+          src={teamIllustration}
+          alt=""
+          aria-hidden="true"
+          className="mx-auto w-full max-w-sm lg:max-w-none"
+        />
+      </div>
 
       <div className="mt-8 max-w-3xl">
         <TodoPlaceholder what="company story" />

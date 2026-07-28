@@ -1,22 +1,23 @@
+import type { ComponentType, SVGProps } from "react";
+
 import {
-  BatteryCharging,
-  CircleDot,
-  Cog,
-  Disc,
-  Droplet,
-  Home,
-  Siren,
-  SprayCan,
-  Truck,
-  Wrench,
-  type LucideIcon,
-} from "lucide-react";
+  BatteryReplacementIcon,
+  BikeServiceIcon,
+  BikeWashIcon,
+  BrakeServiceIcon,
+  ChainCleaningIcon,
+  DoorstepRepairIcon,
+  EmergencyBreakdownIcon,
+  OilChangeIcon,
+  PickupDropIcon,
+  PunctureRepairIcon,
+} from "@/components/icons/services";
 
 export interface ServiceRecord {
   id: string;
   slug: string;
   name: string;
-  icon: LucideIcon;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   shortDescription: string;
   /** Longer, still-generic explanation used on the /services/[service] detail page. */
   longDescription: string;
@@ -34,7 +35,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_bike-service",
     slug: "bike-service",
     name: "Full Bike Service",
-    icon: Wrench,
+    icon: BikeServiceIcon,
     shortDescription: "A complete multi-point checkup and tune-up for your bike.",
     longDescription:
       "A complete multi-point checkup covering the engine, brakes, chain, and tyres, so small issues get caught before they become breakdowns.",
@@ -50,7 +51,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_doorstep-repair",
     slug: "doorstep-repair",
     name: "Doorstep Repair",
-    icon: Home,
+    icon: DoorstepRepairIcon,
     shortDescription: "General repairs handled right at your home or office.",
     longDescription:
       "General mechanical repairs handled wherever your bike is — home, office, or roadside — without a workshop visit.",
@@ -66,7 +67,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_oil-change",
     slug: "oil-change",
     name: "Oil Change",
-    icon: Droplet,
+    icon: OilChangeIcon,
     shortDescription: "Engine oil and filter replacement with genuine oil.",
     longDescription:
       "A straightforward engine oil and filter replacement to keep the engine running smoothly between full services.",
@@ -77,7 +78,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_battery-replacement",
     slug: "battery-replacement",
     name: "Battery Replacement",
-    icon: BatteryCharging,
+    icon: BatteryReplacementIcon,
     shortDescription: "Fast diagnosis and swap for a dead or dying battery.",
     longDescription:
       "A quick diagnosis of a dead or weak battery, followed by a swap so you're not stuck waiting for a jump-start.",
@@ -93,7 +94,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_brake-service",
     slug: "brake-service",
     name: "Brake Service",
-    icon: Disc,
+    icon: BrakeServiceIcon,
     shortDescription: "Pad, cable, and disc inspection for safer stopping.",
     longDescription:
       "A safety-focused inspection and service of your bike's braking system — pads, cables, and discs or drums.",
@@ -109,7 +110,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_chain-cleaning",
     slug: "chain-cleaning",
     name: "Chain Cleaning",
-    icon: Cog,
+    icon: ChainCleaningIcon,
     shortDescription: "Deep clean, lube, and adjustment for a smoother ride.",
     longDescription:
       "A deep clean, re-lubrication, and tension adjustment for the drive chain, cutting down on noise and wear.",
@@ -120,7 +121,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_bike-wash",
     slug: "bike-wash",
     name: "Bike Wash",
-    icon: SprayCan,
+    icon: BikeWashIcon,
     shortDescription: "A thorough exterior wash and detailing session.",
     longDescription:
       "A thorough exterior wash and wipe-down that leaves the bike looking cared for, not just rinsed.",
@@ -136,7 +137,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_pickup-drop",
     slug: "pickup-drop",
     name: "Pickup & Drop",
-    icon: Truck,
+    icon: PickupDropIcon,
     shortDescription: "Can't wait around? We collect and return your bike.",
     longDescription:
       "For jobs that need a workshop visit — the bike is picked up from your location and returned once the work is done.",
@@ -151,7 +152,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_emergency-breakdown",
     slug: "emergency-breakdown",
     name: "Emergency Breakdown",
-    icon: Siren,
+    icon: EmergencyBreakdownIcon,
     shortDescription: "Stranded on the road? Get urgent, on-the-spot help.",
     longDescription:
       "Urgent, on-the-spot help for a bike that's stopped working on the road, so you're not stuck longer than necessary.",
@@ -166,7 +167,7 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     id: "service_puncture-repair",
     slug: "puncture-repair",
     name: "Puncture Repair",
-    icon: CircleDot,
+    icon: PunctureRepairIcon,
     shortDescription: "Quick tube/tyre fix so you're back on the road fast.",
     longDescription:
       "A quick tube or tyre fix for a puncture, checked and re-inflated so you're back on the road fast.",

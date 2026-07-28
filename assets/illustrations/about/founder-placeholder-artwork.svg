@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>Generic placeholder silhouette standing in for a founder photo that has not been supplied yet</title>
+  <defs>
+    <linearGradient id="fp-navy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+
+  <g id="backdrop">
+    <ellipse cx="200" cy="150" rx="130" ry="130" fill="#facc15" fill-opacity="0.08" />
+  </g>
+
+  <g id="placeholder-frame">
+    <rect
+      x="90"
+      y="50"
+      width="220"
+      height="200"
+      rx="16"
+      fill="none"
+      stroke="#334155"
+      stroke-opacity="0.35"
+      stroke-width="2"
+      stroke-dasharray="6 8"
+    />
+    <path d="M96 56v-6a6 6 0 0 1 6-6h6" fill="none" stroke="#0f172a" stroke-opacity="0.4" stroke-width="3" />
+    <path d="M304 56v-6a6 6 0 0 0-6-6h-6" fill="none" stroke="#0f172a" stroke-opacity="0.4" stroke-width="3" />
+    <path d="M96 244v6a6 6 0 0 0 6 6h6" fill="none" stroke="#0f172a" stroke-opacity="0.4" stroke-width="3" />
+    <path d="M304 244v6a6 6 0 0 1-6 6h-6" fill="none" stroke="#0f172a" stroke-opacity="0.4" stroke-width="3" />
+  </g>
+
+  <g id="bust-silhouette">
+    <circle cx="200" cy="122" r="42" fill="url(#fp-navy)" fill-opacity="0.85" />
+    <path
+      d="M118 232c0-48 36.7-82 82-82s82 34 82 82v10H118v-10Z"
+      fill="url(#fp-navy)"
+      fill-opacity="0.85"
+    />
+  </g>
+</svg>

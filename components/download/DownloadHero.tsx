@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import logo from "@/assets/brand/logo.png";
+import appEcosystemIllustration from "@/assets/illustrations/download/app-ecosystem.svg";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/shared/Section";
 import { siteConfig } from "@/config/site";
@@ -19,7 +20,15 @@ export function DownloadHero() {
   const hasIosLink = Boolean(siteConfig.ios.url);
 
   return (
-    <Section aria-labelledby={HEADING_ID}>
+    <Section aria-labelledby={HEADING_ID} className="relative overflow-hidden">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <Image
+          src={appEcosystemIllustration}
+          alt=""
+          className="absolute top-1/2 left-1/2 w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 opacity-[0.07]"
+        />
+      </div>
+
       <div className="flex flex-col items-center gap-6 text-center">
         <Image
           src={logo}
