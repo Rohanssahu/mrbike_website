@@ -1,0 +1,59 @@
+import type { Metadata } from "next";
+
+import { JsonLd } from "@/components/seo/json-ld";
+import { FAQ_CATEGORIES, FAQS, FaqCategorySection } from "@/components/faq";
+import { DownloadAppCta } from "@/components/shared";
+import { Section } from "@/components/shared/Section";
+import { breadcrumbSchema, faqPageSchema, organizationSchema } from "@/seo/json-ld";
+import { buildMetadata } from "@/seo/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "FAQs",
+  description:
+    "Answers to common questions about booking, service, coverage, and your MR Bike Doctor account.",
+  path: "/faq",
+});
+
+/** /faq — general site-wide FAQ hub (Phase 4 §13 item 5). */
+export default function FaqPage() {
+  const schemaEligibleFaqs = FAQS.filter((faq) => !faq.isPlaceholder);
+
+  return (
+    <>
+      <JsonLd
+        schema={[
+          organizationSchema(),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "FAQs", path: "/faq" },
+          ]),
+          ...(schemaEligibleFaqs.length > 0 ? [faqPageSchema(schemaEligibleFaqs)] : []),
+        ]}
+      />
+
+      <Section className="pb-0 md:pb-0" aria-labelledby="faq-hero-heading">
+        <div className="max-w-3xl">
+          <h1
+            id="faq-hero-heading"
+            className="font-heading text-foreground text-4xl font-bold sm:text-5xl"
+          >
+            Frequently Asked Questions
+          </h1>
+          <p className="text-muted-foreground mt-4 text-lg">
+            Answers to the questions we hear most about booking, service, coverage, and accounts.
+          </p>
+        </div>
+      </Section>
+
+      {FAQ_CATEGORIES.map((category) => (
+        <FaqCategorySection
+          key={category.id}
+          category={category}
+          faqs={FAQS.filter((faq) => faq.categorySlug === category.slug)}
+        />
+      ))}
+
+      <DownloadAppCta />
+    </>
+  );
+}

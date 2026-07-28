@@ -1,9 +1,10 @@
-import { Wrench } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/config/site";
+import logo from "@/assets/brand/logo.png";
 
 import { MobileNav } from "./MobileNav";
 import { Navigation } from "./Navigation";
@@ -21,9 +22,14 @@ export function Header() {
           className="font-heading text-foreground flex shrink-0 items-center gap-2 text-lg font-semibold"
           aria-label={`${siteConfig.name} — home`}
         >
-          <span className="bg-primary text-primary-foreground flex size-8 items-center justify-center rounded-lg">
-            <Wrench className="size-4" aria-hidden="true" />
-          </span>
+          <Image
+            src={logo}
+            alt={`${siteConfig.name} logo`}
+            width={40}
+            height={40}
+            className="size-10 shrink-0 rounded-lg"
+            priority
+          />
           <span className="hidden sm:inline">{siteConfig.name}</span>
         </Link>
 

@@ -18,6 +18,10 @@ export interface ServiceRecord {
   name: string;
   icon: LucideIcon;
   shortDescription: string;
+  /** Longer, still-generic explanation used on the /services/[service] detail page. */
+  longDescription: string;
+  /** Generic, mechanically standard checklist — not brand/city-specific. */
+  whatsIncluded: string[];
   durationMinutes: { min: number; max: number };
 }
 
@@ -32,6 +36,14 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Full Bike Service",
     icon: Wrench,
     shortDescription: "A complete multi-point checkup and tune-up for your bike.",
+    longDescription:
+      "A complete multi-point checkup covering the engine, brakes, chain, and tyres, so small issues get caught before they become breakdowns.",
+    whatsIncluded: [
+      "Engine oil check",
+      "Brake inspection",
+      "Chain lubrication",
+      "Tyre pressure check",
+    ],
     durationMinutes: { min: 60, max: 90 },
   },
   {
@@ -40,6 +52,14 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Doorstep Repair",
     icon: Home,
     shortDescription: "General repairs handled right at your home or office.",
+    longDescription:
+      "General mechanical repairs handled wherever your bike is — home, office, or roadside — without a workshop visit.",
+    whatsIncluded: [
+      "On-the-spot diagnosis",
+      "Common part replacements",
+      "Minor adjustments",
+      "Test ride before handover",
+    ],
     durationMinutes: { min: 30, max: 60 },
   },
   {
@@ -48,6 +68,9 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Oil Change",
     icon: Droplet,
     shortDescription: "Engine oil and filter replacement with genuine oil.",
+    longDescription:
+      "A straightforward engine oil and filter replacement to keep the engine running smoothly between full services.",
+    whatsIncluded: ["Engine oil drain and refill", "Oil filter replacement", "Level and leak check"],
     durationMinutes: { min: 20, max: 30 },
   },
   {
@@ -56,6 +79,14 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Battery Replacement",
     icon: BatteryCharging,
     shortDescription: "Fast diagnosis and swap for a dead or dying battery.",
+    longDescription:
+      "A quick diagnosis of a dead or weak battery, followed by a swap so you're not stuck waiting for a jump-start.",
+    whatsIncluded: [
+      "Battery health check",
+      "Terminal cleaning",
+      "New battery fitment",
+      "Charging system check",
+    ],
     durationMinutes: { min: 20, max: 40 },
   },
   {
@@ -64,6 +95,14 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Brake Service",
     icon: Disc,
     shortDescription: "Pad, cable, and disc inspection for safer stopping.",
+    longDescription:
+      "A safety-focused inspection and service of your bike's braking system — pads, cables, and discs or drums.",
+    whatsIncluded: [
+      "Brake pad inspection",
+      "Cable and lever check",
+      "Disc/drum inspection",
+      "Brake fluid top-up, where applicable",
+    ],
     durationMinutes: { min: 30, max: 45 },
   },
   {
@@ -72,6 +111,9 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Chain Cleaning",
     icon: Cog,
     shortDescription: "Deep clean, lube, and adjustment for a smoother ride.",
+    longDescription:
+      "A deep clean, re-lubrication, and tension adjustment for the drive chain, cutting down on noise and wear.",
+    whatsIncluded: ["Chain degreasing", "Deep clean", "Lubrication", "Tension adjustment"],
     durationMinutes: { min: 20, max: 30 },
   },
   {
@@ -80,6 +122,14 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Bike Wash",
     icon: SprayCan,
     shortDescription: "A thorough exterior wash and detailing session.",
+    longDescription:
+      "A thorough exterior wash and wipe-down that leaves the bike looking cared for, not just rinsed.",
+    whatsIncluded: [
+      "Exterior wash",
+      "Wheel and tyre cleaning",
+      "Drying and wipe-down",
+      "Basic detailing",
+    ],
     durationMinutes: { min: 30, max: 45 },
   },
   {
@@ -88,6 +138,13 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Pickup & Drop",
     icon: Truck,
     shortDescription: "Can't wait around? We collect and return your bike.",
+    longDescription:
+      "For jobs that need a workshop visit — the bike is picked up from your location and returned once the work is done.",
+    whatsIncluded: [
+      "Bike pickup from your location",
+      "Transport to the service point",
+      "Return delivery after service",
+    ],
     durationMinutes: { min: 15, max: 30 },
   },
   {
@@ -96,6 +153,13 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Emergency Breakdown",
     icon: Siren,
     shortDescription: "Stranded on the road? Get urgent, on-the-spot help.",
+    longDescription:
+      "Urgent, on-the-spot help for a bike that's stopped working on the road, so you're not stuck longer than necessary.",
+    whatsIncluded: [
+      "On-road diagnosis",
+      "Basic on-the-spot fixes",
+      "Towing/transport coordination if needed",
+    ],
     durationMinutes: { min: 20, max: 40 },
   },
   {
@@ -104,6 +168,13 @@ export const POPULAR_SERVICES: ServiceRecord[] = [
     name: "Puncture Repair",
     icon: CircleDot,
     shortDescription: "Quick tube/tyre fix so you're back on the road fast.",
+    longDescription:
+      "A quick tube or tyre fix for a puncture, checked and re-inflated so you're back on the road fast.",
+    whatsIncluded: [
+      "Tube/tyre inspection",
+      "Puncture patch or tube replacement",
+      "Air pressure check",
+    ],
     durationMinutes: { min: 15, max: 25 },
   },
 ];

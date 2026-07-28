@@ -1,5 +1,7 @@
 export * from "./Hero";
+export * from "./AppShowcase";
 export * from "./PopularServices";
+export * from "./AppFeatures";
 export * from "./HowItWorks";
 export * from "./WhyChooseUs";
 export * from "./TrustBand";

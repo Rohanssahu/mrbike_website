@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/Container";
 import { siteConfig } from "@/config/site";
+import logo from "@/assets/brand/logo.png";
 
 /**
  * Minimal placeholder footer for Phase 4A. The full sitemap footer
@@ -17,6 +19,8 @@ export function Footer() {
   return (
     <footer className="border-border/60 bg-muted/30 border-t">
       <Container className="flex flex-col items-center gap-6 py-10">
+        <Image src={logo} alt={`${siteConfig.name} logo`} width={48} height={48} className="size-12 rounded-lg" />
+
         <Button nativeButton={false} render={<Link href="/download" />}>
           Download App
         </Button>
@@ -25,12 +29,18 @@ export function Footer() {
           <p>
             &copy; {year} {siteConfig.legalName}. All rights reserved.
           </p>
-          <nav aria-label="Legal" className="flex items-center gap-4">
+          <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-4">
+            <Link href="/faq" className="hover:text-foreground">
+              FAQs
+            </Link>
             <Link href="/privacy-policy" className="hover:text-foreground">
               Privacy Policy
             </Link>
             <Link href="/terms-and-conditions" className="hover:text-foreground">
               Terms
+            </Link>
+            <Link href="/delete-account" className="hover:text-foreground">
+              Delete Account
             </Link>
             <Link href="/contact" className="hover:text-foreground">
               Contact
