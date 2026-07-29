@@ -3,10 +3,16 @@ import { notFound } from "next/navigation";
 
 import { AREAS } from "@/components/cities/mock-data";
 import { CityDetail } from "@/components/cities";
+import { getFaqsByTag } from "@/components/faq";
 import { CITIES } from "@/components/home/CitiesWeServe/mock-data";
 import { JsonLd } from "@/components/seo/json-ld";
 import { DownloadAppCta } from "@/components/shared";
-import { breadcrumbSchema, localBusinessSchema, organizationSchema } from "@/seo/json-ld";
+import {
+  breadcrumbSchema,
+  faqPageSchema,
+  localBusinessSchema,
+  organizationSchema,
+} from "@/seo/json-ld";
 import { buildMetadata } from "@/seo/metadata";
 
 interface CityPageProps {
@@ -39,6 +45,7 @@ export default async function CityPage({ params }: CityPageProps) {
   if (!city) notFound();
 
   const areas = AREAS.filter((area) => area.citySlug === city.slug);
+  const faqs = city.status === "live" ? getFaqsByTag(`city:${city.slug}`) : [];
 
   return (
     <>
@@ -60,6 +67,7 @@ export default async function CityPage({ params }: CityPageProps) {
                 }),
               ]
             : []),
+          ...(faqs.length > 0 ? [faqPageSchema(faqs)] : []),
         ]}
       />
 

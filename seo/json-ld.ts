@@ -152,6 +152,80 @@ export function softwareApplicationSchema(): JsonLdSchema {
   };
 }
 
+/**
+ * Generic WebPage schema for informational pages that aren't a more
+ * specific type (Article/Service/LocalBusiness/etc.) — the baseline
+ * "this URL is a real, described page" signal (Phase 4 §10/§14).
+ */
+export function webPageSchema(page: { name: string; description: string; path: string }): JsonLdSchema {
+  const url = new URL(page.path, siteConfig.url).toString();
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: page.name,
+    description: page.description,
+    url,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+}
+
+/**
+ * Article schema for long-form informational content that isn't a dated
+ * blog post — Brand and Service pages, for example (Phase 4 §14). Unlike
+ * `blogPostingSchema()`, this has no `datePublished` requirement, since
+ * these pages are living reference content, not dated articles.
+ */
+export function articleSchema(article: {
+  headline: string;
+  description: string;
+  path: string;
+}): JsonLdSchema {
+  const url = new URL(article.path, siteConfig.url).toString();
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.headline,
+    description: article.description,
+    url,
+    mainEntityOfPage: url,
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      logo: {
+        "@type": "ImageObject",
+        url: new URL("/logo.png", siteConfig.url).toString(),
+      },
+    },
+  };
+}
+
+/**
+ * HowTo schema for ordered, step-by-step content (Phase 4 §14) — only emit
+ * on pages that render a matching visible, numbered step list (pair with
+ * `HowToSteps`, components/shared/HowToSteps.tsx).
+ */
+export function howToSchema(howTo: { name: string; description: string; steps: string[] }): JsonLdSchema {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: howTo.name,
+    description: howTo.description,
+    step: howTo.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      text: step,
+    })),
+  };
+}
+
 export function breadcrumbSchema(items: Array<{ name: string; path: string }>): JsonLdSchema {
   return {
     "@context": "https://schema.org",

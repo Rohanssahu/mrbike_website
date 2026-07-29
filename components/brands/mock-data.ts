@@ -42,4 +42,39 @@ export const BIKE_MODELS: BikeModelRecord[] = [
   { id: "model_ktm-duke-200", slug: "duke-200", brandSlug: "ktm", name: "Duke 200" },
   { id: "model_ktm-duke-390", slug: "duke-390", brandSlug: "ktm", name: "Duke 390" },
   { id: "model_ktm-rc-200", slug: "rc-200", brandSlug: "ktm", name: "RC 200" },
+
+  { id: "model_jawa-42", slug: "42", brandSlug: "jawa", name: "Jawa 42" },
+  { id: "model_jawa-perak", slug: "perak", brandSlug: "jawa", name: "Perak" },
+  { id: "model_jawa-350", slug: "350", brandSlug: "jawa", name: "Jawa 350" },
+
+  { id: "model_yezdi-roadster", slug: "roadster", brandSlug: "yezdi", name: "Roadster" },
+  { id: "model_yezdi-scrambler", slug: "scrambler", brandSlug: "yezdi", name: "Scrambler" },
+  { id: "model_yezdi-adventure", slug: "adventure", brandSlug: "yezdi", name: "Adventure" },
+
+  { id: "model_bmw-g-310-r", slug: "g-310-r", brandSlug: "bmw", name: "G 310 R" },
+  { id: "model_bmw-g-310-gs", slug: "g-310-gs", brandSlug: "bmw", name: "G 310 GS" },
+  { id: "model_bmw-r-1250-gs", slug: "r-1250-gs", brandSlug: "bmw", name: "R 1250 GS" },
+
+  { id: "model_triumph-speed-400", slug: "speed-400", brandSlug: "triumph", name: "Speed 400" },
+  {
+    id: "model_triumph-scrambler-400x",
+    slug: "scrambler-400x",
+    brandSlug: "triumph",
+    name: "Scrambler 400X",
+  },
+  { id: "model_triumph-trident-660", slug: "trident-660", brandSlug: "triumph", name: "Trident 660" },
+
+  { id: "model_harley-x440", slug: "x440", brandSlug: "harley-davidson", name: "X440" },
+  {
+    id: "model_harley-iron-883",
+    slug: "iron-883",
+    brandSlug: "harley-davidson",
+    name: "Iron 883",
+  },
+  {
+    id: "model_harley-street-750",
+    slug: "street-750",
+    brandSlug: "harley-davidson",
+    name: "Street 750",
+  },
 ];

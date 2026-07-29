@@ -3,10 +3,11 @@ import { notFound } from "next/navigation";
 
 import { BrandDetail } from "@/components/brands";
 import { BIKE_MODELS } from "@/components/brands/mock-data";
+import { getFaqsByTag } from "@/components/faq";
 import { BRANDS } from "@/components/home/BrandsWeService/mock-data";
 import { JsonLd } from "@/components/seo/json-ld";
 import { DownloadAppCta } from "@/components/shared";
-import { breadcrumbSchema, organizationSchema } from "@/seo/json-ld";
+import { articleSchema, breadcrumbSchema, faqPageSchema, organizationSchema } from "@/seo/json-ld";
 import { buildMetadata } from "@/seo/metadata";
 
 interface BrandPageProps {
@@ -29,13 +30,14 @@ export async function generateMetadata({ params }: BrandPageProps): Promise<Meta
   });
 }
 
-/** /brands/[brand] — informational brand detail page (Phase 4 §13 item 3). */
+/** /brands/[brand] — informational brand detail page (Phase 4 §13 item 3, extended Phase 6). */
 export default async function BrandPage({ params }: BrandPageProps) {
   const { brand: slug } = await params;
   const brand = BRANDS.find((b) => b.slug === slug);
   if (!brand) notFound();
 
   const models = BIKE_MODELS.filter((model) => model.brandSlug === brand.slug);
+  const faqs = getFaqsByTag(`brand:${brand.slug}`);
 
   return (
     <>
@@ -47,6 +49,12 @@ export default async function BrandPage({ params }: BrandPageProps) {
             { name: "Brands", path: "/brands" },
             { name: brand.name, path: `/brands/${brand.slug}` },
           ]),
+          articleSchema({
+            headline: `${brand.name} Service & Maintenance Guide`,
+            description: brand.description,
+            path: `/brands/${brand.slug}`,
+          }),
+          ...(faqs.length > 0 ? [faqPageSchema(faqs)] : []),
         ]}
       />
 

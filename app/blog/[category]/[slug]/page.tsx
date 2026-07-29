@@ -7,6 +7,7 @@ import {
   BLOG_CATEGORIES,
   BLOG_POSTS,
   estimateReadingTime,
+  HubNav,
   PostFaqs,
   PostPrevNext,
   PostTags,
@@ -115,6 +116,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
 
           <aside className="flex flex-col gap-6 lg:sticky lg:top-20 lg:self-start">
+            <HubNav post={post} />
             <TableOfContents sections={post.sections} />
             <RelatedLinks
               serviceSlugs={post.relatedServiceSlugs}

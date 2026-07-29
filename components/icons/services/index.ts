@@ -8,3 +8,7 @@ export { BikeWashIcon } from "./BikeWashIcon";
 export { PickupDropIcon } from "./PickupDropIcon";
 export { EmergencyBreakdownIcon } from "./EmergencyBreakdownIcon";
 export { PunctureRepairIcon } from "./PunctureRepairIcon";
+export { BikeRepairIcon } from "./BikeRepairIcon";
+export { PremiumServiceIcon } from "./PremiumServiceIcon";
+export { WheelAlignmentIcon } from "./WheelAlignmentIcon";
+export { TyreReplacementIcon } from "./TyreReplacementIcon";

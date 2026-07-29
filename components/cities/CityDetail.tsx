@@ -3,9 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 import urbanServiceIllustration from "@/assets/illustrations/cities/urban-service.svg";
+import { RelatedPostsByEntity } from "@/components/blog/RelatedPostsByEntity";
+import { getFaqsByTag } from "@/components/faq";
+import { BRANDS } from "@/components/home/BrandsWeService/mock-data";
 import type { CityRecord } from "@/components/home/CitiesWeServe/mock-data";
+import { POPULAR_SERVICES } from "@/components/home/PopularServices/mock-data";
 import { Badge } from "@/components/ui/badge";
+import { FaqAccordion } from "@/components/shared/FaqAccordion";
 import { LinkTile } from "@/components/shared/LinkTile";
+import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
@@ -19,11 +25,14 @@ interface CityDetailProps {
 }
 
 const AREAS_HEADING_ID = "city-areas-heading";
+const SERVICES_HEADING_ID = "city-services-heading";
+const BRANDS_HEADING_ID = "city-brands-heading";
 
-/** /cities/[city] — informational city page, no serviceability widget (Phase 4 §13 item 3). */
+/** /cities/[city] — informational city page, no serviceability widget (Phase 4 §13 item 3, extended Phase 6). */
 export function CityDetail({ city, areas }: CityDetailProps) {
   const isLive = city.status === "live";
   const StatusIcon = isLive ? CheckCircle2 : Clock;
+  const faqs = getFaqsByTag(`city:${city.slug}`);
 
   return (
     <>
@@ -65,11 +74,13 @@ export function CityDetail({ city, areas }: CityDetailProps) {
           </Badge>
         </div>
 
-        <p className="text-muted-foreground mt-3 max-w-2xl text-lg">
-          {isLive
-            ? `Doorstep bike servicing and repair, booked through the MR Bike Doctor app, across ${city.name}, ${city.state}.`
-            : `MR Bike Doctor isn't live in ${city.name}, ${city.state} yet — download the app to get notified when doorstep service launches here.`}
-        </p>
+        <div className="mt-6 max-w-2xl">
+          <QuickAnswer>
+            {isLive
+              ? `MR Bike Doctor offers doorstep bike servicing and repair in ${city.name}, ${city.state}, booked entirely through the app — a mechanic comes to you instead of you visiting a garage.`
+              : `MR Bike Doctor isn't live in ${city.name}, ${city.state} yet. The app is expanding city by city — download it to get notified the moment doorstep service launches here.`}
+          </QuickAnswer>
+        </div>
       </Section>
 
       {isLive && areas.length > 0 && (
@@ -92,6 +103,50 @@ export function CityDetail({ city, areas }: CityDetailProps) {
             <TodoPlaceholder what={`${city.name} service coverage details`} />
           </div>
         </Section>
+      )}
+
+      {isLive && (
+        <>
+          <Section className="bg-muted/30" aria-labelledby={SERVICES_HEADING_ID}>
+            <SectionHeading
+              id={SERVICES_HEADING_ID}
+              eyebrow="Popular Services"
+              title={`Popular bike services in ${city.name}`}
+            />
+            <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {POPULAR_SERVICES.slice(0, 6).map((service) => (
+                <li key={service.id}>
+                  <LinkTile href={`/services/${service.slug}`} label={service.name} />
+                </li>
+              ))}
+            </ul>
+          </Section>
+
+          <Section aria-labelledby={BRANDS_HEADING_ID}>
+            <SectionHeading
+              id={BRANDS_HEADING_ID}
+              eyebrow="Brands We Service"
+              title={`Bike brands serviced in ${city.name}`}
+            />
+            <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {BRANDS.map((brand) => (
+                <li key={brand.id}>
+                  <LinkTile href={`/brands/${brand.slug}`} label={brand.name} />
+                </li>
+              ))}
+            </ul>
+          </Section>
+
+          <Section className="bg-muted/30">
+            <RelatedPostsByEntity field="relatedCitySlugs" slug={city.slug} />
+          </Section>
+
+          {faqs.length > 0 && (
+            <Section>
+              <FaqAccordion faqs={faqs} title={`${city.name} FAQs`} />
+            </Section>
+          )}
+        </>
       )}
     </>
   );

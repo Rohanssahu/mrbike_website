@@ -59,6 +59,11 @@ export interface BlogPostSection {
   id: string;
   heading: string;
   body: string[];
+  /** Optional comparison table — the most reliably AI-extractable content shape (Phase 4 §14/Phase 6). */
+  table?: {
+    columns: string[];
+    rows: Array<{ label: string; values: string[] }>;
+  };
 }
 
 export interface BlogFaqEntry {
@@ -83,6 +88,16 @@ export interface BlogPostRecord {
   relatedServiceSlugs?: string[];
   relatedBrandSlugs?: string[];
   relatedCitySlugs?: string[];
+  /**
+   * Content Hub fields (Phase 4 §15/Phase 6) — a pillar post aggregates and
+   * links its cluster articles; a cluster post links back to its pillar.
+   * No new route: a hub pillar is just a `BlogPostRecord` with
+   * `isPillar: true` at the same `/blog/[category]/[slug]` URL every other
+   * article uses.
+   */
+  isPillar?: boolean;
+  hubId?: string;
+  clusterPostIds?: string[];
 }
 
 /**
@@ -108,6 +123,9 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-06-01",
     tags: ["engine oil", "maintenance", "oil change"],
+    isPillar: true,
+    hubId: "hub_engine-oil",
+    clusterPostIds: ["post_engine-oil-types"],
     sections: [
       {
         id: "quick-answer",
@@ -144,8 +162,66 @@ export const BLOG_POSTS: BlogPostRecord[] = [
           "Yes — oil degrades over time even without use, so a time-based change interval still applies to bikes that sit for long stretches.",
       },
     ],
-    relatedServiceSlugs: ["oil-change", "bike-service"],
+    relatedServiceSlugs: ["engine-oil-change", "bike-service"],
     relatedCitySlugs: ["hyderabad"],
+  },
+  {
+    id: "post_engine-oil-types",
+    slug: "engine-oil-types-mineral-vs-semi-synthetic-vs-full-synthetic",
+    categorySlug: "maintenance-tips",
+    title: "[Sample] Engine Oil Types: Mineral vs. Semi-Synthetic vs. Full-Synthetic",
+    excerpt: "A side-by-side look at the three engine oil types and where each one makes sense.",
+    author: { name: "MR Bike Doctor Team" },
+    publishedAt: "2026-06-05",
+    tags: ["engine oil", "oil types", "comparison"],
+    hubId: "hub_engine-oil",
+    sections: [
+      {
+        id: "the-quick-answer",
+        heading: "The Quick Answer",
+        body: [
+          "Mineral oil is the cheapest and needs the most frequent changes; semi-synthetic blends cost more but last longer and handle heat better; full-synthetic costs the most and offers the best protection and the longest change interval. Most commuter bikes run fine on mineral or semi-synthetic — full-synthetic mainly pays off on performance or higher-revving engines.",
+        ],
+      },
+      {
+        id: "side-by-side",
+        heading: "Side by Side",
+        body: [],
+        table: {
+          columns: ["Mineral", "Semi-Synthetic", "Full-Synthetic"],
+          rows: [
+            {
+              label: "Typical change interval",
+              values: ["2,500–3,000 km", "3,000–4,000 km", "4,000–6,000 km+"],
+            },
+            {
+              label: "Heat resistance",
+              values: ["Lowest", "Moderate", "Highest"],
+            },
+            {
+              label: "Relative cost",
+              values: ["Lowest", "Moderate", "Highest"],
+            },
+            {
+              label: "Best suited for",
+              values: [
+                "Commuter bikes, mild use",
+                "Daily riders wanting a step up",
+                "Performance/liquid-cooled engines",
+              ],
+            },
+          ],
+        },
+      },
+      {
+        id: "how-to-choose",
+        heading: "How to Choose",
+        body: [
+          "The manufacturer's recommended grade and viscosity matter more than the type — check the owner's manual first. Within that spec, semi-synthetic is a reasonable default for most riders; full-synthetic is worth the extra cost mainly for performance engines or riders who want to stretch the change interval.",
+        ],
+      },
+    ],
+    relatedServiceSlugs: ["engine-oil-change"],
   },
   {
     id: "post_doorstep-bike-service-guide",
@@ -182,7 +258,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
         ],
       },
     ],
-    relatedServiceSlugs: ["doorstep-repair", "pickup-drop", "bike-service"],
+    relatedServiceSlugs: ["doorstep-bike-service", "bike-pickup-drop", "bike-service"],
   },
   {
     id: "post_monsoon-bike-care-tips",
@@ -216,7 +292,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
         ],
       },
     ],
-    relatedServiceSlugs: ["chain-cleaning", "brake-service", "bike-wash"],
+    relatedServiceSlugs: ["chain-cleaning", "brake-repair", "bike-wash"],
   },
   {
     id: "post_re-classic-350-maintenance-guide",
@@ -244,7 +320,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
       },
     ],
     relatedBrandSlugs: ["royal-enfield"],
-    relatedServiceSlugs: ["oil-change", "chain-cleaning"],
+    relatedServiceSlugs: ["engine-oil-change", "chain-cleaning"],
   },
   {
     id: "post_honda-shine-maintenance-guide",
@@ -272,7 +348,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
       },
     ],
     relatedBrandSlugs: ["honda"],
-    relatedServiceSlugs: ["bike-service", "brake-service"],
+    relatedServiceSlugs: ["bike-service", "brake-repair"],
   },
   {
     id: "post_best-bike-service-hyderabad",
@@ -328,7 +404,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
         ],
       },
     ],
-    relatedServiceSlugs: ["brake-service", "puncture-repair"],
+    relatedServiceSlugs: ["brake-repair", "puncture-repair"],
   },
   {
     id: "post_battery-replacement-signs",
@@ -382,6 +458,6 @@ export const BLOG_POSTS: BlogPostRecord[] = [
         ],
       },
     ],
-    relatedServiceSlugs: ["bike-service", "oil-change"],
+    relatedServiceSlugs: ["bike-service", "engine-oil-change"],
   },
 ];

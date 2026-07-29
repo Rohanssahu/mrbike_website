@@ -1,8 +1,14 @@
 import { ArrowLeft, Clock } from "lucide-react";
 import Link from "next/link";
 
+import { RelatedPostsByEntity } from "@/components/blog/RelatedPostsByEntity";
+import { getFaqsByTag } from "@/components/faq";
 import { ServiceCard } from "@/components/home/PopularServices/ServiceCard";
-import type { ServiceRecord } from "@/components/home/PopularServices/mock-data";
+import { POPULAR_SERVICES, type ServiceRecord } from "@/components/home/PopularServices/mock-data";
+import { ComparisonTable } from "@/components/shared/ComparisonTable";
+import { FaqAccordion } from "@/components/shared/FaqAccordion";
+import { HowToSteps } from "@/components/shared/HowToSteps";
+import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
@@ -14,9 +20,13 @@ interface ServiceDetailProps {
 const INCLUDES_HEADING_ID = "service-includes-heading";
 const RELATED_HEADING_ID = "related-services-heading";
 
-/** /services/[service] — informational detail page, no pricing/booking (Phase 4 §13 item 3). */
+/** /services/[service] — informational detail page, no pricing/booking (Phase 4 §13 item 3/Phase 6). */
 export function ServiceDetail({ service, related }: ServiceDetailProps) {
   const Icon = service.icon;
+  const comparedService = service.comparisonSlug
+    ? POPULAR_SERVICES.find((s) => s.slug === service.comparisonSlug)
+    : undefined;
+  const faqs = getFaqsByTag(`service:${service.slug}`);
 
   return (
     <>
@@ -40,14 +50,15 @@ export function ServiceDetail({ service, related }: ServiceDetailProps) {
             >
               {service.name}
             </h1>
-            <p className="text-muted-foreground mt-3 max-w-2xl text-lg">
-              {service.longDescription}
-            </p>
             <p className="text-muted-foreground mt-2 flex items-center gap-1 text-sm">
               <Clock className="size-4" aria-hidden="true" />
               Typically {service.durationMinutes.min}–{service.durationMinutes.max} minutes
             </p>
           </div>
+        </div>
+
+        <div className="mt-6">
+          <QuickAnswer>{service.quickAnswer}</QuickAnswer>
         </div>
       </Section>
 
@@ -56,6 +67,7 @@ export function ServiceDetail({ service, related }: ServiceDetailProps) {
           id={INCLUDES_HEADING_ID}
           eyebrow="What's Included"
           title="What this service covers"
+          description={service.longDescription}
         />
         <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {service.whatsIncluded.map((item) => (
@@ -67,6 +79,53 @@ export function ServiceDetail({ service, related }: ServiceDetailProps) {
             </li>
           ))}
         </ul>
+      </Section>
+
+      {service.steps && service.steps.length > 0 && (
+        <Section className="bg-muted/30">
+          <HowToSteps steps={service.steps} title={`How ${service.name} Works`} />
+        </Section>
+      )}
+
+      {comparedService && (
+        <Section aria-label={`${service.name} vs ${comparedService.name}`}>
+          <h2 className="font-heading text-foreground mb-4 text-xl font-semibold">
+            {service.name} vs. {comparedService.name}
+          </h2>
+          <ComparisonTable
+            columns={[service.name, comparedService.name]}
+            rows={[
+              {
+                label: "Typical duration",
+                values: [
+                  `${service.durationMinutes.min}–${service.durationMinutes.max} min`,
+                  `${comparedService.durationMinutes.min}–${comparedService.durationMinutes.max} min`,
+                ],
+              },
+              {
+                label: "What's included",
+                values: [
+                  `${service.whatsIncluded.length} checks/tasks`,
+                  `${comparedService.whatsIncluded.length} checks/tasks`,
+                ],
+              },
+              {
+                label: "Best for",
+                values: [service.shortDescription, comparedService.shortDescription],
+              },
+            ]}
+          />
+        </Section>
+      )}
+
+      {faqs.length > 0 && (
+        <Section className="bg-muted/30">
+          <FaqAccordion faqs={faqs} />
+        </Section>
+      )}
+
+      <Section>
+        <RelatedPostsByEntity field="relatedServiceSlugs" slug={service.slug} />
       </Section>
 
       {related.length > 0 && (

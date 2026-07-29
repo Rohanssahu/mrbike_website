@@ -1,3 +1,5 @@
+import { ComparisonTable } from "@/components/shared/ComparisonTable";
+
 import type { BlogPostSection } from "./mock-data";
 
 interface ArticleBodyProps {
@@ -20,6 +22,11 @@ export function ArticleBody({ sections }: ArticleBodyProps) {
               </p>
             ))}
           </div>
+          {section.table && (
+            <div className="mt-4">
+              <ComparisonTable columns={section.table.columns} rows={section.table.rows} />
+            </div>
+          )}
         </section>
       ))}
     </div>

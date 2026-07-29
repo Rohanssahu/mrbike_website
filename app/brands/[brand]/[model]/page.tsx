@@ -3,10 +3,11 @@ import { notFound } from "next/navigation";
 
 import { ModelDetail } from "@/components/brands";
 import { BIKE_MODELS } from "@/components/brands/mock-data";
+import { getFaqsByTag } from "@/components/faq";
 import { BRANDS } from "@/components/home/BrandsWeService/mock-data";
 import { JsonLd } from "@/components/seo/json-ld";
 import { DownloadAppCta } from "@/components/shared";
-import { breadcrumbSchema, organizationSchema } from "@/seo/json-ld";
+import { articleSchema, breadcrumbSchema, faqPageSchema, organizationSchema } from "@/seo/json-ld";
 import { buildMetadata } from "@/seo/metadata";
 
 interface ModelPageProps {
@@ -37,6 +38,8 @@ export default async function ModelPage({ params }: ModelPageProps) {
   const model = BIKE_MODELS.find((m) => m.slug === modelSlug && m.brandSlug === brandSlug);
   if (!brand || !model) notFound();
 
+  const faqs = getFaqsByTag(`brand:${brand.slug}`);
+
   return (
     <>
       <JsonLd
@@ -48,6 +51,12 @@ export default async function ModelPage({ params }: ModelPageProps) {
             { name: brand.name, path: `/brands/${brand.slug}` },
             { name: model.name, path: `/brands/${brand.slug}/${model.slug}` },
           ]),
+          articleSchema({
+            headline: `${brand.name} ${model.name} Service & Maintenance Guide`,
+            description: `Doorstep servicing and repairs for the ${brand.name} ${model.name}.`,
+            path: `/brands/${brand.slug}/${model.slug}`,
+          }),
+          ...(faqs.length > 0 ? [faqPageSchema(faqs)] : []),
         ]}
       />
 

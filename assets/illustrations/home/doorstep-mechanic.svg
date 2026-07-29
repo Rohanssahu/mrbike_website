@@ -36,25 +36,34 @@
   </g>
 
   <g id="gate">
-    <rect x="270" y="80" width="14" height="150" rx="4" fill="url(#dm-navy)" />
-    <rect x="270" y="70" width="14" height="14" rx="4" fill="#facc15" />
-    <path d="M284 120c30-14 66-14 96 4v18c-30-16-66-16-96-4Z" fill="#334155" opacity="0.7" />
-    <path d="M284 150c30-14 66-14 96 4v18c-30-16-66-16-96-4Z" fill="#334155" opacity="0.7" />
-    <rect x="370" y="70" width="14" height="160" rx="4" fill="url(#dm-navy)" />
-    <path d="M330 60c14-18 40-18 54 0 4 6-4 12-10 8-10-8-24-8-34 0-6 4-14-2-10-8Z" fill="#1e293b" opacity="0.8" />
+    <rect x="378" y="150" width="22" height="80" fill="#334155" opacity="0.45" />
+    <g stroke="#1e293b" stroke-width="1.5" opacity="0.3">
+      <line x1="378" y1="170" x2="400" y2="170" />
+      <line x1="378" y1="190" x2="400" y2="190" />
+      <line x1="378" y1="210" x2="400" y2="210" />
+    </g>
+    <rect x="308" y="86" width="13" height="144" rx="4" fill="url(#dm-navy)" />
+    <rect x="365" y="86" width="13" height="144" rx="4" fill="url(#dm-navy)" />
+    <rect x="308" y="78" width="70" height="12" rx="6" fill="url(#dm-navy)" />
+    <g stroke="#334155" stroke-width="5" opacity="0.55">
+      <line x1="328" y1="92" x2="328" y2="228" />
+      <line x1="345" y1="92" x2="345" y2="228" />
+      <line x1="360" y1="92" x2="360" y2="228" />
+    </g>
+    <circle cx="314" cy="68" r="7" fill="#fef9c3" stroke="#eab308" stroke-width="2" />
   </g>
 
   <g id="parked-bike">
-    <circle cx="235" cy="228" r="20" fill="url(#dm-navy)" />
-    <circle cx="235" cy="228" r="12" fill="none" stroke="#e2e8f0" stroke-width="2" opacity="0.7" />
-    <circle cx="235" cy="228" r="3.5" fill="#facc15" />
-    <circle cx="315" cy="228" r="21" fill="url(#dm-navy)" />
-    <circle cx="315" cy="228" r="12.5" fill="none" stroke="#e2e8f0" stroke-width="2" opacity="0.7" />
-    <circle cx="315" cy="228" r="3.5" fill="#facc15" />
-    <rect x="230" y="176" width="86" height="30" rx="15" fill="url(#dm-navy)" />
-    <rect x="290" y="168" width="30" height="10" rx="5" fill="#1e293b" />
-    <rect x="-3.5" y="0" width="7" height="34" rx="3.5" fill="url(#dm-navy)" transform="translate(236 195) rotate(-10)" />
-    <rect x="-3.5" y="0" width="7" height="12" rx="3.5" fill="#334155" transform="translate(255 226) rotate(28)" />
+    <circle cx="210" cy="228" r="20" fill="url(#dm-navy)" />
+    <circle cx="210" cy="228" r="12" fill="none" stroke="#e2e8f0" stroke-width="2" opacity="0.7" />
+    <circle cx="210" cy="228" r="3.5" fill="#facc15" />
+    <circle cx="285" cy="228" r="21" fill="url(#dm-navy)" />
+    <circle cx="285" cy="228" r="12.5" fill="none" stroke="#e2e8f0" stroke-width="2" opacity="0.7" />
+    <circle cx="285" cy="228" r="3.5" fill="#facc15" />
+    <rect x="205" y="176" width="86" height="30" rx="15" fill="url(#dm-navy)" />
+    <rect x="260" y="168" width="30" height="10" rx="5" fill="#1e293b" />
+    <rect x="-3.5" y="0" width="7" height="34" rx="3.5" fill="url(#dm-navy)" transform="translate(211 195) rotate(-10)" />
+    <rect x="-3.5" y="0" width="7" height="12" rx="3.5" fill="#334155" transform="translate(230 226) rotate(28)" />
   </g>
 
   <g id="mechanic">
