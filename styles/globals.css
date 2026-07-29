@@ -182,8 +182,33 @@
   animation-play-state: paused;
 }
 
+/* Reviews marquee (components/home/CustomerReviews/CustomerReviews.tsx) —
+   same loop technique as the brands marquee above, but the review list is
+   longer, so it gets its own (slower) duration to keep the per-card speed
+   consistent rather than inheriting the brands' 57s and racing past. */
+.reviews-marquee-track {
+  animation: marquee 120s linear infinite;
+}
+
+.reviews-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Services marquee (components/home/PopularServices/PopularServices.tsx) —
+   same loop technique again, tuned to this list's own length so the
+   per-card speed matches the other two marquees. */
+.services-marquee-track {
+  animation: marquee 100s linear infinite;
+}
+
+.services-marquee-track:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track,
+  .reviews-marquee-track,
+  .services-marquee-track {
     animation: none;
   }
 }

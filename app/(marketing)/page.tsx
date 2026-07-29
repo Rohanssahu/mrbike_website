@@ -8,6 +8,7 @@ import {
   FaqTeaser,
   Hero,
   HowItWorks,
+  PartnerAppShowcase,
   PopularServices,
   ServicesBanner,
   TrustBand,
@@ -39,6 +40,7 @@ export default function Home() {
       <WhyChooseUs />
       <TrustBand />
       <BrandsWeService />
+      <PartnerAppShowcase />
       <CitiesWeServe />
       <CustomerReviews />
       <BlogTeaser />

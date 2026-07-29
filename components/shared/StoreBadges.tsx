@@ -83,15 +83,20 @@ export function StoreBadges({ className }: { className?: string }) {
   );
 }
 
+interface GooglePlayBadgeProps {
+  className?: string;
+  /** Overrides the default MR Bike Doctor customer app link — used for other Play Store listings (e.g. the Partner app). */
+  href?: string;
+  eyebrow?: string;
+  label?: string;
+}
+
 /** Single Google Play badge for the sitewide "Download the App" CTAs — iOS isn't live yet. */
-export function GooglePlayBadge({ className }: { className?: string }) {
-  return (
-    <StoreBadge
-      href={siteConfig.android.url}
-      eyebrow="GET IT ON"
-      label="Google Play"
-      glyph={<PlayGlyph />}
-      className={className}
-    />
-  );
+export function GooglePlayBadge({
+  className,
+  href = siteConfig.android.url,
+  eyebrow = "GET IT ON",
+  label = "Google Play",
+}: GooglePlayBadgeProps) {
+  return <StoreBadge href={href} eyebrow={eyebrow} label={label} glyph={<PlayGlyph />} className={className} />;
 }

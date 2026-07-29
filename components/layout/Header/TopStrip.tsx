@@ -18,7 +18,16 @@ export function TopStrip({ coverageText, phoneDisplay, phoneHref }: TopStripProp
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setCollapsed(window.scrollY > 40);
+    // Hysteresis (collapse at 64px, expand at 16px) prevents an infinite
+    // flicker loop: collapsing shrinks the header, and browser scroll
+    // anchoring compensates by nudging scrollY back down, which would
+    // instantly re-expand it at a single threshold.
+    const onScroll = () => {
+      setCollapsed((prev) => {
+        if (prev) return window.scrollY > 16;
+        return window.scrollY > 64;
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);

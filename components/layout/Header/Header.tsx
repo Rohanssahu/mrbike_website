@@ -33,7 +33,7 @@ export function Header() {
   const phoneHref = `tel:${siteConfig.contactPhone.replace(/[^+\d]/g, "")}`;
 
   return (
-    <header className="bg-background sticky top-0 z-50">
+    <header className="bg-background sticky top-0 z-50 [overflow-anchor:none]">
       <TopStrip
         coverageText={buildCoverageText()}
         phoneDisplay={siteConfig.contactPhone}

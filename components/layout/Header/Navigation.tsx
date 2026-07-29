@@ -12,7 +12,7 @@ export function Navigation({ className, ...props }: ComponentProps<"nav">) {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Primary" className={cn("items-center gap-1", className)} {...props}>
+    <nav aria-label="Primary" className={cn("items-center gap-2", className)} {...props}>
       {MAIN_NAV_LINKS.map((link) => {
         const isActive = pathname === link.href;
         return (
@@ -21,7 +21,7 @@ export function Navigation({ className, ...props }: ComponentProps<"nav">) {
             href={link.href}
             aria-current={isActive ? "page" : undefined}
             className={cn(
-              "relative rounded-lg px-2.5 py-1.5 text-xs font-medium text-white/65 transition-colors hover:text-white",
+              "relative rounded-lg px-3 py-1.5 text-sm font-bold text-white/80 transition-colors hover:text-white",
               isActive && "text-white",
             )}
           >

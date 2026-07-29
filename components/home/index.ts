@@ -8,6 +8,7 @@ export * from "./WhyChooseUs";
 export * from "./TrustBand";
 export * from "./BrandsWeService";
 export * from "./CitiesWeServe";
+export * from "./PartnerAppShowcase";
 export * from "./CustomerReviews";
 export * from "./BlogTeaser";
 export * from "./FaqTeaser";
