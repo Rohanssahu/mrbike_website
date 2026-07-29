@@ -1,10 +1,10 @@
-import { ExternalLinkIcon, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/shared/Container";
 import { SocialIcon } from "@/components/shared/SocialIcon";
-import { GooglePlayBadge } from "@/components/shared/StoreBadges";
+import { AppStoreBadge, GooglePlayBadge, StoreBadges } from "@/components/shared/StoreBadges";
 import { siteConfig } from "@/config/site";
 import { MAIN_NAV_LINKS } from "@/constants/navigation";
 import { getAllServices } from "@/lib/content/services";
@@ -50,23 +50,39 @@ export function Footer() {
               {siteConfig.description}
             </p>
 
-            {siteConfig.social.length > 0 && (
-              <ul className="flex flex-wrap gap-3 pt-1">
-                {siteConfig.social.map((link) => (
-                  <li key={link.name}>
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="border-border/60 text-muted-foreground hover:border-primary hover:text-primary flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs transition-colors"
-                    >
-                      {link.name}
-                      <ExternalLinkIcon className="size-3" aria-hidden="true" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
+            {/* Download App CTA */}
+            <div className="mt-2 flex flex-col items-start gap-4">
+              <div className="flex flex-col items-start gap-1.5">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={userAppIcon}
+                    alt={`${siteConfig.name} customer app icon`}
+                    width={28}
+                    height={28}
+                    className="size-7 rounded-lg"
+                  />
+                  <span className="font-heading text-xs font-semibold text-white">{siteConfig.name}</span>
+                </div>
+                <StoreBadges compact />
+              </div>
+
+              <div className="flex flex-col items-start gap-1.5">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={partnerAppIcon}
+                    alt={`${siteConfig.name} Partner app icon`}
+                    width={28}
+                    height={28}
+                    className="size-7 rounded-lg"
+                  />
+                  <span className="font-heading text-xs font-semibold text-white">{siteConfig.name} Partner</span>
+                </div>
+                <div className="grid grid-cols-2 items-center gap-2">
+                  <GooglePlayBadge compact href={siteConfig.partnerAndroid.url} eyebrow="INTERNAL TESTING ON" />
+                  <AppStoreBadge compact href={siteConfig.partnerIos.url} />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Our Services */}
@@ -149,37 +165,6 @@ export function Footer() {
                 ))}
               </ul>
             )}
-
-            {/* Download App CTA */}
-            <div className="mt-8 flex flex-col items-start gap-6">
-              <div className="flex flex-col items-start gap-2">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={userAppIcon}
-                    alt={`${siteConfig.name} customer app icon`}
-                    width={40}
-                    height={40}
-                    className="size-10 rounded-xl"
-                  />
-                  <span className="font-heading text-sm font-semibold text-white">{siteConfig.name}</span>
-                </div>
-                <GooglePlayBadge />
-              </div>
-
-              <div className="flex flex-col items-start gap-2">
-                <div className="flex items-center gap-2">
-                  <Image
-                    src={partnerAppIcon}
-                    alt={`${siteConfig.name} Partner app icon`}
-                    width={40}
-                    height={40}
-                    className="size-10 rounded-xl"
-                  />
-                  <span className="font-heading text-sm font-semibold text-white">{siteConfig.name} Partner</span>
-                </div>
-                <GooglePlayBadge href={siteConfig.partnerAndroid.url} eyebrow="INTERNAL TESTING ON" />
-              </div>
-            </div>
           </div>
         </div>
 

@@ -28,4 +28,5 @@ export interface SiteConfig {
   ios: { url: string };
   android: { url: string };
   partnerAndroid: { url: string };
+  partnerIos: { url: string };
 }

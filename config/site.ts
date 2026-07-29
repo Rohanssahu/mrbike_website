@@ -43,4 +43,6 @@ export const siteConfig: SiteConfig = {
   android: { url: env.androidAppUrl },
   // Play Store internal-testing link for the MR Bike Doctor Partner (garage/mechanic) app.
   partnerAndroid: { url: "https://play.google.com/apps/internaltest/4700941963525886328" },
+  // No partner iOS app yet — badge renders as "coming soon" until this is set.
+  partnerIos: { url: "" },
 };
