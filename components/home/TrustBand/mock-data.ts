@@ -1,7 +1,8 @@
-import { Bike, MapPin, type LucideIcon } from "lucide-react";
+import { Bike, MapPin, Wrench, type LucideIcon } from "lucide-react";
 
 import { BRANDS } from "@/components/home/BrandsWeService/mock-data";
 import { CITIES } from "@/components/home/CitiesWeServe/mock-data";
+import { POPULAR_SERVICES } from "@/components/home/PopularServices/mock-data";
 
 export interface TrustStat {
   id: string;
@@ -34,5 +35,11 @@ export const TRUST_STATS: TrustStat[] = [
     icon: Bike,
     value: `${BRANDS.length}+`,
     label: "Brands supported",
+  },
+  {
+    id: "services",
+    icon: Wrench,
+    value: `${POPULAR_SERVICES.length}+`,
+    label: "Services offered",
   },
 ];
