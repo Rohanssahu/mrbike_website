@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Analytics } from "@/components/analytics";
+import { Analytics, Clarity } from "@/components/analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { fontMono, fontSans } from "@/lib/fonts";
 import { organizationSchema, websiteSchema } from "@/seo/json-ld";
@@ -23,6 +23,7 @@ export default function RootLayout({
         <JsonLd schema={[organizationSchema(), websiteSchema({ path: "/blog", queryParam: "q" })]} />
         {children}
         <Analytics />
+        <Clarity />
       </body>
     </html>
   );

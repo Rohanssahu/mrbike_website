@@ -15,6 +15,7 @@ export const env = {
   iosAppUrl: process.env.NEXT_PUBLIC_IOS_APP_URL ?? "",
   androidAppUrl: process.env.NEXT_PUBLIC_ANDROID_APP_URL ?? "",
   gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "",
+  clarityProjectId: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID ?? "",
   googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "support@mrbikedoctor.com",
   contactPhone: process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+91 72075 45464",
