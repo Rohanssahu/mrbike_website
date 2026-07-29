@@ -9,6 +9,7 @@ import {
   Hero,
   HowItWorks,
   PopularServices,
+  ServicesBanner,
   TrustBand,
   WhyChooseUs,
 } from "@/components/home";
@@ -32,6 +33,7 @@ export default function Home() {
       <Hero />
       <AppShowcase />
       <PopularServices />
+      <ServicesBanner />
       <AppFeatures />
       <HowItWorks />
       <WhyChooseUs />

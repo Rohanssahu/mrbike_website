@@ -161,3 +161,41 @@
     @apply font-sans;
   }
 }
+
+/* Fill animation for ServicesBanner's auto-advance progress bar — driven by
+   animation-play-state so hover/touch/focus pause holds the current width
+   instead of resetting it. */
+@keyframes services-banner-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Brands marquee (components/home/BrandsWeService/BrandsMarquee.tsx) — the
+   track renders the brand list twice and loops via translateX(0 → -50%),
+   which lands back on an identical card so the seam is invisible. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 57s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}

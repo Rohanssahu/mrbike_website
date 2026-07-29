@@ -10,7 +10,9 @@ interface QuickAnswerProps {
 export function QuickAnswer({ children }: QuickAnswerProps) {
   return (
     <div className="border-primary bg-primary/5 rounded-r-xl border-l-4 py-4 pr-5 pl-5">
-      <p className="text-foreground text-base leading-relaxed">{children}</p>
+      <p data-speakable="quick-answer" className="text-foreground text-base leading-relaxed">
+        {children}
+      </p>
     </div>
   );
 }

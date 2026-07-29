@@ -1,48 +1,80 @@
-import Image from "next/image";
+import { BikeIcon, DownloadIcon } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/shared/Container";
+import { getAllCities, getLiveCities } from "@/lib/content/cities";
 import { siteConfig } from "@/config/site";
-import logo from "@/assets/brand/logo.png";
 
 import { MobileNav } from "./MobileNav";
 import { Navigation } from "./Navigation";
+import { TopStrip } from "./TopStrip";
+
+/** Builds the top-strip coverage line from the real cities dataset — never invents launch cities. */
+function buildCoverageText() {
+  const live = getLiveCities();
+  const comingSoon = getAllCities().length - live.length;
+
+  if (live.length === 0) {
+    return `Launching soon in ${getAllCities().length} cities`;
+  }
+
+  const liveNames = live.map((city) => city.name).join(", ");
+  if (comingSoon === 0) {
+    return `Serving ${liveNames}`;
+  }
+  return `Serving ${liveNames} · ${comingSoon} more ${comingSoon === 1 ? "city" : "cities"} coming soon`;
+}
 
 /**
- * Sticky, translucent header. Server component: the only interactive parts
- * (active nav state, mobile menu) are isolated into their own client islands.
+ * Sticky, two-tier "split-bar" header. Server component: the only
+ * interactive parts (active nav state, mobile menu, scroll-collapse of the
+ * top strip) are isolated into their own client islands.
  */
 export function Header() {
+  const phoneHref = `tel:${siteConfig.contactPhone.replace(/[^+\d]/g, "")}`;
+
   return (
-    <header className="border-border/60 bg-background/80 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 border-b backdrop-blur">
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <Link
-          href="/"
-          className="font-heading text-foreground flex shrink-0 items-center gap-2 text-lg font-semibold"
-          aria-label={`${siteConfig.name} — home`}
-        >
-          <Image
-            src={logo}
-            alt={`${siteConfig.name} logo`}
-            width={40}
-            height={40}
-            className="size-10 shrink-0 rounded-lg"
-            priority
-          />
-          <span className="hidden sm:inline">{siteConfig.name}</span>
-        </Link>
+    <header className="bg-background sticky top-0 z-50">
+      <TopStrip
+        coverageText={buildCoverageText()}
+        phoneDisplay={siteConfig.contactPhone}
+        phoneHref={phoneHref}
+      />
 
-        <Navigation className="hidden lg:flex" />
+      <div className="border-border/60 bg-background/80 supports-backdrop-filter:bg-background/60 border-b backdrop-blur">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-[22px] py-3">
+          <Link
+            href="/"
+            className="flex shrink-0 items-center gap-2"
+            aria-label={`${siteConfig.name} — home`}
+          >
+            <span className="bg-primary flex size-[30px] shrink-0 items-center justify-center rounded-full">
+              <BikeIcon className="text-primary-foreground size-4" aria-hidden="true" />
+            </span>
+            <span className="text-[13px] font-medium text-white">{siteConfig.name}</span>
+          </Link>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          <Button nativeButton={false} render={<Link href="/download" />}>
-            Download App
-          </Button>
+          <Navigation className="hidden lg:flex" />
+
+          <div className="flex shrink-0 items-center gap-2">
+            <Link
+              href="/download"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hidden items-center rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors lg:inline-flex"
+            >
+              Download app
+            </Link>
+
+            <Link
+              href="/download"
+              aria-label="Download app"
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground inline-flex size-8 shrink-0 items-center justify-center rounded-full border transition-colors lg:hidden"
+            >
+              <DownloadIcon className="size-4" aria-hidden="true" />
+            </Link>
+
+            <MobileNav />
+          </div>
         </div>
-
-        <MobileNav />
-      </Container>
+      </div>
     </header>
   );
 }

@@ -21,11 +21,17 @@ export function Navigation({ className, ...props }: ComponentProps<"nav">) {
             href={link.href}
             aria-current={isActive ? "page" : undefined}
             className={cn(
-              "text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg px-2.5 py-1.5 text-sm font-medium transition-colors",
-              isActive && "bg-muted text-foreground",
+              "relative rounded-lg px-2.5 py-1.5 text-xs font-medium text-white/65 transition-colors hover:text-white",
+              isActive && "text-white",
             )}
           >
             {link.label}
+            {isActive && (
+              <span
+                aria-hidden="true"
+                className="bg-primary absolute bottom-0 left-1/2 size-1 -translate-x-1/2 translate-y-1.5 rounded-full"
+              />
+            )}
           </Link>
         );
       })}

@@ -2,15 +2,17 @@ import { ArrowLeft, Clock } from "lucide-react";
 import Link from "next/link";
 
 import { RelatedPostsByEntity } from "@/components/blog/RelatedPostsByEntity";
-import { getFaqsByTag } from "@/components/faq";
 import { ServiceCard } from "@/components/home/PopularServices/ServiceCard";
-import { POPULAR_SERVICES, type ServiceRecord } from "@/components/home/PopularServices/mock-data";
+import type { ServiceRecord } from "@/components/home/PopularServices/mock-data";
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { ComparisonTable } from "@/components/shared/ComparisonTable";
 import { FaqAccordion } from "@/components/shared/FaqAccordion";
 import { HowToSteps } from "@/components/shared/HowToSteps";
+import { KeyFacts } from "@/components/shared/KeyFacts";
 import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { getComparedService, getFaqsByTag } from "@/lib/content";
 
 interface ServiceDetailProps {
   service: ServiceRecord;
@@ -23,14 +25,21 @@ const RELATED_HEADING_ID = "related-services-heading";
 /** /services/[service] — informational detail page, no pricing/booking (Phase 4 §13 item 3/Phase 6). */
 export function ServiceDetail({ service, related }: ServiceDetailProps) {
   const Icon = service.icon;
-  const comparedService = service.comparisonSlug
-    ? POPULAR_SERVICES.find((s) => s.slug === service.comparisonSlug)
-    : undefined;
+  const comparedService = getComparedService(service);
   const faqs = getFaqsByTag(`service:${service.slug}`);
 
   return (
     <>
       <Section className="pb-0 md:pb-0" aria-labelledby="service-detail-heading">
+        <Breadcrumbs
+          className="mb-6"
+          items={[
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: service.name, path: `/services/${service.slug}` },
+          ]}
+        />
+
         <Link
           href="/services"
           className="text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-1 text-sm"
@@ -59,6 +68,21 @@ export function ServiceDetail({ service, related }: ServiceDetailProps) {
 
         <div className="mt-6">
           <QuickAnswer>{service.quickAnswer}</QuickAnswer>
+        </div>
+
+        <div className="mt-6">
+          <KeyFacts
+            facts={[
+              {
+                label: "Typical duration",
+                value: `${service.durationMinutes.min}–${service.durationMinutes.max} min`,
+              },
+              { label: "What's included", value: `${service.whatsIncluded.length} checks/tasks` },
+              ...(service.aliases && service.aliases.length > 0
+                ? [{ label: "Also known as", value: service.aliases.join(", ") }]
+                : []),
+            ]}
+          />
         </div>
       </Section>
 

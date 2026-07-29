@@ -4,17 +4,17 @@ import Link from "next/link";
 
 import urbanServiceIllustration from "@/assets/illustrations/cities/urban-service.svg";
 import { RelatedPostsByEntity } from "@/components/blog/RelatedPostsByEntity";
-import { getFaqsByTag } from "@/components/faq";
-import { BRANDS } from "@/components/home/BrandsWeService/mock-data";
 import type { CityRecord } from "@/components/home/CitiesWeServe/mock-data";
-import { POPULAR_SERVICES } from "@/components/home/PopularServices/mock-data";
 import { Badge } from "@/components/ui/badge";
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { FaqAccordion } from "@/components/shared/FaqAccordion";
+import { KeyFacts } from "@/components/shared/KeyFacts";
 import { LinkTile } from "@/components/shared/LinkTile";
 import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
+import { getAllBrands, getAllServices, getFaqsByTag } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 import type { AreaRecord } from "./mock-data";
@@ -33,6 +33,8 @@ export function CityDetail({ city, areas }: CityDetailProps) {
   const isLive = city.status === "live";
   const StatusIcon = isLive ? CheckCircle2 : Clock;
   const faqs = getFaqsByTag(`city:${city.slug}`);
+  const services = getAllServices();
+  const brands = getAllBrands();
 
   return (
     <>
@@ -44,6 +46,15 @@ export function CityDetail({ city, areas }: CityDetailProps) {
             className="absolute top-1/2 right-0 w-full max-w-md -translate-y-1/2 opacity-[0.07] sm:max-w-lg"
           />
         </div>
+
+        <Breadcrumbs
+          className="mb-6"
+          items={[
+            { name: "Home", path: "/" },
+            { name: "Cities", path: "/cities" },
+            { name: city.name, path: `/cities/${city.slug}` },
+          ]}
+        />
 
         <Link
           href="/cities"
@@ -81,6 +92,16 @@ export function CityDetail({ city, areas }: CityDetailProps) {
               : `MR Bike Doctor isn't live in ${city.name}, ${city.state} yet. The app is expanding city by city — download it to get notified the moment doorstep service launches here.`}
           </QuickAnswer>
         </div>
+
+        <div className="mt-6 max-w-2xl">
+          <KeyFacts
+            facts={[
+              { label: "State", value: city.state },
+              { label: "Status", value: isLive ? "Live" : "Coming Soon" },
+              ...(isLive ? [{ label: "Areas covered", value: `${areas.length}+` }] : []),
+            ]}
+          />
+        </div>
       </Section>
 
       {isLive && areas.length > 0 && (
@@ -114,7 +135,7 @@ export function CityDetail({ city, areas }: CityDetailProps) {
               title={`Popular bike services in ${city.name}`}
             />
             <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {POPULAR_SERVICES.slice(0, 6).map((service) => (
+              {services.slice(0, 6).map((service) => (
                 <li key={service.id}>
                   <LinkTile href={`/services/${service.slug}`} label={service.name} />
                 </li>
@@ -129,7 +150,7 @@ export function CityDetail({ city, areas }: CityDetailProps) {
               title={`Bike brands serviced in ${city.name}`}
             />
             <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {BRANDS.map((brand) => (
+              {brands.map((brand) => (
                 <li key={brand.id}>
                   <LinkTile href={`/brands/${brand.slug}`} label={brand.name} />
                 </li>

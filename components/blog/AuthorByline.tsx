@@ -1,6 +1,7 @@
-import { Clock, User } from "lucide-react";
+import { User } from "lucide-react";
 
-import { formatPublishedDate } from "./utils";
+import { LastUpdated } from "@/components/shared/LastUpdated";
+import { ReadingTime } from "@/components/shared/ReadingTime";
 
 interface AuthorBylineProps {
   authorName: string;
@@ -16,11 +17,8 @@ export function AuthorByline({ authorName, publishedAt, readingTimeMinutes }: Au
         <User className="size-4" aria-hidden="true" />
         {authorName}
       </span>
-      <span>{formatPublishedDate(publishedAt)}</span>
-      <span className="flex items-center gap-1.5">
-        <Clock className="size-4" aria-hidden="true" />
-        {readingTimeMinutes} min read
-      </span>
+      <LastUpdated date={publishedAt} label="Published" />
+      <ReadingTime minutes={readingTimeMinutes} />
     </div>
   );
 }

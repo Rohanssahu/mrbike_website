@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 import type { CityRecord } from "@/components/home/CitiesWeServe/mock-data";
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
@@ -20,6 +21,16 @@ export function AreaDetail({ city, area }: AreaDetailProps) {
   return (
     <>
       <Section className="pb-0 md:pb-0" aria-labelledby="area-detail-heading">
+        <Breadcrumbs
+          className="mb-6"
+          items={[
+            { name: "Home", path: "/" },
+            { name: "Cities", path: "/cities" },
+            { name: city.name, path: `/cities/${city.slug}` },
+            { name: area.name, path: `/cities/${city.slug}/${area.slug}` },
+          ]}
+        />
+
         <Link
           href={`/cities/${city.slug}`}
           className="text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-1 text-sm"

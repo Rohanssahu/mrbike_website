@@ -1,6 +1,7 @@
 "use client";
 
 import { Search } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import { Input } from "@/components/ui/input";
@@ -12,9 +13,19 @@ interface BlogSearchProps {
   posts: BlogPostRecord[];
 }
 
-/** Client-side search over the already-loaded post list — matches title, excerpt, and tags. */
+/**
+ * Client-side search over the already-loaded post list — matches title,
+ * excerpt, and tags. The query is mirrored into the URL's `q` param (no
+ * navigation, just history state) so `/blog?q=...` is a real, shareable
+ * search result — the thing that makes `websiteSchema()`'s `SearchAction`
+ * (Phase 4 §10, Phase 7) an honest structured-data claim rather than a
+ * schema pointing at a client-only widget with no matching URL.
+ */
 export function BlogSearch({ posts }: BlogSearchProps) {
-  const [query, setQuery] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
 
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
@@ -26,6 +37,18 @@ export function BlogSearch({ posts }: BlogSearchProps) {
     });
   }, [posts, query]);
 
+  function handleQueryChange(value: string) {
+    setQuery(value);
+    const params = new URLSearchParams(searchParams.toString());
+    if (value.trim()) {
+      params.set("q", value);
+    } else {
+      params.delete("q");
+    }
+    const queryString = params.toString();
+    router.replace(queryString ? `${pathname}?${queryString}` : pathname, { scroll: false });
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <div className="relative max-w-md">
@@ -36,7 +59,7 @@ export function BlogSearch({ posts }: BlogSearchProps) {
         <Input
           type="search"
           value={query}
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(event) => handleQueryChange(event.target.value)}
           placeholder="Search articles..."
           aria-label="Search articles"
           className="pl-9"

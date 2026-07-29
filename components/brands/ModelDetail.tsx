@@ -1,13 +1,15 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
-import { getFaqsByTag } from "@/components/faq";
 import type { BrandRecord } from "@/components/home/BrandsWeService/mock-data";
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { FaqAccordion } from "@/components/shared/FaqAccordion";
+import { KeyFacts } from "@/components/shared/KeyFacts";
 import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
+import { getFaqsByTag } from "@/lib/content";
 
 import type { BikeModelRecord } from "./mock-data";
 
@@ -25,6 +27,16 @@ export function ModelDetail({ brand, model }: ModelDetailProps) {
   return (
     <>
       <Section className="pb-0 md:pb-0" aria-labelledby="model-detail-heading">
+        <Breadcrumbs
+          className="mb-6"
+          items={[
+            { name: "Home", path: "/" },
+            { name: "Brands", path: "/brands" },
+            { name: brand.name, path: `/brands/${brand.slug}` },
+            { name: model.name, path: `/brands/${brand.slug}/${model.slug}` },
+          ]}
+        />
+
         <Link
           href={`/brands/${brand.slug}`}
           className="text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-1 text-sm"
@@ -48,6 +60,20 @@ export function ModelDetail({ brand, model }: ModelDetailProps) {
           <QuickAnswer>
             {`The ${brand.name} ${model.name} uses ${brand.engineNote.toLowerCase()} with ${brand.driveType.toLowerCase()}. As with other ${brand.name} models, a general service interval of ${brand.serviceIntervalKm.min}–${brand.serviceIntervalKm.max} km is a reasonable starting point — check the owner's manual for the exact factory schedule.`}
           </QuickAnswer>
+        </div>
+
+        <div className="mt-6">
+          <KeyFacts
+            facts={[
+              { label: "Brand", value: brand.name },
+              { label: "Engine", value: brand.engineNote },
+              { label: "Drive type", value: brand.driveType },
+              {
+                label: "Typical service interval",
+                value: `${brand.serviceIntervalKm.min}–${brand.serviceIntervalKm.max} km`,
+              },
+            ]}
+          />
         </div>
       </Section>
 

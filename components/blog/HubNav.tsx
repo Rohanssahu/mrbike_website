@@ -1,6 +1,8 @@
 import Link from "next/link";
 
-import { BLOG_POSTS, type BlogPostRecord } from "./mock-data";
+import { getClusterPostsForPillar, getPillarForCluster } from "@/lib/content/blog";
+
+import type { BlogPostRecord } from "./mock-data";
 
 interface HubNavProps {
   post: BlogPostRecord;
@@ -9,12 +11,12 @@ interface HubNavProps {
 /**
  * Content Hub navigation (Phase 4 §15/Phase 6) — on a pillar post, links
  * out to every cluster article; on a cluster post, links back to its
- * pillar. Both directions read straight from the shared `BLOG_POSTS` pool,
+ * pillar. Both directions read through the `lib/content/blog` access layer,
  * so a hub's shape is entirely defined by data, not page-specific code.
  */
 export function HubNav({ post }: HubNavProps) {
   if (post.isPillar && post.clusterPostIds && post.clusterPostIds.length > 0) {
-    const clusterPosts = BLOG_POSTS.filter((p) => post.clusterPostIds?.includes(p.id));
+    const clusterPosts = getClusterPostsForPillar(post);
     if (clusterPosts.length === 0) return null;
 
     return (
@@ -39,7 +41,7 @@ export function HubNav({ post }: HubNavProps) {
   }
 
   if (post.hubId && !post.isPillar) {
-    const pillar = BLOG_POSTS.find((p) => p.hubId === post.hubId && p.isPillar);
+    const pillar = getPillarForCluster(post);
     if (!pillar) return null;
 
     return (

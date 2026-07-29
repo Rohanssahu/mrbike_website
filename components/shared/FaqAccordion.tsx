@@ -22,7 +22,7 @@ export function FaqAccordion({ faqs, title = "Frequently Asked Questions" }: Faq
           <AccordionItem key={faq.question} value={faq.question}>
             <AccordionTrigger>{faq.question}</AccordionTrigger>
             <AccordionContent>
-              <p>{faq.answer}</p>
+              <p data-speakable="faq-answer">{faq.answer}</p>
             </AccordionContent>
           </AccordionItem>
         ))}

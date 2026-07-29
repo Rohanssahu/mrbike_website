@@ -1,12 +1,14 @@
-import { POPULAR_SERVICES } from "@/components/home/PopularServices/mock-data";
 import { ServiceCard } from "@/components/home/PopularServices/ServiceCard";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { getAllServices } from "@/lib/content";
 
 const HEADING_ID = "services-hub-heading";
 
 /** /services hub — every core service, fully data-driven (Phase 4 §13 item 3). */
 export function ServicesHub() {
+  const services = getAllServices();
+
   return (
     <Section aria-labelledby={HEADING_ID}>
       <SectionHeading
@@ -17,7 +19,7 @@ export function ServicesHub() {
       />
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {POPULAR_SERVICES.map((service) => (
+        {services.map((service) => (
           <ServiceCard key={service.id} service={service} />
         ))}
       </div>

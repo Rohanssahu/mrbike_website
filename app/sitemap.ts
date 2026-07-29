@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
 
-import { BLOG_CATEGORIES, BLOG_POSTS } from "@/components/blog/mock-data";
-import { AREAS } from "@/components/cities/mock-data";
-import { BIKE_MODELS } from "@/components/brands/mock-data";
-import { BRANDS } from "@/components/home/BrandsWeService/mock-data";
-import { CITIES } from "@/components/home/CitiesWeServe/mock-data";
-import { POPULAR_SERVICES } from "@/components/home/PopularServices/mock-data";
 import { siteConfig } from "@/config/site";
+import {
+  getAllAreas,
+  getAllBrands,
+  getAllCities,
+  getAllModels,
+  getAllPosts,
+  getAllServices,
+  getPublishedCategories,
+} from "@/lib/content";
 
 interface RouteEntry {
   path: string;
@@ -16,8 +19,8 @@ interface RouteEntry {
 
 /**
  * Static routes, plus every entity-driven route generated from the same
- * content arrays the pages themselves read (Section 20 — adding a
- * city/brand/service/model is a data change, not a code change).
+ * `lib/content` access layer the pages themselves read (Section 20 —
+ * adding a city/brand/service/model is a data change, not a code change).
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes: RouteEntry[] = [
@@ -34,51 +37,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/privacy-policy", priority: 0.3, changeFrequency: "yearly" },
     { path: "/terms-and-conditions", priority: 0.3, changeFrequency: "yearly" },
     { path: "/delete-account", priority: 0.3, changeFrequency: "yearly" },
-    ...POPULAR_SERVICES.map(
+    ...getAllServices().map(
       (service): RouteEntry => ({
         path: `/services/${service.slug}`,
         priority: 0.6,
         changeFrequency: "monthly",
       }),
     ),
-    ...BRANDS.map(
+    ...getAllBrands().map(
       (brand): RouteEntry => ({
         path: `/brands/${brand.slug}`,
         priority: 0.6,
         changeFrequency: "monthly",
       }),
     ),
-    ...BIKE_MODELS.map(
+    ...getAllModels().map(
       (model): RouteEntry => ({
         path: `/brands/${model.brandSlug}/${model.slug}`,
         priority: 0.5,
         changeFrequency: "monthly",
       }),
     ),
-    ...CITIES.map(
+    ...getAllCities().map(
       (city): RouteEntry => ({
         path: `/cities/${city.slug}`,
         priority: city.status === "live" ? 0.7 : 0.4,
         changeFrequency: "monthly",
       }),
     ),
-    ...AREAS.map(
+    ...getAllAreas().map(
       (area): RouteEntry => ({
         path: `/cities/${area.citySlug}/${area.slug}`,
         priority: 0.5,
         changeFrequency: "monthly",
       }),
     ),
-    ...BLOG_CATEGORIES.filter((category) =>
-      BLOG_POSTS.some((post) => post.categorySlug === category.slug),
-    ).map(
+    ...getPublishedCategories().map(
       (category): RouteEntry => ({
         path: `/blog/${category.slug}`,
         priority: 0.7,
         changeFrequency: "weekly",
       }),
     ),
-    ...BLOG_POSTS.map(
+    ...getAllPosts().map(
       (post): RouteEntry => ({
         path: `/blog/${post.categorySlug}/${post.slug}`,
         priority: 0.6,

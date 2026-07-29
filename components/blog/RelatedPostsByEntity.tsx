@@ -1,4 +1,6 @@
-import { BLOG_POSTS, type BlogPostRecord } from "./mock-data";
+import { RelatedGuides } from "@/components/shared/RelatedGuides";
+import { getPostsByEntityTag } from "@/lib/content/blog";
+
 import { PostCard } from "./PostCard";
 
 type RelatedField = "relatedServiceSlugs" | "relatedBrandSlugs" | "relatedCitySlugs";
@@ -16,21 +18,7 @@ interface RelatedPostsByEntityProps {
  * FAQ engine (Phase 4 §8's internal-linking requirement).
  */
 export function RelatedPostsByEntity({ field, slug, limit = 3 }: RelatedPostsByEntityProps) {
-  const posts: BlogPostRecord[] = BLOG_POSTS.filter((post) => post[field]?.includes(slug)).slice(
-    0,
-    limit,
-  );
+  const posts = getPostsByEntityTag(field, slug, limit);
 
-  if (posts.length === 0) return null;
-
-  return (
-    <div>
-      <h2 className="font-heading text-foreground mb-4 text-xl font-semibold">Related Articles</h2>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
-      </div>
-    </div>
-  );
+  return <RelatedGuides posts={posts} title="Related Articles" renderCard={PostCard} />;
 }

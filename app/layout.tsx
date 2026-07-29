@@ -19,7 +19,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="antialiased">
-        <JsonLd schema={[organizationSchema(), websiteSchema()]} />
+        <JsonLd schema={[organizationSchema(), websiteSchema({ path: "/blog", queryParam: "q" })]} />
         {children}
       </body>
     </html>

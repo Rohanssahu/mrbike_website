@@ -2,15 +2,15 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 import { RelatedPostsByEntity } from "@/components/blog/RelatedPostsByEntity";
-import { getFaqsByTag } from "@/components/faq";
 import type { BrandRecord } from "@/components/home/BrandsWeService/mock-data";
-import { POPULAR_SERVICES } from "@/components/home/PopularServices/mock-data";
+import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { ComparisonTable } from "@/components/shared/ComparisonTable";
 import { FaqAccordion } from "@/components/shared/FaqAccordion";
 import { LinkTile } from "@/components/shared/LinkTile";
 import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { getAllServices, getFaqsByTag } from "@/lib/content";
 
 import type { BikeModelRecord } from "./mock-data";
 
@@ -26,10 +26,20 @@ const SERVICES_HEADING_ID = "brand-services-heading";
 /** /brands/[brand] — informational brand page, no pricing/booking (Phase 4 §13 item 3, extended Phase 6). */
 export function BrandDetail({ brand, models }: BrandDetailProps) {
   const faqs = getFaqsByTag(`brand:${brand.slug}`);
+  const services = getAllServices();
 
   return (
     <>
       <Section className="pb-0 md:pb-0" aria-labelledby="brand-detail-heading">
+        <Breadcrumbs
+          className="mb-6"
+          items={[
+            { name: "Home", path: "/" },
+            { name: "Brands", path: "/brands" },
+            { name: brand.name, path: `/brands/${brand.slug}` },
+          ]}
+        />
+
         <Link
           href="/brands"
           className="text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-1 text-sm"
@@ -141,7 +151,7 @@ export function BrandDetail({ brand, models }: BrandDetailProps) {
           title={`MR Bike Doctor services for ${brand.name}`}
         />
         <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {POPULAR_SERVICES.map((service) => (
+          {services.map((service) => (
             <li key={service.id}>
               <LinkTile href={`/services/${service.slug}`} label={service.name} />
             </li>

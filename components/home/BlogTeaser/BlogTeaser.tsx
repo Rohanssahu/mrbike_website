@@ -1,11 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import { BLOG_POSTS } from "@/components/blog/mock-data";
 import { PostCard } from "@/components/blog/PostCard";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { getAllPosts } from "@/lib/content";
 
 const HEADING_ID = "home-blog-heading";
 const LATEST_COUNT = 3;
@@ -17,7 +17,7 @@ const LATEST_COUNT = 3;
  * gap flagged in the Phase 5F audit.
  */
 export function BlogTeaser() {
-  const latestPosts = [...BLOG_POSTS]
+  const latestPosts = [...getAllPosts()]
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
     .slice(0, LATEST_COUNT);
 

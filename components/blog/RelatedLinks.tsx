@@ -1,9 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import { BRANDS } from "@/components/home/BrandsWeService/mock-data";
-import { CITIES } from "@/components/home/CitiesWeServe/mock-data";
-import { POPULAR_SERVICES } from "@/components/home/PopularServices/mock-data";
+import { getAllBrands, getAllCities, getAllServices } from "@/lib/content";
 
 interface RelatedLinksProps {
   serviceSlugs?: string[];
@@ -14,18 +12,15 @@ interface RelatedLinksProps {
 /** Internal links from an article out to the relevant Service/Brand/City/FAQ pages (Phase 4 §8). */
 export function RelatedLinks({ serviceSlugs = [], brandSlugs = [], citySlugs = [] }: RelatedLinksProps) {
   const links = [
-    ...POPULAR_SERVICES.filter((s) => serviceSlugs.includes(s.slug)).map((s) => ({
-      label: s.name,
-      href: `/services/${s.slug}`,
-    })),
-    ...BRANDS.filter((b) => brandSlugs.includes(b.slug)).map((b) => ({
-      label: `${b.name} Service`,
-      href: `/brands/${b.slug}`,
-    })),
-    ...CITIES.filter((c) => citySlugs.includes(c.slug)).map((c) => ({
-      label: `Bike Service in ${c.name}`,
-      href: `/cities/${c.slug}`,
-    })),
+    ...getAllServices()
+      .filter((s) => serviceSlugs.includes(s.slug))
+      .map((s) => ({ label: s.name, href: `/services/${s.slug}` })),
+    ...getAllBrands()
+      .filter((b) => brandSlugs.includes(b.slug))
+      .map((b) => ({ label: `${b.name} Service`, href: `/brands/${b.slug}` })),
+    ...getAllCities()
+      .filter((c) => citySlugs.includes(c.slug))
+      .map((c) => ({ label: `Bike Service in ${c.name}`, href: `/cities/${c.slug}` })),
     { label: "Frequently Asked Questions", href: "/faq" },
   ];
 
