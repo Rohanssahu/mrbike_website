@@ -70,7 +70,7 @@ export function ServicesBanner() {
       />
 
       <div
-        className="border-border bg-card relative mt-10 min-h-[26rem] overflow-hidden rounded-2xl border sm:min-h-[22rem]"
+        className="border-border bg-card relative mt-10 overflow-hidden rounded-2xl border md:min-h-[26rem]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={() => setPaused(true)}
@@ -87,9 +87,9 @@ export function ServicesBanner() {
             animate="center"
             exit="exit"
             transition={{ duration: TRANSITION_SECONDS, ease: "easeInOut" }}
-            className="absolute inset-0 grid grid-cols-1 items-center gap-8 p-8 sm:p-10 md:grid-cols-2 md:gap-12"
+            className="grid grid-cols-1 items-center gap-6 p-6 sm:gap-8 sm:p-10 md:absolute md:inset-0 md:grid-cols-2 md:gap-12"
           >
-            <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-primary/15 to-transparent md:aspect-auto md:h-full">
+            <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-primary/15 to-transparent sm:aspect-[16/9] md:aspect-auto md:h-full">
               {image ? (
                 <Image
                   src={image}
