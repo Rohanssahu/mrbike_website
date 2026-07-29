@@ -101,23 +101,21 @@ export interface BlogPostRecord {
 }
 
 /**
- * Placeholder articles only — validates the blog UI (Phase 4 §8/§13 item 4).
- * Every title is prefixed "[Sample]" so it reads as obviously non-production
- * at a glance. Content here is generic, widely-known bike-maintenance
- * knowledge (or copy already established elsewhere in this codebase, e.g.
- * "verified mechanics," "transparent pricing shown in the app") — never a
- * fabricated MR Bike Doctor business fact, history, or statistic. The array
- * shape (flat records + category FK) is the same pattern already scaled to
- * hundreds of records elsewhere in this codebase (Services/Brands/Cities),
- * so adding article #10 or #10,000 is a data change, not an architecture
- * change (Phase 4 §20).
+ * Live blog articles (Phase 4 §8/§13 item 4). Content is generic,
+ * widely-known bike-maintenance knowledge (or copy already established
+ * elsewhere in this codebase, e.g. "verified mechanics," "transparent
+ * pricing shown in the app") — never a fabricated MR Bike Doctor business
+ * fact, history, or statistic. The array shape (flat records + category FK)
+ * is the same pattern already scaled to hundreds of records elsewhere in
+ * this codebase (Services/Brands/Cities), so adding article #10 or #10,000
+ * is a data change, not an architecture change (Phase 4 §20).
  */
 export const BLOG_POSTS: BlogPostRecord[] = [
   {
     id: "post_engine-oil-change-frequency",
     slug: "how-often-change-bike-engine-oil",
     categorySlug: "maintenance-tips",
-    title: "[Sample] How Often Should You Change Bike Engine Oil?",
+    title: "How Often Should You Change Bike Engine Oil?",
     excerpt:
       "A quick, practical answer to one of the most common bike maintenance questions — plus what changes it.",
     author: { name: "MR Bike Doctor Team" },
@@ -169,7 +167,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_engine-oil-types",
     slug: "engine-oil-types-mineral-vs-semi-synthetic-vs-full-synthetic",
     categorySlug: "maintenance-tips",
-    title: "[Sample] Engine Oil Types: Mineral vs. Semi-Synthetic vs. Full-Synthetic",
+    title: "Engine Oil Types: Mineral vs. Semi-Synthetic vs. Full-Synthetic",
     excerpt: "A side-by-side look at the three engine oil types and where each one makes sense.",
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-06-05",
@@ -227,7 +225,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_doorstep-bike-service-guide",
     slug: "doorstep-bike-service-guide",
     categorySlug: "maintenance-tips",
-    title: "[Sample] Doorstep Bike Service Guide",
+    title: "Doorstep Bike Service Guide",
     excerpt:
       "What doorstep bike servicing actually involves, and how it compares to a traditional garage visit.",
     author: { name: "MR Bike Doctor Team" },
@@ -264,7 +262,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_monsoon-bike-care-tips",
     slug: "monsoon-bike-care-tips",
     categorySlug: "seasonal-care",
-    title: "[Sample] Monsoon Bike Care Tips",
+    title: "Monsoon Bike Care Tips",
     excerpt: "A few checks that matter more once the rain starts.",
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-06-18",
@@ -298,7 +296,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_re-classic-350-maintenance-guide",
     slug: "royal-enfield-classic-350-maintenance-guide",
     categorySlug: "brand-guides",
-    title: "[Sample] Royal Enfield Classic 350 Maintenance Guide",
+    title: "Royal Enfield Classic 350 Maintenance Guide",
     excerpt: "General upkeep points for the Classic 350's air-cooled single-cylinder engine.",
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-06-25",
@@ -326,7 +324,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_honda-shine-maintenance-guide",
     slug: "honda-shine-maintenance-guide",
     categorySlug: "brand-guides",
-    title: "[Sample] Honda Shine Maintenance Guide",
+    title: "Honda Shine Maintenance Guide",
     excerpt: "What keeps a commuter-focused bike like the Shine running efficiently.",
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-07-02",
@@ -354,7 +352,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_best-bike-service-hyderabad",
     slug: "best-bike-service-in-hyderabad",
     categorySlug: "city-guides",
-    title: "[Sample] Best Bike Service in Hyderabad",
+    title: "Best Bike Service in Hyderabad",
     excerpt:
       "What to look for in a bike service provider in Hyderabad, and where MR Bike Doctor currently operates.",
     author: { name: "MR Bike Doctor Team" },
@@ -383,7 +381,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_pre-ride-safety-checklist",
     slug: "pre-ride-safety-checklist",
     categorySlug: "riding-safety",
-    title: "[Sample] Pre-Ride Safety Checklist for Riders",
+    title: "Pre-Ride Safety Checklist for Riders",
     excerpt: "A short checklist worth running through before any ride, not just long ones.",
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-07-14",
@@ -410,7 +408,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_battery-replacement-signs",
     slug: "battery-replacement-signs",
     categorySlug: "battery-ev-care",
-    title: "[Sample] Battery Replacement Guide: Signs Your Bike Battery Is Dying",
+    title: "Battery Replacement Guide: Signs Your Bike Battery Is Dying",
     excerpt: "The warning signs that usually show up before a battery fails completely.",
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-07-19",
@@ -437,7 +435,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     id: "post_bike-service-cost-factors",
     slug: "what-affects-bike-service-cost",
     categorySlug: "cost-guides",
-    title: "[Sample] What Affects the Cost of a Bike Service?",
+    title: "What Affects the Cost of a Bike Service?",
     excerpt: "The factors that typically move a bike service quote up or down.",
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-07-24",

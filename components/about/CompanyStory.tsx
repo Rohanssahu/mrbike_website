@@ -3,7 +3,6 @@ import Image from "next/image";
 import teamIllustration from "@/assets/illustrations/about/team-illustration.svg";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
 
 const HEADING_ID = "company-story-heading";
 
@@ -50,8 +49,24 @@ export function CompanyStory() {
         />
       </div>
 
-      <div className="mt-8 max-w-3xl">
-        <TodoPlaceholder what="company story" />
+      <div className="text-muted-foreground mt-8 max-w-3xl space-y-4 leading-relaxed">
+        <p>
+          MR Bike Doctor started with a simple observation: most bike owners don&apos;t have a
+          bike problem, they have a time problem. Between work, family, and everything else
+          pulling at a normal day, riding across town to a service centre — and riding back later
+          to collect the bike — is a chore nobody looks forward to.
+        </p>
+        <p>
+          That gap between &ldquo;my bike needs servicing&rdquo; and &ldquo;I actually have time
+          to deal with it&rdquo; is where small mechanical issues quietly turn into bigger, more
+          expensive ones.
+        </p>
+        <p>
+          MR Bike Doctor exists to close that gap. Instead of asking riders to rearrange their day
+          around a workshop visit, we bring a verified mechanic to them — home, office, or
+          wherever the bike is parked — through a simple booking flow in the MR Bike Doctor app,
+          with clear updates and an itemized invoice at the end.
+        </p>
       </div>
     </Section>
   );
