@@ -1,7 +1,9 @@
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { RelatedPostsByEntity } from "@/components/blog/RelatedPostsByEntity";
+import { BRAND_LOGOS } from "@/components/home/BrandsWeService/brandLogos";
 import type { BrandRecord } from "@/components/home/BrandsWeService/mock-data";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { ComparisonTable } from "@/components/shared/ComparisonTable";
@@ -27,6 +29,7 @@ const SERVICES_HEADING_ID = "brand-services-heading";
 export function BrandDetail({ brand, models }: BrandDetailProps) {
   const faqs = getFaqsByTag(`brand:${brand.slug}`);
   const services = getAllServices();
+  const logo = BRAND_LOGOS[brand.slug];
 
   return (
     <>
@@ -51,9 +54,13 @@ export function BrandDetail({ brand, models }: BrandDetailProps) {
         <div className="flex items-start gap-4">
           <span
             aria-hidden="true"
-            className="bg-muted text-foreground flex size-16 shrink-0 items-center justify-center rounded-full text-lg font-semibold"
+            className="bg-muted flex size-16 shrink-0 items-center justify-center rounded-full p-3"
           >
-            {brand.initials}
+            {logo ? (
+              <Image src={logo} alt="" className="size-full object-contain" />
+            ) : (
+              <span className="text-foreground text-lg font-semibold">{brand.initials}</span>
+            )}
           </span>
           <div>
             <h1

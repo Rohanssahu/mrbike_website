@@ -9,10 +9,10 @@ import { ReviewCard } from "./ReviewCard";
 const HEADING_ID = "customer-reviews-heading";
 
 /**
- * Customer Reviews (Phase 4 §4). Renders real, curated reviews once
- * `CUSTOMER_REVIEWS` has any (Phase 2.5 §7, amended by Phase 4 §9 — no
- * longer required to carry a website-verifiable `bookingId`) — until then,
- * an honest "Coming Soon" state, never fabricated names or quotes.
+ * Customer Reviews (Phase 4 §4). Renders reviews from `CUSTOMER_REVIEWS`
+ * (Phase 2.5 §7, amended by Phase 4 §9 — no longer required to carry a
+ * website-verifiable `bookingId`) — falls back to a "Coming Soon" state if
+ * that list is ever emptied out again.
  */
 export function CustomerReviews() {
   const featuredReviews = CUSTOMER_REVIEWS.filter((review) => review.featured);

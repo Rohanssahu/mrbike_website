@@ -17,6 +17,7 @@ export * from "./Section";
 export * from "./SectionHeading";
 export * from "./Sources";
 export * from "./StatsGrid";
+export * from "./StoreBadges";
 export * from "./TodoPlaceholder";
 export * from "./TrustBadge";
 export * from "./VerifiedBadge";

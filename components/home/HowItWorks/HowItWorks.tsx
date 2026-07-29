@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
+import { GooglePlayBadge } from "@/components/shared/StoreBadges";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
@@ -31,9 +29,7 @@ export function HowItWorks() {
       </ol>
 
       <div className="mt-10 flex justify-center">
-        <Button size="lg" className="h-11 px-5" nativeButton={false} render={<Link href="/download" />}>
-          Download the App
-        </Button>
+        <GooglePlayBadge />
       </div>
     </Section>
   );

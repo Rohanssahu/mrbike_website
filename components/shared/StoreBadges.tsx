@@ -82,3 +82,16 @@ export function StoreBadges({ className }: { className?: string }) {
     </div>
   );
 }
+
+/** Single Google Play badge for the sitewide "Download the App" CTAs — iOS isn't live yet. */
+export function GooglePlayBadge({ className }: { className?: string }) {
+  return (
+    <StoreBadge
+      href={siteConfig.android.url}
+      eyebrow="GET IT ON"
+      label="Google Play"
+      glyph={<PlayGlyph />}
+      className={className}
+    />
+  );
+}

@@ -8,10 +8,11 @@ import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { siteConfig } from "@/config/site";
 
+import { StoreBadges } from "@/components/shared/StoreBadges";
+
 import { APP_STEPS } from "./mock-data";
 import { PhoneTour } from "./PhoneTour";
 import { StepPanel } from "./StepPanel";
-import { StoreBadges } from "./StoreBadges";
 
 const HEADING_ID = "app-showcase-heading";
 

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/Container";
+import { GooglePlayBadge } from "@/components/shared/StoreBadges";
 import { siteConfig } from "@/config/site";
 import logo from "@/assets/brand/logo.png";
 
@@ -21,9 +21,7 @@ export function Footer() {
       <Container className="flex flex-col items-center gap-6 py-10">
         <Image src={logo} alt={`${siteConfig.name} logo`} width={48} height={48} className="size-12 rounded-lg" />
 
-        <Button nativeButton={false} render={<Link href="/download" />}>
-          Download App
-        </Button>
+        <GooglePlayBadge />
 
         <div className="text-muted-foreground flex flex-col items-center justify-between gap-4 text-sm sm:w-full sm:flex-row">
           <p>

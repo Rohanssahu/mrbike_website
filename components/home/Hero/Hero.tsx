@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/shared/Container";
+import { GooglePlayBadge } from "@/components/shared/StoreBadges";
 
 import { HeroIllustration } from "./HeroIllustration";
 import { PhonePreview } from "./PhonePreview";
@@ -38,14 +39,7 @@ export function Hero() {
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
-            <Button
-              size="lg"
-              className="h-11 px-5"
-              nativeButton={false}
-              render={<Link href="/download" />}
-            >
-              Download the App
-            </Button>
+            <GooglePlayBadge />
             <Button
               size="lg"
               variant="outline"

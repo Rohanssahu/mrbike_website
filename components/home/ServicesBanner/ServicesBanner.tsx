@@ -2,9 +2,11 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Clock } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { SERVICE_IMAGES } from "@/components/home/PopularServices/serviceImages";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/shared/Section";
@@ -51,6 +53,7 @@ export function ServicesBanner() {
 
   const service = services[activeIndex];
   const Icon = service.icon;
+  const image = SERVICE_IMAGES[service.slug];
 
   return (
     <Section aria-labelledby={HEADING_ID} className="relative overflow-hidden">
@@ -87,10 +90,22 @@ export function ServicesBanner() {
             className="absolute inset-0 grid grid-cols-1 items-center gap-8 p-8 sm:p-10 md:grid-cols-2 md:gap-12"
           >
             <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-primary/15 to-transparent md:aspect-auto md:h-full">
-              <div aria-hidden="true" className="bg-primary/25 absolute -inset-6 -z-10 rounded-full blur-3xl" />
-              <span className="bg-primary/10 text-primary flex size-24 items-center justify-center rounded-2xl sm:size-28">
-                <Icon className="size-12 sm:size-14" aria-hidden="true" />
-              </span>
+              {image ? (
+                <Image
+                  src={image}
+                  alt={service.name}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                />
+              ) : (
+                <>
+                  <div aria-hidden="true" className="bg-primary/25 absolute -inset-6 -z-10 rounded-full blur-3xl" />
+                  <span className="bg-primary/10 text-primary flex size-24 items-center justify-center rounded-2xl sm:size-28">
+                    <Icon className="size-12 sm:size-14" aria-hidden="true" />
+                  </span>
+                </>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-4">
@@ -122,20 +137,6 @@ export function ServicesBanner() {
             </div>
           </motion.div>
         </AnimatePresence>
-
-        <div className="absolute inset-x-0 bottom-0 h-1 bg-white/10">
-          <div
-            key={activeIndex}
-            className="bg-primary h-full"
-            style={{
-              animationName: "services-banner-progress",
-              animationDuration: `${AUTO_ADVANCE_MS}ms`,
-              animationTimingFunction: "linear",
-              animationFillMode: "forwards",
-              animationPlayState: paused ? "paused" : "running",
-            }}
-          />
-        </div>
       </div>
 
       <div className="mt-6 flex flex-wrap justify-center gap-1.5" role="tablist" aria-label="Services">

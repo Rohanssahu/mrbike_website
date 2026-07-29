@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { Section } from "@/components/shared/Section";
+import { GooglePlayBadge } from "@/components/shared/StoreBadges";
 import appPreview from "@/assets/brand/feature-graphic.jpg";
 
 interface DownloadAppCtaProps {
@@ -29,14 +28,7 @@ export function DownloadAppCta({
           </h2>
           <p className="text-muted-foreground text-lg">{description}</p>
           <div>
-            <Button
-              size="lg"
-              className="h-11 px-5"
-              nativeButton={false}
-              render={<Link href="/download" />}
-            >
-              Download the App
-            </Button>
+            <GooglePlayBadge />
           </div>
         </div>
         <Image

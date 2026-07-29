@@ -2,8 +2,8 @@ import Image from "next/image";
 
 import logo from "@/assets/brand/logo.png";
 import appEcosystemIllustration from "@/assets/illustrations/download/app-ecosystem.svg";
-import { Button } from "@/components/ui/button";
 import { Section } from "@/components/shared/Section";
+import { StoreBadges } from "@/components/shared/StoreBadges";
 import { siteConfig } from "@/config/site";
 
 const HEADING_ID = "download-hero-heading";
@@ -49,44 +49,7 @@ export function DownloadHero() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          {hasAndroidLink ? (
-            <Button
-              size="lg"
-              className="h-11 px-5"
-              nativeButton={false}
-              render={<a href={siteConfig.android.url} target="_blank" rel="noopener noreferrer" />}
-            >
-              Get it on Google Play
-            </Button>
-          ) : (
-            <Button size="lg" className="h-11 px-5" disabled aria-label="Google Play link coming soon">
-              Coming Soon on Google Play
-            </Button>
-          )}
-
-          {hasIosLink ? (
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-11 px-5"
-              nativeButton={false}
-              render={<a href={siteConfig.ios.url} target="_blank" rel="noopener noreferrer" />}
-            >
-              Download on the App Store
-            </Button>
-          ) : (
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-11 px-5"
-              disabled
-              aria-label="App Store link coming soon"
-            >
-              Coming Soon on the App Store
-            </Button>
-          )}
-        </div>
+        <StoreBadges className="justify-center" />
 
         {(!hasAndroidLink || !hasIosLink) && (
           <p className="text-muted-foreground text-sm">

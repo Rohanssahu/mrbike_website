@@ -1,8 +1,10 @@
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
+import { BRAND_LOGOS } from "./brandLogos";
 import type { BrandRecord } from "./mock-data";
 
 interface BrandCardProps {
@@ -15,6 +17,8 @@ interface BrandCardProps {
  * button) so it stays one accessible, keyboard-reachable control.
  */
 export function BrandCard({ brand, className }: BrandCardProps) {
+  const logo = BRAND_LOGOS[brand.slug];
+
   return (
     <Link
       href={`/brands/${brand.slug}`}
@@ -23,12 +27,18 @@ export function BrandCard({ brand, className }: BrandCardProps) {
         className,
       )}
     >
-      <span
-        aria-hidden="true"
-        className="bg-muted text-foreground flex size-14 items-center justify-center rounded-full text-base font-semibold"
-      >
-        {brand.initials}
-      </span>
+<span
+  aria-hidden="true"
+  className="flex size-14 shrink-0 items-center justify-center rounded-full bg-white border border-gray-200 p-2.5 shadow-sm"
+>
+  {logo ? (
+    <Image src={logo} alt="" className="size-full object-contain" />
+  ) : (
+    <span className="text-foreground text-base font-semibold">
+      {brand.initials}
+    </span>
+  )}
+</span>
 
       <div className="flex flex-col gap-0.5">
         <span className="font-heading text-foreground text-sm font-semibold">{brand.name}</span>
