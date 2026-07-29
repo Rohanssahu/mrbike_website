@@ -3,72 +3,82 @@ import type { StaticImageData } from "next/image";
 import login from "@/assets/app-screenshots/login.png";
 import otp from "@/assets/app-screenshots/otp.png";
 import searchLocation from "@/assets/app-screenshots/search-location.png";
+import home from "@/assets/app-screenshots/home.png";
+import bookingList from "@/assets/app-screenshots/booking-list.png";
+import bookingDetails from "@/assets/app-screenshots/booking-details.png";
+import helpSupport from "@/assets/app-screenshots/help-support.png";
+import profile from "@/assets/app-screenshots/profile.png";
 
-export interface AppScreen {
+export interface AppStep {
   id: string;
-  /** Omitted for steps awaiting a clean replacement screenshot — `ScreenCard` renders a "Coming Soon" placeholder tile instead. */
-  image?: StaticImageData;
+  image: StaticImageData;
   alt: string;
   title: string;
   description: string;
 }
 
 /**
- * Real MR Bike Doctor app screenshots, plus explicit placeholder steps for
- * the rest of the journey. Three real screens (sign in, OTP, location) ship
- * today. The other five captured screenshots (home, profile, booking list,
- * booking details, help & support) visibly show a real name, phone number,
- * home address, and vehicle registration plate from what looks like a live
- * test account — removed entirely rather than published, per the site's
- * zero-fabrication / no-customer-data rule (Phase 5F production cleanup).
- * Rather than quietly shrinking the showcase to three screens, the missing
- * steps stay in the journey as marked placeholders until masked/blurred or
- * synthetic replacement screenshots exist.
+ * Guided-tour steps for the animated app preview. Real MR Bike Doctor app
+ * screenshots — personal details visible in the original captures (name,
+ * phone number, saved address, vehicle plate) are redacted with solid
+ * placeholder bars before being cropped in here (Phase 5F zero-fabrication /
+ * no-customer-data rule).
  */
-export const APP_SCREENS: AppScreen[] = [
+export const APP_STEPS: AppStep[] = [
   {
     id: "login",
     image: login,
     alt: "MR Bike Doctor app sign-in screen with phone number entry",
-    title: "Secure Sign In",
-    description: "Log in with your phone number in seconds — no passwords to remember.",
+    title: "Secure sign-in",
+    description: "Log in with just your phone number — no passwords to remember.",
   },
   {
     id: "otp",
     image: otp,
     alt: "MR Bike Doctor app OTP verification screen",
-    title: "Instant OTP Verification",
-    description: "Quick, secure one-time-password verification gets you in safely.",
+    title: "Confirm it's you",
+    description: "We text you a quick code to keep your account safe.",
   },
   {
     id: "search-location",
     image: searchLocation,
     alt: "MR Bike Doctor app location picker screen",
-    title: "Set Your Location",
-    description: "Confirm exactly where you are — home, office, or roadside.",
+    title: "Set your location",
+    description: "Tell us where you are — home, office, or roadside.",
   },
   {
     id: "browse-services",
-    alt: "",
-    title: "Browse Services",
-    description: "Oil change, wash, general service, and more — right from the home screen.",
+    image: home,
+    alt: "MR Bike Doctor app home screen with services and vehicle",
+    title: "Browse services",
+    description: "Oil change, wash, or full service — pick one in a tap.",
   },
   {
     id: "track-booking",
-    alt: "",
-    title: "Track Every Booking",
-    description: "See the status of every service request in one place.",
+    image: bookingList,
+    alt: "MR Bike Doctor app booking list screen",
+    title: "Track your booking",
+    description: "See exactly what's happening with your service, live.",
+  },
+  {
+    id: "booking-details",
+    image: bookingDetails,
+    alt: "MR Bike Doctor app booking details screen with pickup map",
+    title: "Follow your mechanic",
+    description: "See where your bike is and when it'll be back home.",
   },
   {
     id: "help-support",
-    alt: "",
-    title: "Help, Whenever You Need It",
-    description: "FAQs, support, and contact — all one tap away.",
+    image: helpSupport,
+    alt: "MR Bike Doctor app help and support screen",
+    title: "Get help anytime",
+    description: "One tap for roadside help or a quick chat with support.",
   },
   {
     id: "profile",
-    alt: "",
-    title: "Your Bikes, Your History",
-    description: "Manage vehicles and account settings in one place.",
+    image: profile,
+    alt: "MR Bike Doctor app profile screen",
+    title: "Your bikes, your history",
+    description: "Manage every vehicle and booking in one simple place.",
   },
 ];

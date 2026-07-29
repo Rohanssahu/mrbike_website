@@ -2,12 +2,12 @@
   <title>A small branded service van parked on a generic city street</title>
   <defs>
     <linearGradient id="mbd-pickup-vehicle-blob" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.12" />
-      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.04" />
+      <stop offset="0%" stop-color="#162060" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#0C1650" stop-opacity="0.04" />
     </linearGradient>
     <linearGradient id="mbd-pickup-vehicle-body" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#162060" />
+      <stop offset="100%" stop-color="#0C1650" />
     </linearGradient>
   </defs>
 
@@ -19,19 +19,19 @@
   </g>
 
   <g id="skyline">
-    <rect x="36" y="104" width="44" height="120" rx="6" fill="#334155" opacity="0.12" />
-    <rect x="90" y="80" width="36" height="144" rx="6" fill="#334155" opacity="0.1" />
-    <rect x="316" y="94" width="48" height="130" rx="6" fill="#334155" opacity="0.13" />
+    <rect x="36" y="104" width="44" height="120" rx="6" fill="#1A2870" opacity="0.12" />
+    <rect x="90" y="80" width="36" height="144" rx="6" fill="#1A2870" opacity="0.1" />
+    <rect x="316" y="94" width="48" height="130" rx="6" fill="#1A2870" opacity="0.13" />
   </g>
 
   <g id="road">
-    <rect x="0" y="235" width="400" height="45" fill="#334155" opacity="0.08" />
+    <rect x="0" y="235" width="400" height="45" fill="#1A2870" opacity="0.08" />
     <line
       x1="20"
       y1="257"
       x2="380"
       y2="257"
-      stroke="#0f172a"
+      stroke="#0C1650"
       stroke-opacity="0.22"
       stroke-width="3"
       stroke-dasharray="16 12"
@@ -39,28 +39,28 @@
   </g>
 
   <g id="shadow">
-    <ellipse cx="200" cy="246" rx="112" ry="10" fill="#0f172a" opacity="0.12" />
+    <ellipse cx="200" cy="246" rx="112" ry="10" fill="#0C1650" opacity="0.12" />
   </g>
 
   <g id="van-body">
     <rect x="100" y="140" width="200" height="80" rx="18" fill="url(#mbd-pickup-vehicle-body)" />
     <rect x="250" y="150" width="42" height="42" rx="10" fill="#f1f5f9" />
-    <rect x="106" y="185" width="188" height="12" rx="6" fill="#facc15" />
-    <rect x="286" y="196" width="10" height="8" rx="4" fill="#facc15" opacity="0.85" />
+    <rect x="106" y="185" width="188" height="12" rx="6" fill="#FED428" />
+    <rect x="286" y="196" width="10" height="8" rx="4" fill="#FED428" opacity="0.85" />
   </g>
 
   <g id="badge">
-    <circle cx="190" cy="170" r="14" fill="#facc15" />
-    <path d="M185 164 L197 170 L185 176 Z" fill="#0f172a" />
+    <circle cx="190" cy="170" r="14" fill="#FED428" />
+    <path d="M185 164 L197 170 L185 176 Z" fill="#0C1650" />
   </g>
 
   <g id="wheel-rear">
-    <circle cx="150" cy="222" r="22" fill="#0f172a" />
+    <circle cx="150" cy="222" r="22" fill="#0C1650" />
     <circle cx="150" cy="222" r="9" fill="#f1f5f9" />
   </g>
 
   <g id="wheel-front">
-    <circle cx="255" cy="222" r="22" fill="#0f172a" />
+    <circle cx="255" cy="222" r="22" fill="#0C1650" />
     <circle cx="255" cy="222" r="9" fill="#f1f5f9" />
   </g>
 </svg>

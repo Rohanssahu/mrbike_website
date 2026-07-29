@@ -2,25 +2,25 @@
   <title>Bike split between a sunny side and a rainy side, representing seasonal care</title>
   <defs>
     <linearGradient id="sc-navy" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#162060" />
+      <stop offset="100%" stop-color="#0C1650" />
     </linearGradient>
     <linearGradient id="sc-yellow" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#facc15" />
-      <stop offset="100%" stop-color="#eab308" />
+      <stop offset="0%" stop-color="#FED428" />
+      <stop offset="100%" stop-color="#FED428" />
     </linearGradient>
     <filter id="sc-shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.18" />
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0C1650" flood-opacity="0.18" />
     </filter>
   </defs>
 
   <g id="backdrop">
-    <ellipse cx="200" cy="150" rx="150" ry="118" fill="#1e293b" fill-opacity="0.05" />
+    <ellipse cx="200" cy="150" rx="150" ry="118" fill="#162060" fill-opacity="0.05" />
   </g>
 
   <g id="sun-side">
     <circle cx="130" cy="90" r="26" fill="url(#sc-yellow)" />
-    <g stroke="#eab308" stroke-width="4" stroke-linecap="round">
+    <g stroke="#FED428" stroke-width="4" stroke-linecap="round">
       <line x1="130" y1="48" x2="130" y2="36" />
       <line x1="94" y1="64" x2="85" y2="55" />
       <line x1="166" y1="64" x2="175" y2="55" />
@@ -28,12 +28,12 @@
   </g>
 
   <g id="rain-cloud">
-    <g fill="#334155" fill-opacity="0.5">
+    <g fill="#1A2870" fill-opacity="0.5">
       <ellipse cx="280" cy="80" rx="34" ry="20" />
       <ellipse cx="255" cy="88" rx="22" ry="15" />
       <ellipse cx="305" cy="88" rx="22" ry="15" />
     </g>
-    <g id="raindrops" stroke="#334155" stroke-width="3" stroke-linecap="round" stroke-opacity="0.6">
+    <g id="raindrops" stroke="#1A2870" stroke-width="3" stroke-linecap="round" stroke-opacity="0.6">
       <line x1="262" y1="112" x2="257" y2="126" />
       <line x1="282" y1="112" x2="277" y2="126" />
       <line x1="302" y1="112" x2="297" y2="126" />
@@ -43,8 +43,8 @@
   <g id="bike" filter="url(#sc-shadow)">
     <circle cx="150" cy="210" r="38" fill="none" stroke="url(#sc-navy)" stroke-width="7" />
     <circle cx="250" cy="210" r="38" fill="none" stroke="url(#sc-navy)" stroke-width="7" />
-    <circle cx="150" cy="210" r="5" fill="#0f172a" />
-    <circle cx="250" cy="210" r="5" fill="#0f172a" />
+    <circle cx="150" cy="210" r="5" fill="#0C1650" />
+    <circle cx="250" cy="210" r="5" fill="#0C1650" />
     <g id="frame" stroke="url(#sc-navy)" stroke-width="7" stroke-linecap="round" fill="none">
       <path d="M150 210 L196 150 L250 210" />
       <path d="M196 150 L212 210" />

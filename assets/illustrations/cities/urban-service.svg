@@ -2,12 +2,12 @@
   <title>A mechanic kneeling to service a bike against a simplified city skyline</title>
   <defs>
     <linearGradient id="mbd-urban-service-blob" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#facc15" stop-opacity="0.16" />
-      <stop offset="100%" stop-color="#eab308" stop-opacity="0.05" />
+      <stop offset="0%" stop-color="#FED428" stop-opacity="0.16" />
+      <stop offset="100%" stop-color="#FED428" stop-opacity="0.05" />
     </linearGradient>
     <linearGradient id="mbd-urban-service-jumpsuit" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#162060" />
+      <stop offset="100%" stop-color="#0C1650" />
     </linearGradient>
   </defs>
 
@@ -19,54 +19,54 @@
   </g>
 
   <g id="skyline">
-    <rect x="40" y="96" width="46" height="140" rx="6" fill="#334155" opacity="0.14" />
-    <rect x="96" y="70" width="38" height="166" rx="6" fill="#334155" opacity="0.12" />
-    <rect x="150" y="110" width="30" height="126" rx="6" fill="#334155" opacity="0.1" />
-    <rect x="300" y="82" width="50" height="154" rx="6" fill="#334155" opacity="0.14" />
-    <rect x="356" y="120" width="20" height="116" rx="4" fill="#334155" opacity="0.1" />
+    <rect x="40" y="96" width="46" height="140" rx="6" fill="#1A2870" opacity="0.14" />
+    <rect x="96" y="70" width="38" height="166" rx="6" fill="#1A2870" opacity="0.12" />
+    <rect x="150" y="110" width="30" height="126" rx="6" fill="#1A2870" opacity="0.1" />
+    <rect x="300" y="82" width="50" height="154" rx="6" fill="#1A2870" opacity="0.14" />
+    <rect x="356" y="120" width="20" height="116" rx="4" fill="#1A2870" opacity="0.1" />
   </g>
 
   <g id="ground">
-    <line x1="30" y1="250" x2="370" y2="250" stroke="#0f172a" stroke-opacity="0.15" stroke-width="2" />
+    <line x1="30" y1="250" x2="370" y2="250" stroke="#0C1650" stroke-opacity="0.15" stroke-width="2" />
   </g>
 
   <g id="shadow">
-    <ellipse cx="210" cy="256" rx="130" ry="12" fill="#0f172a" opacity="0.1" />
+    <ellipse cx="210" cy="256" rx="130" ry="12" fill="#0C1650" opacity="0.1" />
   </g>
 
   <g id="kickstand">
-    <path d="M275 232 L255 250" stroke="#0f172a" stroke-width="4" stroke-linecap="round" />
+    <path d="M275 232 L255 250" stroke="#0C1650" stroke-width="4" stroke-linecap="round" />
   </g>
 
   <g id="frame">
     <path
       d="M200 230 L235 190 L280 176 M235 190 L245 230 M245 230 L290 230"
       fill="none"
-      stroke="#0f172a"
+      stroke="#0C1650"
       stroke-width="5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
-    <rect x="228" y="180" width="14" height="7" rx="3.5" fill="#0f172a" />
-    <path d="M262 176h18" stroke="#0f172a" stroke-width="5" stroke-linecap="round" fill="none" />
+    <rect x="228" y="180" width="14" height="7" rx="3.5" fill="#0C1650" />
+    <path d="M262 176h18" stroke="#0C1650" stroke-width="5" stroke-linecap="round" fill="none" />
   </g>
 
   <g id="wheel-rear">
-    <circle cx="200" cy="230" r="24" fill="#f8fafc" stroke="#0f172a" stroke-width="4" />
-    <path d="M200 208v44M178 230h44M185 215l30 30M185 245l30-30" stroke="#0f172a" stroke-width="2" opacity="0.5" />
+    <circle cx="200" cy="230" r="24" fill="#f8fafc" stroke="#0C1650" stroke-width="4" />
+    <path d="M200 208v44M178 230h44M185 215l30 30M185 245l30-30" stroke="#0C1650" stroke-width="2" opacity="0.5" />
   </g>
 
   <g id="wheel-front">
-    <circle cx="290" cy="230" r="24" fill="#f8fafc" stroke="#0f172a" stroke-width="4" />
-    <path d="M290 208v44M268 230h44M275 215l30 30M275 245l30-30" stroke="#0f172a" stroke-width="2" opacity="0.5" />
+    <circle cx="290" cy="230" r="24" fill="#f8fafc" stroke="#0C1650" stroke-width="4" />
+    <path d="M290 208v44M268 230h44M275 215l30 30M275 245l30-30" stroke="#0C1650" stroke-width="2" opacity="0.5" />
   </g>
 
   <g id="mechanic">
     <g id="mechanic-legs">
       <g transform="rotate(75 150 233)">
-        <rect x="141" y="203" width="18" height="45" rx="9" fill="#1e293b" />
+        <rect x="141" y="203" width="18" height="45" rx="9" fill="#162060" />
       </g>
-      <rect x="168" y="208" width="18" height="42" rx="9" fill="#1e293b" />
+      <rect x="168" y="208" width="18" height="42" rx="9" fill="#162060" />
     </g>
 
     <g id="mechanic-torso">
@@ -74,7 +74,7 @@
     </g>
 
     <g id="mechanic-chest-badge">
-      <rect x="167" y="182" width="20" height="15" rx="5" fill="#facc15" />
+      <rect x="167" y="182" width="20" height="15" rx="5" fill="#FED428" />
     </g>
 
     <g id="mechanic-neck">
@@ -91,8 +91,8 @@
     </g>
 
     <g id="wrench-in-hand">
-      <rect x="212" y="220" width="26" height="8" rx="4" fill="#0f172a" transform="rotate(20 225 224)" />
-      <circle cx="238" cy="228" r="6" fill="none" stroke="#0f172a" stroke-width="3" />
+      <rect x="212" y="220" width="26" height="8" rx="4" fill="#0C1650" transform="rotate(20 225 224)" />
+      <circle cx="238" cy="228" r="6" fill="none" stroke="#0C1650" stroke-width="3" />
     </g>
   </g>
 </svg>

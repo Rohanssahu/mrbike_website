@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
     "MR Bike Doctor",
   ],
   locale: "en_US",
-  themeColor: "#0f172a",
+  themeColor: "#0C1650",
   contactEmail: env.contactEmail,
   contactPhone: env.contactPhone,
   address: {

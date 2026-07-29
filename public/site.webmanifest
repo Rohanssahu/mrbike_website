@@ -4,8 +4,8 @@
   "description": "Doorstep bike repair and servicing, on demand.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0f172a",
+  "background_color": "#0C1650",
+  "theme_color": "#0C1650",
   "icons": [
     {
       "src": "/favicon.ico",

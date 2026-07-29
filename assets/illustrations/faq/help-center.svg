@@ -2,33 +2,33 @@
   <title>Lightbulb of ideas beside a document of articles, representing a help center</title>
   <defs>
     <linearGradient id="hc-navy" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#162060" />
+      <stop offset="100%" stop-color="#0C1650" />
     </linearGradient>
     <linearGradient id="hc-yellow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#facc15" />
-      <stop offset="100%" stop-color="#eab308" />
+      <stop offset="0%" stop-color="#FED428" />
+      <stop offset="100%" stop-color="#FED428" />
     </linearGradient>
     <filter id="hc-shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.18" />
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0C1650" flood-opacity="0.18" />
     </filter>
   </defs>
 
   <g id="backdrop">
-    <ellipse cx="200" cy="150" rx="150" ry="118" fill="#1e293b" fill-opacity="0.05" />
+    <ellipse cx="200" cy="150" rx="150" ry="118" fill="#162060" fill-opacity="0.05" />
   </g>
 
   <g id="document" filter="url(#hc-shadow)">
-    <rect x="196" y="86" width="98" height="132" rx="10" fill="#ffffff" stroke="#0f172a" stroke-opacity="0.08" stroke-width="2" />
+    <rect x="196" y="86" width="98" height="132" rx="10" fill="#ffffff" stroke="#0C1650" stroke-opacity="0.08" stroke-width="2" />
     <rect x="212" y="106" width="66" height="9" rx="4.5" fill="url(#hc-navy)" />
-    <rect x="212" y="128" width="66" height="6" rx="3" fill="#0f172a" fill-opacity="0.2" />
-    <rect x="212" y="142" width="52" height="6" rx="3" fill="#0f172a" fill-opacity="0.2" />
-    <rect x="212" y="162" width="66" height="6" rx="3" fill="#0f172a" fill-opacity="0.2" />
-    <rect x="212" y="176" width="40" height="6" rx="3" fill="#0f172a" fill-opacity="0.2" />
-    <rect x="212" y="196" width="66" height="6" rx="3" fill="#0f172a" fill-opacity="0.2" />
+    <rect x="212" y="128" width="66" height="6" rx="3" fill="#0C1650" fill-opacity="0.2" />
+    <rect x="212" y="142" width="52" height="6" rx="3" fill="#0C1650" fill-opacity="0.2" />
+    <rect x="212" y="162" width="66" height="6" rx="3" fill="#0C1650" fill-opacity="0.2" />
+    <rect x="212" y="176" width="40" height="6" rx="3" fill="#0C1650" fill-opacity="0.2" />
+    <rect x="212" y="196" width="66" height="6" rx="3" fill="#0C1650" fill-opacity="0.2" />
   </g>
 
-  <g id="idea-rays" stroke="#facc15" stroke-width="3" stroke-linecap="round" stroke-opacity="0.6">
+  <g id="idea-rays" stroke="#FED428" stroke-width="3" stroke-linecap="round" stroke-opacity="0.6">
     <line x1="122" y1="70" x2="122" y2="58" />
     <line x1="90" y1="88" x2="80" y2="80" />
     <line x1="154" y1="88" x2="164" y2="80" />
@@ -48,6 +48,6 @@
     />
     <rect x="108" y="173" width="28" height="10" rx="3" fill="url(#hc-navy)" />
     <rect x="112" y="185" width="20" height="8" rx="3" fill="url(#hc-navy)" />
-    <path d="M122 108v22M110 126l24 0" stroke="#0f172a" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round" />
+    <path d="M122 108v22M110 126l24 0" stroke="#0C1650" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round" />
   </g>
 </svg>

@@ -6,22 +6,21 @@ library reads as one system, not a pile of unrelated graphics.
 
 ## Brand palette
 
-Defined as CSS vars in `styles/globals.css` (`:root` + `@theme inline`).
-Illustration SVGs use the literal hex values directly (illustrations are
-brand-colored art, not theme-reactive UI, so they don't need `currentColor`
-— except icon components, see below).
+Defined as CSS vars in `styles/globals.css` (`:root` + `@theme inline`),
+matching the app icon's navy + gold identity. Illustration SVGs use the
+literal hex values directly (illustrations are brand-colored art, not
+theme-reactive UI, so they don't need `currentColor` — except icon
+components, see below).
 
 | Token | Hex | Use |
 |---|---|---|
-| `--color-brand-navy` | `#0f172a` | Primary dark — jumpsuits, vans, outlines, phone frames, dark shapes |
-| `--color-brand-navy-light` | `#1e293b` | Secondary dark — shading, gradients |
-| `--color-brand-navy-soft` | `#334155` | Tertiary — muted linework, shadows |
-| `--color-brand-yellow` | `#facc15` | Primary accent — tools, highlights, CTAs inside art, energy/motion marks |
-| `--color-brand-yellow-dark` | `#eab308` | Accent shading/gradient stop |
-| `--color-brand-yellow-soft` | `#fef9c3` | Accent tint — light fills, glows |
+| `--color-primary-dark` | `#0C1650` | Deepest navy — outlines, phone frames, darkest shapes/gradient stops |
+| `--brand-navy` (mid, `#162060`) | `#162060` | Primary dark — jumpsuits, vans, dark shapes |
+| `--color-primary-light` | `#1A2870` | Secondary dark — shading, gradients |
+| `--color-accent` | `#FED428` | Accent — tools, highlights, CTAs inside art, energy/motion marks, badges, gradient stops |
 
 Neutrals: white `#ffffff`, and light warm grays (`#f1f5f9`, `#e2e8f0`) for
-skin/ground/secondary shapes. Keep every illustration to navy + yellow +
+skin/ground/secondary shapes. Keep every illustration to navy + gold +
 neutrals — no other hues — so the library reads as one brand.
 
 ## Style

@@ -2,12 +2,12 @@
   <title>A friendly geometric support agent wearing a headset, ready to help</title>
   <defs>
     <linearGradient id="mbd-support-agent-blob" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#facc15" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#eab308" stop-opacity="0.06" />
+      <stop offset="0%" stop-color="#FED428" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#FED428" stop-opacity="0.06" />
     </linearGradient>
     <linearGradient id="mbd-support-agent-jumpsuit" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1e293b" />
-      <stop offset="100%" stop-color="#0f172a" />
+      <stop offset="0%" stop-color="#162060" />
+      <stop offset="100%" stop-color="#0C1650" />
     </linearGradient>
     <linearGradient id="mbd-support-agent-skin" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#f1f5f9" />
@@ -23,13 +23,13 @@
   </g>
 
   <g id="shadow">
-    <ellipse cx="200" cy="266" rx="82" ry="12" fill="#0f172a" opacity="0.1" />
+    <ellipse cx="200" cy="266" rx="82" ry="12" fill="#0C1650" opacity="0.1" />
   </g>
 
   <g id="figure">
     <g id="legs">
-      <rect x="176" y="216" width="20" height="46" rx="10" fill="#1e293b" />
-      <rect x="206" y="216" width="20" height="46" rx="10" fill="#1e293b" />
+      <rect x="176" y="216" width="20" height="46" rx="10" fill="#162060" />
+      <rect x="206" y="216" width="20" height="46" rx="10" fill="#162060" />
     </g>
 
     <g id="arm-resting">
@@ -42,8 +42,8 @@
     </g>
 
     <g id="chest-badge">
-      <rect x="190" y="168" width="28" height="20" rx="7" fill="#facc15" />
-      <circle cx="204" cy="178" r="4" fill="#eab308" />
+      <rect x="190" y="168" width="28" height="20" rx="7" fill="#FED428" />
+      <circle cx="204" cy="178" r="4" fill="#FED428" />
     </g>
 
     <g id="arm-waving" transform="rotate(-125 247 150)">
@@ -63,22 +63,22 @@
       <path
         d="M170 100a34 40 0 0 1 66 0"
         fill="none"
-        stroke="#0f172a"
+        stroke="#0C1650"
         stroke-width="6"
         stroke-linecap="round"
         opacity="0.85"
       />
-      <circle cx="170" cy="100" r="11" fill="#0f172a" />
-      <circle cx="236" cy="100" r="11" fill="#0f172a" />
+      <circle cx="170" cy="100" r="11" fill="#0C1650" />
+      <circle cx="236" cy="100" r="11" fill="#0C1650" />
       <path
         d="M236 108c-6 22-20 32-40 30"
         fill="none"
-        stroke="#0f172a"
+        stroke="#0C1650"
         stroke-width="4"
         stroke-linecap="round"
         opacity="0.85"
       />
-      <circle cx="196" cy="138" r="5" fill="#facc15" />
+      <circle cx="196" cy="138" r="5" fill="#FED428" />
     </g>
   </g>
 </svg>

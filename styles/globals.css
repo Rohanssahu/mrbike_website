@@ -51,104 +51,103 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  --color-brand-navy: var(--color-brand-navy);
-  --color-brand-navy-light: var(--color-brand-navy-light);
-  --color-brand-navy-soft: var(--color-brand-navy-soft);
-  --color-brand-yellow: var(--color-brand-yellow);
-  --color-brand-yellow-dark: var(--color-brand-yellow-dark);
-  --color-brand-yellow-soft: var(--color-brand-yellow-soft);
+  --color-primary-dark: #0c1650;
+  --color-primary-light: #1a2870;
+  --color-accent-soft: #fed42860;
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /**
+   * MR Bike Doctor brand palette — navy + gold, matching the app icon.
+   * These are the raw brand hexes; every shadcn UI token below is derived
+   * from them so the whole site (surfaces, text, CTAs, borders) stays on
+   * one consistent theme. See docs/production-deployment-checklist.md and
+   * assets/illustrations/README.md for how illustrations consume these.
+   */
+  --color-primary-dark: #0c1650;
+  --color-primary-light: #1a2870;
+  --color-accent-soft: #fed42860;
+
+  /* Mid navy shade — surfaces one step lighter than the page background
+     (cards, header, footer, popovers). Not exposed as a Tailwind utility
+     since `primary` already names the brand accent below; use `bg-card`. */
+  --brand-navy: #162060;
+  --brand-gold: #fed428;
+
+  --background: var(--color-primary-dark);
+  --foreground: #ffffff;
+  --card: var(--brand-navy);
+  --card-foreground: #ffffff;
+  --popover: var(--brand-navy);
+  --popover-foreground: #ffffff;
+  --primary: var(--brand-gold);
+  --primary-foreground: var(--color-primary-dark);
+  --secondary: var(--color-primary-light);
+  --secondary-foreground: #ffffff;
+  --muted: var(--color-primary-light);
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --accent: var(--brand-gold);
+  --accent-foreground: var(--color-primary-dark);
   --destructive: oklch(0.577 0.245 27.325);
   --success: oklch(0.6 0.16 155);
   --success-foreground: oklch(0.985 0 0);
   --warning: oklch(0.72 0.17 75);
   --warning-foreground: oklch(0.145 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: rgba(26, 40, 112, 0.5);
+  --input: rgba(26, 40, 112, 0.5);
+  --ring: var(--brand-gold);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-
-  /**
-   * Brand illustration palette — used by assets/illustrations/** and their
-   * component wrappers only. Kept separate from the shadcn UI tokens above
-   * (which stay neutral grayscale by design) so illustrations can carry the
-   * MR Bike Doctor navy/yellow identity without recoloring the whole UI.
-   * Source: siteConfig.themeColor (#0f172a) + the app's bold-yellow icon
-   * family (see brand-assets-source-of-truth memory).
-   */
-  --color-brand-navy: #0f172a;
-  --color-brand-navy-light: #1e293b;
-  --color-brand-navy-soft: #334155;
-  --color-brand-yellow: #facc15;
-  --color-brand-yellow-dark: #eab308;
-  --color-brand-yellow-soft: #fef9c3;
+  --sidebar: var(--brand-navy);
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: var(--brand-gold);
+  --sidebar-primary-foreground: var(--color-primary-dark);
+  --sidebar-accent: var(--color-primary-light);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(26, 40, 112, 0.5);
+  --sidebar-ring: var(--brand-gold);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: var(--color-primary-dark);
+  --foreground: #ffffff;
+  --card: var(--brand-navy);
+  --card-foreground: #ffffff;
+  --popover: var(--brand-navy);
+  --popover-foreground: #ffffff;
+  --primary: var(--brand-gold);
+  --primary-foreground: var(--color-primary-dark);
+  --secondary: var(--color-primary-light);
+  --secondary-foreground: #ffffff;
+  --muted: var(--color-primary-light);
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --accent: var(--brand-gold);
+  --accent-foreground: var(--color-primary-dark);
   --destructive: oklch(0.704 0.191 22.216);
   --success: oklch(0.68 0.17 155);
   --success-foreground: oklch(0.145 0 0);
   --warning: oklch(0.78 0.17 75);
   --warning-foreground: oklch(0.145 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: rgba(26, 40, 112, 0.5);
+  --input: rgba(26, 40, 112, 0.6);
+  --ring: var(--brand-gold);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: var(--brand-navy);
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: var(--brand-gold);
+  --sidebar-primary-foreground: var(--color-primary-dark);
+  --sidebar-accent: var(--color-primary-light);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(26, 40, 112, 0.5);
+  --sidebar-ring: var(--brand-gold);
 }
 
 @layer base {
