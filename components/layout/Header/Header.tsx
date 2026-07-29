@@ -1,8 +1,10 @@
-import { BikeIcon, DownloadIcon } from "lucide-react";
+import { DownloadIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 import { getAllCities, getLiveCities } from "@/lib/content/cities";
 import { siteConfig } from "@/config/site";
+import siteLogo from "@/assets/websiteLog.png";
 
 import { MobileNav } from "./MobileNav";
 import { Navigation } from "./Navigation";
@@ -47,8 +49,8 @@ export function Header() {
             className="flex shrink-0 items-center gap-2"
             aria-label={`${siteConfig.name} — home`}
           >
-            <span className="bg-primary flex size-[30px] shrink-0 items-center justify-center rounded-full">
-              <BikeIcon className="text-primary-foreground size-4" aria-hidden="true" />
+            <span className="flex size-[30px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white">
+              <Image src={siteLogo} alt="" className="size-full object-cover" priority />
             </span>
             <span className="text-[13px] font-medium text-white">{siteConfig.name}</span>
           </Link>

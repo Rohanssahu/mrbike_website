@@ -1,7 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import { MapPin, ShieldCheck, Wrench } from "lucide-react";
 
-import { PARTNER_ANDROID_URL } from "@/components/home/PartnerAppShowcase/PartnerAppShowcase";
 import { siteConfig } from "@/config/site";
 
 export interface HeroVariant {
@@ -31,7 +30,7 @@ export const HERO_VARIANTS: HeroVariant[] = [
     heading: "Own a Garage? Run It With the MR Bike Doctor Partner App",
     description:
       "Accept bookings, track every job, and collect payments — the same app our partner garages use every day, now in Play Store internal testing.",
-    androidUrl: PARTNER_ANDROID_URL,
+    androidUrl: siteConfig.partnerAndroid.url,
     androidEyebrow: "INTERNAL TESTING ON",
     secondaryLabel: "See Partner App",
     secondaryHref: "#partner-app-showcase-heading",

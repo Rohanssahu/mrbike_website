@@ -10,13 +10,11 @@ import { StepPanel } from "@/components/home/AppShowcase/StepPanel";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { GooglePlayBadge } from "@/components/shared/StoreBadges";
+import { siteConfig } from "@/config/site";
 
 import { PARTNER_APP_STEPS } from "./mock-data";
 
 const HEADING_ID = "partner-app-showcase-heading";
-
-/** Internal-testing Play Store link for the MR Bike Doctor Partner (garage/mechanic) app. */
-export const PARTNER_ANDROID_URL = "https://play.google.com/apps/internaltest/4700941963525886328";
 
 /**
  * Guided-tour preview of the MR Bike Doctor Partner app (garage/mechanic
@@ -73,7 +71,7 @@ export function PartnerAppShowcase() {
 
           <div className="flex flex-col items-center gap-2 lg:items-start">
             <GooglePlayBadge
-              href={PARTNER_ANDROID_URL}
+              href={siteConfig.partnerAndroid.url}
               eyebrow="INTERNAL TESTING ON"
               label="Google Play"
             />

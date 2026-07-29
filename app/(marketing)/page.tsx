@@ -35,12 +35,12 @@ export default function Home() {
       <AppShowcase />
       <PopularServices />
       <ServicesBanner />
+      <PartnerAppShowcase />
       <AppFeatures />
       <HowItWorks />
       <WhyChooseUs />
       <TrustBand />
       <BrandsWeService />
-      <PartnerAppShowcase />
       <CitiesWeServe />
       <CustomerReviews />
       <BlogTeaser />

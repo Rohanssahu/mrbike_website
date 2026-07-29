@@ -27,4 +27,5 @@ export interface SiteConfig {
   social: SocialLink[];
   ios: { url: string };
   android: { url: string };
+  partnerAndroid: { url: string };
 }

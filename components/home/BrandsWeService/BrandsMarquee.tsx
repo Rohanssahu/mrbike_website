@@ -42,7 +42,7 @@ function MarqueeCard({ brand }: { brand: MarqueeBrand }) {
       href={`/brands/${brand.slug}`}
       className="group flex w-[150px] shrink-0 flex-col items-center gap-2 rounded-xl border border-[rgba(254,212,40,0.15)] bg-card px-4 py-5 text-center transition-colors hover:border-primary"
     >
-      <span className="bg-accent-soft flex size-11 items-center justify-center rounded-full p-2">
+      <span className="flex size-16 items-center justify-center rounded-full border border-white/10 bg-white p-3 shadow-sm">
         {logo ? (
           <Image src={logo} alt="" className="size-full object-contain" />
         ) : (
