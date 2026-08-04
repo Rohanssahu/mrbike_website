@@ -13,17 +13,22 @@ import { AnalyticsRouteTracker } from "./AnalyticsRouteTracker";
  * environments don't need a real ID to build.
  */
 export function Analytics() {
-  if (process.env.NODE_ENV !== "production" || !env.gaMeasurementId) {
+  const gaEnabled = Boolean(env.gaMeasurementId);
+  const clarityEnabled = Boolean(env.clarityProjectId);
+
+  if (process.env.NODE_ENV !== "production" || (!gaEnabled && !clarityEnabled)) {
     return null;
   }
 
   return (
     <>
-      <GoogleAnalytics gaId={env.gaMeasurementId} />
-      <Suspense fallback={null}>
-        <AnalyticsRouteTracker />
-      </Suspense>
-      <AnalyticsInteractionTracker />
+      {gaEnabled ? <GoogleAnalytics gaId={env.gaMeasurementId} /> : null}
+      {gaEnabled ? (
+        <Suspense fallback={null}>
+          <AnalyticsRouteTracker />
+        </Suspense>
+      ) : null}
+      <AnalyticsInteractionTracker gaEnabled={gaEnabled} clarityEnabled={clarityEnabled} />
     </>
   );
 }

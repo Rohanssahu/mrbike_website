@@ -12,7 +12,7 @@ import { LinkTile } from "@/components/shared/LinkTile";
 import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { getAllServices, getFaqsByTag } from "@/lib/content";
+import { getAllServices, getBrandFaqs, getFaqsByTag } from "@/lib/content";
 
 import type { BikeModelRecord } from "./mock-data";
 
@@ -27,7 +27,7 @@ const SERVICES_HEADING_ID = "brand-services-heading";
 
 /** /brands/[brand] — informational brand page, no pricing/booking (Phase 4 §13 item 3, extended Phase 6). */
 export function BrandDetail({ brand, models }: BrandDetailProps) {
-  const faqs = getFaqsByTag(`brand:${brand.slug}`);
+  const faqs = [...getFaqsByTag(`brand:${brand.slug}`), ...getBrandFaqs(brand)];
   const services = getAllServices();
   const logo = BRAND_LOGOS[brand.slug];
 
@@ -75,7 +75,7 @@ export function BrandDetail({ brand, models }: BrandDetailProps) {
 
         <div className="mt-6">
           <QuickAnswer>
-            {`MR Bike Doctor services ${brand.name} motorcycles, including ${brand.engineNote.toLowerCase()}. Recommended service interval is every ${brand.serviceIntervalKm.min}–${brand.serviceIntervalKm.max} km, with ${brand.driveType.toLowerCase()} as the main recurring drivetrain maintenance point.`}
+            {`MR Bike Doctor provides maintenance information and service booking for ${brand.name} motorcycles. This guide covers common upkeep priorities across the brand's range; use the owner's manual for the exact model-year specifications and factory schedule.`}
           </QuickAnswer>
         </div>
       </Section>
@@ -143,8 +143,10 @@ export function BrandDetail({ brand, models }: BrandDetailProps) {
               { label: "Engine", values: [brand.engineNote] },
               { label: "Drive type", values: [brand.driveType] },
               {
-                label: "Typical service interval",
-                values: [`${brand.serviceIntervalKm.min}–${brand.serviceIntervalKm.max} km`],
+                label: "General planning interval",
+                values: [
+                  `${brand.serviceIntervalKm.min.toLocaleString("en-IN")}–${brand.serviceIntervalKm.max.toLocaleString("en-IN")} km — verify against the model-year manual`,
+                ],
               },
             ]}
           />

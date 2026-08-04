@@ -8,6 +8,8 @@ export * from "./BlogSearch";
 export * from "./AuthorByline";
 export * from "./TableOfContents";
 export * from "./ArticleBody";
+export * from "./ArticleSummary";
+export * from "./EditorialNote";
 export * from "./HubNav";
 export * from "./PostTags";
 export * from "./PostFaqs";

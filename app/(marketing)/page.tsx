@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import {
   AppFeatures,
   AppShowcase,
@@ -15,6 +17,16 @@ import {
   WhyChooseUs,
 } from "@/components/home";
 import { DownloadAppCta } from "@/components/shared/DownloadAppCta";
+import { JsonLd } from "@/components/seo/json-ld";
+import { organizationSchema } from "@/seo/json-ld";
+import { buildMetadata } from "@/seo/metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Doorstep Bike Service & Repair in Hyderabad",
+  description:
+    "Book doorstep bike service and repair in Hyderabad with verified mechanics, transparent pricing, live tracking, and digital service history.",
+  path: "/",
+});
 
 /**
  * Homepage — re-sequenced per the approved direction change
@@ -31,11 +43,11 @@ import { DownloadAppCta } from "@/components/shared/DownloadAppCta";
 export default function Home() {
   return (
     <>
+      <JsonLd schema={organizationSchema()} />
       <Hero />
       <AppShowcase />
       <PopularServices />
       <ServicesBanner />
-      <PartnerAppShowcase />
       <AppFeatures />
       <HowItWorks />
       <WhyChooseUs />
@@ -45,6 +57,7 @@ export default function Home() {
       <CustomerReviews />
       <BlogTeaser />
       <FaqTeaser />
+      <PartnerAppShowcase />
       <DownloadAppCta />
     </>
   );

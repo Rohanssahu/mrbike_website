@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 
 /**
  * Variable names must match the `--font-sans` / `--font-mono` tokens
@@ -7,11 +7,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 export const fontSans = Geist({
   variable: "--font-sans",
   subsets: ["latin"],
-  display: "swap",
-});
-
-export const fontMono = Geist_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
+  // Avoid a late hero-text repaint on constrained connections; the metric-
+  // compatible fallback remains in place when the font misses its short load window.
+  display: "optional",
 });

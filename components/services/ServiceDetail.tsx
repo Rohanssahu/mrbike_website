@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock } from "lucide-react";
+import { ArrowLeft, BadgeCheck, Clock, FileCheck2, ReceiptText, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { RelatedPostsByEntity } from "@/components/blog/RelatedPostsByEntity";
@@ -12,7 +12,7 @@ import { KeyFacts } from "@/components/shared/KeyFacts";
 import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { getComparedService, getFaqsByTag } from "@/lib/content";
+import { getComparedService, getServiceFaqs, getServiceProcess } from "@/lib/content";
 
 interface ServiceDetailProps {
   service: ServiceRecord;
@@ -26,7 +26,8 @@ const RELATED_HEADING_ID = "related-services-heading";
 export function ServiceDetail({ service, related }: ServiceDetailProps) {
   const Icon = service.icon;
   const comparedService = getComparedService(service);
-  const faqs = getFaqsByTag(`service:${service.slug}`);
+  const faqs = getServiceFaqs(service);
+  const process = getServiceProcess(service);
 
   return (
     <>
@@ -77,12 +78,49 @@ export function ServiceDetail({ service, related }: ServiceDetailProps) {
                 label: "Typical duration",
                 value: `${service.durationMinutes.min}–${service.durationMinutes.max} min`,
               },
+              { label: "Price range", value: "Shown in app before booking" },
+              { label: "Warranty", value: "Terms confirmed before booking" },
               { label: "What's included", value: `${service.whatsIncluded.length} checks/tasks` },
               ...(service.aliases && service.aliases.length > 0
                 ? [{ label: "Also known as", value: service.aliases.join(", ") }]
                 : []),
             ]}
           />
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30" aria-labelledby="service-price-parts-heading">
+        <SectionHeading
+          id="service-price-parts-heading"
+          eyebrow="Price, Parts & Warranty"
+          title={`What to confirm before ${service.name}`}
+          description="These details can vary by bike, diagnosis, and replacement part, so the page does not publish an invented price or universal warranty period."
+        />
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="border-border bg-card rounded-xl border p-5">
+            <ReceiptText className="text-primary size-6" aria-hidden="true" />
+            <h3 className="font-heading text-foreground mt-3 font-semibold">Price range</h3>
+            <p className="text-muted-foreground mt-2 text-sm">
+              The app shows the applicable price before confirmation. The final amount can depend on
+              the bike, inspection findings, and approved parts.
+            </p>
+          </div>
+          <div className="border-border bg-card rounded-xl border p-5">
+            <BadgeCheck className="text-primary size-6" aria-hidden="true" />
+            <h3 className="font-heading text-foreground mt-3 font-semibold">Genuine Parts</h3>
+            <p className="text-muted-foreground mt-2 text-sm">
+              When replacement parts are needed, confirm the brand, specification, and price before
+              approving fitment. No unverified universal parts claim is made on this page.
+            </p>
+          </div>
+          <div className="border-border bg-card rounded-xl border p-5">
+            <ShieldCheck className="text-primary size-6" aria-hidden="true" />
+            <h3 className="font-heading text-foreground mt-3 font-semibold">Warranty</h3>
+            <p className="text-muted-foreground mt-2 text-sm">
+              Warranty coverage can vary by service and replacement part. Review the applicable
+              terms in the app or with support before approving the work.
+            </p>
+          </div>
         </div>
       </Section>
 
@@ -105,11 +143,48 @@ export function ServiceDetail({ service, related }: ServiceDetailProps) {
         </ul>
       </Section>
 
-      {service.steps && service.steps.length > 0 && (
-        <Section className="bg-muted/30">
-          <HowToSteps steps={service.steps} title={`How ${service.name} Works`} />
-        </Section>
-      )}
+      <Section>
+        <HowToSteps steps={process} title={`How ${service.name} Works`} />
+      </Section>
+
+      <Section className="bg-muted/30" aria-labelledby="service-trust-heading">
+        <SectionHeading
+          id="service-trust-heading"
+          eyebrow="Service Trust"
+          title="Clear checks before and after the work"
+          description="The service journey is designed to keep the mechanic, scope, price, and completed work visible to the rider."
+        />
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              icon: ShieldCheck,
+              title: "Verified mechanic",
+              text: "Mechanics are checked before joining the service network.",
+            },
+            {
+              icon: ReceiptText,
+              title: "Upfront pricing",
+              text: "Review the displayed price before confirming the booking.",
+            },
+            {
+              icon: BadgeCheck,
+              title: "Work approval",
+              text: "Confirm additional work or parts before they are fitted.",
+            },
+            {
+              icon: FileCheck2,
+              title: "Digital record",
+              text: "Completed service information is retained in the app.",
+            },
+          ].map(({ icon: TrustIcon, title, text }) => (
+            <li key={title} className="border-border bg-card rounded-xl border p-5">
+              <TrustIcon className="text-primary size-6" aria-hidden="true" />
+              <h3 className="font-heading text-foreground mt-3 font-semibold">{title}</h3>
+              <p className="text-muted-foreground mt-2 text-sm">{text}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       {comparedService && (
         <Section aria-label={`${service.name} vs ${comparedService.name}`}>
@@ -144,7 +219,7 @@ export function ServiceDetail({ service, related }: ServiceDetailProps) {
 
       {faqs.length > 0 && (
         <Section className="bg-muted/30">
-          <FaqAccordion faqs={faqs} />
+          <FaqAccordion faqs={faqs} title={`${service.name} FAQs`} />
         </Section>
       )}
 

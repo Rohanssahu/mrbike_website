@@ -9,9 +9,20 @@ const compactBadgeClasses =
 
 function PlayGlyph({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={cn("size-5 shrink-0 sm:size-6", className)} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      className={cn("size-5 shrink-0 sm:size-6", className)}
+      aria-hidden="true"
+    >
       <defs>
-        <linearGradient id="play-glyph-gradient" x1="4" y1="3" x2="20" y2="21" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="play-glyph-gradient"
+          x1="4"
+          y1="3"
+          x2="20"
+          y2="21"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#00d2ff" />
           <stop offset="0.4" stopColor="#00f076" />
           <stop offset="0.7" stopColor="#ffcf00" />
@@ -28,7 +39,11 @@ function PlayGlyph({ className }: { className?: string }) {
 
 function AppleGlyph({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={cn("size-5 shrink-0 fill-white sm:size-6", className)} aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      className={cn("size-5 shrink-0 fill-white sm:size-6", className)}
+      aria-hidden="true"
+    >
       <path d="M16.365 1.43c0 1.14-.417 2.16-1.25 3.06-.938 1.02-2.06 1.55-3.24 1.46-.062-1.12.41-2.19 1.24-3.06.938-1.02 2.19-1.6 3.25-1.46ZM20.1 17.03c-.42.98-.92 1.9-1.5 2.76-.85 1.24-1.55 2.1-2.09 2.57-.85.78-1.75 1.18-2.72 1.2-.7 0-1.53-.2-2.5-.6-.97-.4-1.85-.6-2.65-.6-.83 0-1.74.2-2.73.6-1 .4-1.8.61-2.42.63-.92.04-1.85-.37-2.77-1.24-.58-.5-1.31-1.4-2.19-2.7-.94-1.4-1.71-3.02-2.32-4.86-.64-1.98-.96-3.9-.96-5.75 0-2.12.46-3.95 1.37-5.47.72-1.22 1.68-2.19 2.87-2.89 1.2-.7 2.5-1.06 3.9-1.09.75 0 1.72.23 2.94.69 1.21.46 1.99.7 2.33.7.25 0 1.11-.27 2.56-.81 1.37-.5 2.53-.71 3.47-.63 2.56.21 4.49 1.22 5.76 3.04-2.29 1.39-3.43 3.34-3.41 5.83.02 1.94.72 3.55 2.1 4.83.62.6 1.32 1.06 2.09 1.38-.17.49-.35.96-.55 1.41Z" />
     </svg>
   );
@@ -46,6 +61,7 @@ interface BadgeProps {
 
 function StoreBadge({ href, eyebrow, label, icon, className, compact }: BadgeProps) {
   const isLive = Boolean(href);
+  const appType = href === siteConfig.partnerAndroid.url ? "partner" : "customer";
   const glyphClassName = compact ? "size-4 shrink-0" : undefined;
   return (
     <a
@@ -54,9 +70,16 @@ function StoreBadge({ href, eyebrow, label, icon, className, compact }: BadgePro
       rel={isLive ? "noopener noreferrer" : undefined}
       aria-disabled={!isLive}
       aria-label={isLive ? label : `${label} — coming soon`}
+      data-analytics-event={isLive ? "app_download" : undefined}
+      data-app-platform={isLive ? (icon === "play" ? "android" : "ios") : undefined}
+      data-app-type={isLive ? appType : undefined}
       className={cn(compact ? compactBadgeClasses : badgeClasses, className)}
     >
-      {icon === "play" ? <PlayGlyph className={glyphClassName} /> : <AppleGlyph className={glyphClassName} />}
+      {icon === "play" ? (
+        <PlayGlyph className={glyphClassName} />
+      ) : (
+        <AppleGlyph className={glyphClassName} />
+      )}
       <span className="flex min-w-0 flex-col leading-none">
         <span
           className={cn(
@@ -66,7 +89,12 @@ function StoreBadge({ href, eyebrow, label, icon, className, compact }: BadgePro
         >
           {isLive ? eyebrow : "COMING SOON ON"}
         </span>
-        <span className={cn("font-heading truncate font-semibold", compact ? "text-xs" : "text-sm sm:text-base")}>
+        <span
+          className={cn(
+            "font-heading truncate font-semibold",
+            compact ? "text-xs" : "text-sm sm:text-base",
+          )}
+        >
           {label}
         </span>
       </span>
@@ -78,7 +106,13 @@ function StoreBadge({ href, eyebrow, label, icon, className, compact }: BadgePro
 export function StoreBadges({ className, compact }: { className?: string; compact?: boolean }) {
   return (
     <div className={cn("grid grid-cols-2 items-center gap-2 sm:gap-3", className)}>
-      <StoreBadge href={siteConfig.android.url} eyebrow="GET IT ON" label="Google Play" icon="play" compact={compact} />
+      <StoreBadge
+        href={siteConfig.android.url}
+        eyebrow="GET IT ON"
+        label="Google Play"
+        icon="play"
+        compact={compact}
+      />
       <StoreBadge
         href={siteConfig.ios.url}
         eyebrow="Download on the"
@@ -108,7 +142,14 @@ export function GooglePlayBadge({
   compact,
 }: GooglePlayBadgeProps) {
   return (
-    <StoreBadge href={href} eyebrow={eyebrow} label={label} icon="play" className={className} compact={compact} />
+    <StoreBadge
+      href={href}
+      eyebrow={eyebrow}
+      label={label}
+      icon="play"
+      className={className}
+      compact={compact}
+    />
   );
 }
 
@@ -129,6 +170,13 @@ export function AppStoreBadge({
   compact,
 }: AppStoreBadgeProps) {
   return (
-    <StoreBadge href={href} eyebrow={eyebrow} label={label} icon="apple" className={className} compact={compact} />
+    <StoreBadge
+      href={href}
+      eyebrow={eyebrow}
+      label={label}
+      icon="apple"
+      className={className}
+      compact={compact}
+    />
   );
 }

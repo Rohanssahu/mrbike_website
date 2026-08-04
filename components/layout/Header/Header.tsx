@@ -50,7 +50,13 @@ export function Header() {
             aria-label={`${siteConfig.name} — home`}
           >
             <span className="flex size-[30px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white">
-              <Image src={siteLogo} alt="" className="size-full object-cover" priority />
+              <Image
+                src={siteLogo}
+                alt=""
+                sizes="30px"
+                className="size-full object-cover"
+                priority
+              />
             </span>
             <span className="text-[13px] font-medium text-white">{siteConfig.name}</span>
           </Link>

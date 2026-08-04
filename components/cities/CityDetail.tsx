@@ -5,6 +5,8 @@ import Link from "next/link";
 import urbanServiceIllustration from "@/assets/illustrations/cities/urban-service.svg";
 import { RelatedPostsByEntity } from "@/components/blog/RelatedPostsByEntity";
 import type { CityRecord } from "@/components/home/CitiesWeServe/mock-data";
+import { CUSTOMER_REVIEWS } from "@/components/home/CustomerReviews/mock-data";
+import { ReviewCard } from "@/components/home/CustomerReviews/ReviewCard";
 import { Badge } from "@/components/ui/badge";
 import { Breadcrumbs } from "@/components/shared/Breadcrumbs";
 import { FaqAccordion } from "@/components/shared/FaqAccordion";
@@ -13,7 +15,6 @@ import { LinkTile } from "@/components/shared/LinkTile";
 import { QuickAnswer } from "@/components/shared/QuickAnswer";
 import { Section } from "@/components/shared/Section";
 import { SectionHeading } from "@/components/shared/SectionHeading";
-import { TodoPlaceholder } from "@/components/shared/TodoPlaceholder";
 import { getAllBrands, getAllServices, getFaqsByTag } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -35,11 +36,20 @@ export function CityDetail({ city, areas }: CityDetailProps) {
   const faqs = getFaqsByTag(`city:${city.slug}`);
   const services = getAllServices();
   const brands = getAllBrands();
+  const reviews = CUSTOMER_REVIEWS.filter((review) =>
+    review.cityName.endsWith(`, ${city.name}`),
+  ).slice(0, 3);
 
   return (
     <>
-      <Section className="relative overflow-hidden pb-0 md:pb-0" aria-labelledby="city-detail-heading">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <Section
+        className="relative overflow-hidden pb-0 md:pb-0"
+        aria-labelledby="city-detail-heading"
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+        >
           <Image
             src={urbanServiceIllustration}
             alt=""
@@ -69,7 +79,7 @@ export function CityDetail({ city, areas }: CityDetailProps) {
             id="city-detail-heading"
             className="font-heading text-foreground text-4xl font-bold sm:text-5xl"
           >
-            Bike Service in {city.name}
+            Doorstep Bike Service in {city.name}
           </h1>
           <Badge
             variant="outline"
@@ -88,7 +98,7 @@ export function CityDetail({ city, areas }: CityDetailProps) {
         <div className="mt-6 max-w-2xl">
           <QuickAnswer>
             {isLive
-              ? `MR Bike Doctor offers doorstep bike servicing and repair in ${city.name}, ${city.state}, booked entirely through the app — a mechanic comes to you instead of you visiting a garage.`
+              ? `MR Bike Doctor provides doorstep bike servicing, repairs, roadside help, and Bike Pickup & Drop across listed areas of ${city.name}, ${city.state}. Choose a service and enter your exact address in the app to confirm current availability.`
               : `MR Bike Doctor isn't live in ${city.name}, ${city.state} yet. The app is expanding city by city — download it to get notified the moment doorstep service launches here.`}
           </QuickAnswer>
         </div>
@@ -109,7 +119,8 @@ export function CityDetail({ city, areas }: CityDetailProps) {
           <SectionHeading
             id={AREAS_HEADING_ID}
             eyebrow="Areas We Serve"
-            title={`A few of the areas we currently serve in ${city.name}`}
+            title={`${city.name} areas currently listed for service`}
+            description="Select your area for nearby landmarks, local availability guidance, pickup and drop information, services, reviews, and FAQs."
           />
 
           <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -120,9 +131,10 @@ export function CityDetail({ city, areas }: CityDetailProps) {
             ))}
           </ul>
 
-          <div className="mt-8 max-w-3xl">
-            <TodoPlaceholder what={`${city.name} service coverage details`} />
-          </div>
+          <p className="text-muted-foreground mt-8 max-w-3xl text-sm">
+            Serviceability and time slots depend on the exact address and selected job. Confirm both
+            in the app before booking.
+          </p>
         </Section>
       )}
 
@@ -157,6 +169,36 @@ export function CityDetail({ city, areas }: CityDetailProps) {
               ))}
             </ul>
           </Section>
+
+          <Section className="bg-muted/30" aria-labelledby="city-pickup-drop-heading">
+            <SectionHeading
+              id="city-pickup-drop-heading"
+              eyebrow="Pickup & Drop"
+              title={`Bike Pickup & Drop in ${city.name}`}
+              description="For work that requires a workshop visit, choose Bike Pickup & Drop and enter your address in the app to check availability."
+            />
+            <Link
+              href="/services/bike-pickup-drop"
+              className="text-primary mt-6 inline-flex text-sm font-semibold hover:underline"
+            >
+              View Bike Pickup & Drop
+            </Link>
+          </Section>
+
+          {reviews.length > 0 && (
+            <Section aria-labelledby="city-reviews-heading">
+              <SectionHeading
+                id="city-reviews-heading"
+                eyebrow="Customer Reviews"
+                title={`What ${city.name} riders say`}
+              />
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                {reviews.map((review) => (
+                  <ReviewCard key={review.id} review={review} className="w-full" />
+                ))}
+              </div>
+            </Section>
+          )}
 
           <Section className="bg-muted/30">
             <RelatedPostsByEntity field="relatedCitySlugs" slug={city.slug} />

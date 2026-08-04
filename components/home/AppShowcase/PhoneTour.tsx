@@ -67,7 +67,10 @@ export function PhoneTour({ steps, activeIndex, onIndexChange }: PhoneTourProps)
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <div aria-hidden="true" className="bg-primary/25 absolute -inset-6 -z-10 rounded-[3rem] blur-3xl" />
+        <div
+          aria-hidden="true"
+          className="bg-primary/25 absolute -inset-6 -z-10 rounded-[3rem] blur-3xl"
+        />
 
         <div
           role="button"
@@ -100,7 +103,6 @@ export function PhoneTour({ steps, activeIndex, onIndexChange }: PhoneTourProps)
                 fill
                 sizes="(min-width: 640px) 300px, 280px"
                 className="object-contain"
-                priority={activeIndex === 0}
               />
             </motion.div>
           </AnimatePresence>

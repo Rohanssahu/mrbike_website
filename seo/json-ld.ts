@@ -216,7 +216,10 @@ export function serviceSchema(service: {
 export function localBusinessSchema(place: {
   name: string;
   path: string;
-  addressLocality: string;
+  description?: string;
+  serviceAreas: string[];
+  services?: Array<{ name: string; path: string }>;
+  addressLocality?: string;
   addressRegion?: string;
   geo?: { latitude: number; longitude: number };
   openingHours?: string[];
@@ -226,17 +229,42 @@ export function localBusinessSchema(place: {
   aggregateRating?: { ratingValue: number; reviewCount: number };
   serviceRadiusKm?: number;
 }): JsonLdSchema {
+  const url = new URL(place.path, siteConfig.url).toString();
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": `${url}#localbusiness`,
     name: `${siteConfig.name} — ${place.name}`,
-    url: new URL(place.path, siteConfig.url).toString(),
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: place.addressLocality,
-      ...(place.addressRegion && { addressRegion: place.addressRegion }),
-      addressCountry: "IN",
-    },
+    url,
+    ...(place.description && { description: place.description }),
+    image: new URL("/icons/icon-512.png", siteConfig.url).toString(),
+    telephone: place.telephone ?? siteConfig.contactPhone,
+    areaServed: place.serviceAreas.map((name) => ({
+      "@type": "AdministrativeArea",
+      name,
+    })),
+    ...(place.services && {
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: `Bike services available in ${place.name}`,
+        itemListElement: place.services.map((service) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: service.name,
+            url: new URL(service.path, siteConfig.url).toString(),
+          },
+        })),
+      },
+    }),
+    ...(place.addressLocality && {
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: place.addressLocality,
+        ...(place.addressRegion && { addressRegion: place.addressRegion }),
+        addressCountry: "IN",
+      },
+    }),
     ...(place.geo && {
       geo: {
         "@type": "GeoCoordinates",
@@ -245,7 +273,6 @@ export function localBusinessSchema(place: {
       },
     }),
     ...(place.openingHours && { openingHoursSpecification: place.openingHours }),
-    ...(place.telephone && { telephone: place.telephone }),
     ...(place.priceRange && { priceRange: place.priceRange }),
     ...(place.aggregateRating && {
       aggregateRating: {
@@ -256,7 +283,7 @@ export function localBusinessSchema(place: {
     }),
     ...(place.geo &&
       place.serviceRadiusKm && {
-        areaServed: {
+        serviceArea: {
           "@type": "GeoCircle",
           geoMidpoint: {
             "@type": "GeoCoordinates",
@@ -281,6 +308,9 @@ export function blogPostingSchema(post: {
   path: string;
   authorName: string;
   datePublished: string;
+  articleSection?: string;
+  keywords?: string[];
+  citations?: string[];
 }): JsonLdSchema {
   const url = new URL(post.path, siteConfig.url).toString();
   return {
@@ -291,6 +321,11 @@ export function blogPostingSchema(post: {
     url,
     mainEntityOfPage: url,
     datePublished: post.datePublished,
+    dateModified: post.datePublished,
+    inLanguage: siteConfig.locale.replace("_", "-"),
+    ...(post.articleSection && { articleSection: post.articleSection }),
+    ...(post.keywords && { keywords: post.keywords.join(", ") }),
+    ...(post.citations && post.citations.length > 0 && { citation: post.citations }),
     author: {
       "@type": "Organization",
       name: post.authorName,
@@ -416,7 +451,11 @@ export function articleSchema(article: {
  * on pages that render a matching visible, numbered step list (pair with
  * `HowToSteps`, components/shared/HowToSteps.tsx).
  */
-export function howToSchema(howTo: { name: string; description: string; steps: string[] }): JsonLdSchema {
+export function howToSchema(howTo: {
+  name: string;
+  description: string;
+  steps: string[];
+}): JsonLdSchema {
   return {
     "@context": "https://schema.org",
     "@type": "HowTo",

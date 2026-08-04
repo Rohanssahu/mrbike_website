@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { env } from "@/config/env";
 import { siteConfig } from "@/config/site";
 import type { SeoProps } from "@/types/seo";
 
@@ -70,6 +71,10 @@ export const defaultMetadata: Metadata = {
     email: false,
     address: false,
     telephone: false,
+  },
+  verification: {
+    google: env.googleSiteVerification || undefined,
+    other: env.bingSiteVerification ? { "msvalidate.01": env.bingSiteVerification } : undefined,
   },
   icons: {
     icon: [

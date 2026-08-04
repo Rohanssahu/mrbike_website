@@ -22,7 +22,7 @@ export function HubNav({ post }: HubNavProps) {
     return (
       <div className="border-primary/30 bg-primary/5 rounded-xl border p-5">
         <h2 className="text-foreground mb-3 text-sm font-semibold">
-          Part of this guide: {post.title.replace("[Sample] ", "")}
+          Content cluster: {post.title.replace("[Sample] ", "")}
         </h2>
         <ul className="flex flex-col gap-2">
           {clusterPosts.map((clusterPost) => (
@@ -46,7 +46,7 @@ export function HubNav({ post }: HubNavProps) {
 
     return (
       <div className="border-border bg-muted/30 rounded-xl border p-5 text-sm">
-        <span className="text-muted-foreground">Part of the guide: </span>
+        <span className="text-muted-foreground">Pillar guide: </span>
         <Link
           href={`/blog/${pillar.categorySlug}/${pillar.slug}`}
           className="text-primary hover:underline"

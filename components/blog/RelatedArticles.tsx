@@ -9,5 +9,5 @@ interface RelatedArticlesProps {
 
 /** Same-category articles, excluding the one currently being read. */
 export function RelatedArticles({ posts }: RelatedArticlesProps) {
-  return <RelatedGuides posts={posts} title="Related Articles" renderCard={PostCard} />;
+  return <RelatedGuides posts={posts} title="Related Guides" renderCard={PostCard} />;
 }

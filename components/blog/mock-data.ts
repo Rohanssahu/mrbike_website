@@ -85,6 +85,7 @@ export interface BlogPostRecord {
   isFeatured?: boolean;
   sections: BlogPostSection[];
   faqs?: BlogFaqEntry[];
+  sources?: Array<{ label: string; url: string }>;
   relatedServiceSlugs?: string[];
   relatedBrandSlugs?: string[];
   relatedCitySlugs?: string[];
@@ -162,6 +163,12 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     ],
     relatedServiceSlugs: ["engine-oil-change", "bike-service"],
     relatedCitySlugs: ["hyderabad"],
+    sources: [
+      {
+        label: "Royal Enfield Classic 350 Digital Guide — maintenance and owner guidance",
+        url: "https://digitalguide.royalenfield.com/",
+      },
+    ],
   },
   {
     id: "post_engine-oil-types",
@@ -232,6 +239,9 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     publishedAt: "2026-06-10",
     tags: ["doorstep service", "convenience", "guide"],
     isFeatured: true,
+    isPillar: true,
+    hubId: "hub_service-booking",
+    clusterPostIds: ["post_best-bike-service-hyderabad", "post_bike-service-cost-factors"],
     sections: [
       {
         id: "what-is-it",
@@ -267,6 +277,13 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-06-18",
     tags: ["monsoon", "seasonal care", "maintenance"],
+    hubId: "hub_preventive-care",
+    sources: [
+      {
+        label: "Michelin India — motorcycle tyre tread and wet-condition performance",
+        url: "https://www.michelin.in/motorbike/advice-motorbike/tyre-basics/motorcycle-tyre-tread-depth-legal-limit",
+      },
+    ],
     sections: [
       {
         id: "before-the-rain",
@@ -301,6 +318,12 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-06-25",
     tags: ["royal enfield", "classic 350", "brand guide"],
+    sources: [
+      {
+        label: "Royal Enfield — Classic 350 digital owner guide",
+        url: "https://digitalguide.royalenfield.com/",
+      },
+    ],
     sections: [
       {
         id: "engine-care",
@@ -358,6 +381,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-07-08",
     tags: ["hyderabad", "city guide"],
+    hubId: "hub_service-booking",
     sections: [
       {
         id: "what-to-look-for",
@@ -386,6 +410,15 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-07-14",
     tags: ["safety", "checklist", "riding tips"],
+    isPillar: true,
+    hubId: "hub_preventive-care",
+    clusterPostIds: ["post_monsoon-bike-care-tips", "post_battery-replacement-signs"],
+    sources: [
+      {
+        label: "Motorcycle Safety Foundation — T-CLOCS pre-ride inspection checklist",
+        url: "https://msf-usa.org/documents/library/t-clocs-pre-ride-inspection-checklist/",
+      },
+    ],
     sections: [
       {
         id: "the-checklist",
@@ -413,6 +446,13 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-07-19",
     tags: ["battery", "electrical", "maintenance"],
+    hubId: "hub_preventive-care",
+    sources: [
+      {
+        label: "Yuasa Battery — motorcycle battery maintenance and storage guides",
+        url: "https://www.yuasabatteries.com/resources/guides/",
+      },
+    ],
     sections: [
       {
         id: "warning-signs",
@@ -440,6 +480,7 @@ export const BLOG_POSTS: BlogPostRecord[] = [
     author: { name: "MR Bike Doctor Team" },
     publishedAt: "2026-07-24",
     tags: ["cost", "pricing", "service"],
+    hubId: "hub_service-booking",
     sections: [
       {
         id: "main-factors",

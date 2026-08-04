@@ -21,14 +21,14 @@ export function Sources({ sources }: SourcesProps) {
 
   return (
     <div className="border-border border-t pt-4">
-      <h2 className="text-foreground mb-2 text-sm font-semibold">Sources</h2>
+      <h2 className="text-foreground mb-2 text-sm font-semibold">References</h2>
       <ul className="flex flex-col gap-1">
         {sources.map((source) => (
           <li key={source.url}>
             <a
               href={source.url}
               target="_blank"
-              rel="noopener noreferrer nofollow"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary text-sm underline underline-offset-2"
             >
               {source.label}

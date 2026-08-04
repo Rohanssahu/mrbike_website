@@ -45,7 +45,11 @@ export function getFeaturedPost(): BlogPostRecord | undefined {
 }
 
 /** Every article scoped to a Service/Brand/City via its `related*Slugs` tags — the blog side of the Knowledge Graph. */
-export function getPostsByEntityTag(field: EntityTagField, slug: string, limit?: number): BlogPostRecord[] {
+export function getPostsByEntityTag(
+  field: EntityTagField,
+  slug: string,
+  limit?: number,
+): BlogPostRecord[] {
   const posts = BLOG_POSTS.filter((post) => post[field]?.includes(slug));
   return typeof limit === "number" ? posts.slice(0, limit) : posts;
 }
@@ -55,9 +59,52 @@ export function getPillarForCluster(post: BlogPostRecord): BlogPostRecord | unde
 }
 
 export function getClusterPostsForPillar(post: BlogPostRecord): BlogPostRecord[] {
-  return post.clusterPostIds
-    ? BLOG_POSTS.filter((p) => post.clusterPostIds?.includes(p.id))
-    : [];
+  return post.clusterPostIds ? BLOG_POSTS.filter((p) => post.clusterPostIds?.includes(p.id)) : [];
+}
+
+export function getPostFaqs(post: BlogPostRecord) {
+  if (post.faqs && post.faqs.length > 0) return post.faqs;
+
+  const firstAnswer = post.sections.flatMap((section) => section.body)[0] ?? post.excerpt;
+  return [
+    {
+      question: `What is the main takeaway from “${post.title}”?`,
+      answer: firstAnswer,
+    },
+    {
+      question: "Does this guide replace the bike owner's manual?",
+      answer:
+        "No. This article provides general educational guidance. Use the owner's manual for model-specific specifications, intervals, fluids, parts, and safety instructions.",
+    },
+  ];
+}
+
+export function getRelatedPosts(post: BlogPostRecord, limit = 3): BlogPostRecord[] {
+  const postRelations = new Set([
+    ...(post.relatedServiceSlugs ?? []).map((slug) => `service:${slug}`),
+    ...(post.relatedBrandSlugs ?? []).map((slug) => `brand:${slug}`),
+    ...(post.relatedCitySlugs ?? []).map((slug) => `city:${slug}`),
+  ]);
+
+  return BLOG_POSTS.filter((candidate) => candidate.id !== post.id)
+    .map((candidate) => {
+      const candidateRelations = [
+        ...(candidate.relatedServiceSlugs ?? []).map((slug) => `service:${slug}`),
+        ...(candidate.relatedBrandSlugs ?? []).map((slug) => `brand:${slug}`),
+        ...(candidate.relatedCitySlugs ?? []).map((slug) => `city:${slug}`),
+      ];
+      const score =
+        (candidate.hubId && candidate.hubId === post.hubId ? 6 : 0) +
+        (candidate.categorySlug === post.categorySlug ? 3 : 0) +
+        candidateRelations.filter((relation) => postRelations.has(relation)).length * 2 +
+        candidate.tags.filter((tag) => post.tags.includes(tag)).length;
+      return { candidate, score };
+    })
+    .sort(
+      (a, b) => b.score - a.score || (a.candidate.publishedAt < b.candidate.publishedAt ? 1 : -1),
+    )
+    .slice(0, limit)
+    .map(({ candidate }) => candidate);
 }
 
 export type { BlogPostRecord, CategoryRecord };

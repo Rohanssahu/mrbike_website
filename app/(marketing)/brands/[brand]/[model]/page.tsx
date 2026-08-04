@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ModelDetail } from "@/components/brands";
 import { JsonLd } from "@/components/seo/json-ld";
 import { DownloadAppCta } from "@/components/shared";
-import { getAllModels, getBrandBySlug, getFaqsByTag, getModelBySlug } from "@/lib/content";
+import { getAllModels, getBrandBySlug, getModelBySlug, getModelFaqs } from "@/lib/content";
 import { articleSchema, breadcrumbSchema, faqPageSchema, organizationSchema } from "@/seo/json-ld";
 import { buildMetadata } from "@/seo/metadata";
 
@@ -36,7 +36,7 @@ export default async function ModelPage({ params }: ModelPageProps) {
   const model = getModelBySlug(brandSlug, modelSlug);
   if (!brand || !model) notFound();
 
-  const faqs = getFaqsByTag(`brand:${brand.slug}`);
+  const faqs = getModelFaqs(brand, model);
 
   return (
     <>

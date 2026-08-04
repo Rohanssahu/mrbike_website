@@ -4,7 +4,13 @@ import { notFound } from "next/navigation";
 import { CityDetail } from "@/components/cities";
 import { JsonLd } from "@/components/seo/json-ld";
 import { DownloadAppCta } from "@/components/shared";
-import { getAllCities, getAreasByCity, getCityBySlug, getFaqsByTag } from "@/lib/content";
+import {
+  getAllCities,
+  getAllServices,
+  getAreasByCity,
+  getCityBySlug,
+  getFaqsByTag,
+} from "@/lib/content";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -28,10 +34,10 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   if (!city) return {};
 
   return buildMetadata({
-    title: `Bike Service in ${city.name}`,
+    title: `Doorstep Bike Service in ${city.name}`,
     description:
       city.status === "live"
-        ? `Doorstep bike servicing and repair in ${city.name}, ${city.state}, booked through the MR Bike Doctor app.`
+        ? `Book doorstep bike service and repair in ${city.name}. View covered areas, pickup and drop, related services, rider reviews, and local FAQs.`
         : `MR Bike Doctor is launching soon in ${city.name}, ${city.state}. Download the app to get notified.`,
     path: `/cities/${city.slug}`,
   });
@@ -44,6 +50,7 @@ export default async function CityPage({ params }: CityPageProps) {
   if (!city) notFound();
 
   const areas = getAreasByCity(city.slug);
+  const services = getAllServices();
   const faqs = city.status === "live" ? getFaqsByTag(`city:${city.slug}`) : [];
 
   return (
@@ -61,7 +68,12 @@ export default async function CityPage({ params }: CityPageProps) {
                 localBusinessSchema({
                   name: city.name,
                   path: `/cities/${city.slug}`,
-                  addressLocality: city.name,
+                  description: `Doorstep bike servicing, repair, and pickup and drop across supported areas of ${city.name}.`,
+                  serviceAreas: [city.name, ...areas.map((area) => area.name)],
+                  services: services.map((service) => ({
+                    name: service.name,
+                    path: `/services/${service.slug}`,
+                  })),
                   addressRegion: city.state,
                 }),
               ]

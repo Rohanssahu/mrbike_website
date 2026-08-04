@@ -34,9 +34,8 @@ export const siteConfig: SiteConfig = {
   },
   social: [
     { name: "LinkedIn", url: "https://www.linkedin.com/in/mr-bike-doctor-b48573219/" },
-    { name: "Facebook", url: "https://www.facebook.com/mrbikedoctor" },
+    { name: "Facebook", url: "https://www.facebook.com/MrBikeDoctor/" },
     { name: "Instagram", url: "https://www.instagram.com/mrbikedoctor" },
-    { name: "Twitter", url: "https://twitter.com/mrbikedoctor" },
     { name: "YouTube", url: "https://www.youtube.com/@mrbikedoctor" },
   ],
   ios: { url: env.iosAppUrl },

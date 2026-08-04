@@ -4,8 +4,14 @@ import { notFound } from "next/navigation";
 import { AreaDetail } from "@/components/cities";
 import { JsonLd } from "@/components/seo/json-ld";
 import { DownloadAppCta } from "@/components/shared";
-import { getAllAreas, getAreaBySlug, getCityBySlug } from "@/lib/content";
-import { breadcrumbSchema, localBusinessSchema, organizationSchema } from "@/seo/json-ld";
+import { getAllAreas, getAllServices, getAreaBySlug, getCityBySlug } from "@/lib/content";
+import {
+  breadcrumbSchema,
+  faqPageSchema,
+  localBusinessSchema,
+  organizationSchema,
+  SPEAKABLE_SELECTORS,
+} from "@/seo/json-ld";
 import { buildMetadata } from "@/seo/metadata";
 
 interface AreaPageProps {
@@ -29,7 +35,7 @@ export async function generateMetadata({ params }: AreaPageProps): Promise<Metad
 
   return buildMetadata({
     title: `Bike Service in ${area.name}, ${city.name}`,
-    description: `Doorstep bike servicing and repair for riders in ${area.name}, ${city.name}, booked through the MR Bike Doctor app.`,
+    description: `${area.summary} View local coverage, nearby landmarks, pickup and drop, services, reviews, and FAQs.`,
     path: `/cities/${city.slug}/${area.slug}`,
   });
 }
@@ -40,6 +46,9 @@ export default async function AreaPage({ params }: AreaPageProps) {
   const city = getCityBySlug(citySlug);
   const area = getAreaBySlug(citySlug, areaSlug);
   if (!city || !area) notFound();
+  const services = getAllServices().filter((service) =>
+    area.relatedServiceSlugs.includes(service.slug),
+  );
 
   return (
     <>
@@ -55,9 +64,15 @@ export default async function AreaPage({ params }: AreaPageProps) {
           localBusinessSchema({
             name: area.name,
             path: `/cities/${city.slug}/${area.slug}`,
-            addressLocality: area.name,
+            description: area.summary,
+            serviceAreas: area.localCoverage.map((name) => `${name}, ${city.name}`),
+            services: services.map((service) => ({
+              name: service.name,
+              path: `/services/${service.slug}`,
+            })),
             addressRegion: city.state,
           }),
+          faqPageSchema(area.faqs, { speakable: [SPEAKABLE_SELECTORS.faqAnswer] }),
         ]}
       />
 

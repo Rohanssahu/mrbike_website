@@ -64,7 +64,8 @@ export const FAQS: FaqRecord[] = [
     id: "faq_verified-mechanics",
     categorySlug: "service",
     question: "Are the mechanics verified?",
-    answer: "Yes — every mechanic is background-checked before joining the verified service network.",
+    answer:
+      "Yes — every mechanic is background-checked before joining the verified service network.",
     tags: ["topic:general"],
   },
   {
@@ -159,6 +160,30 @@ export const FAQS: FaqRecord[] = [
     question: "Is MR Bike Doctor available in Hyderabad?",
     answer:
       "Yes — Hyderabad is MR Bike Doctor's first live city, with doorstep servicing available in select areas today and expanding.",
+    tags: ["city:hyderabad"],
+  },
+  {
+    id: "faq_hyderabad-areas",
+    categorySlug: "coverage",
+    question: "Which Hyderabad areas does MR Bike Doctor cover?",
+    answer:
+      "The website currently lists Gachibowli, Madhapur, Kondapur, Banjara Hills, and Kukatpally. Enter your exact address in the app to confirm current serviceability.",
+    tags: ["city:hyderabad"],
+  },
+  {
+    id: "faq_hyderabad-pickup-drop",
+    categorySlug: "coverage",
+    question: "Is Bike Pickup & Drop available in Hyderabad?",
+    answer:
+      "Bike Pickup & Drop is offered as a service in Hyderabad. Availability depends on the selected service and pickup address, which the app confirms before booking.",
+    tags: ["city:hyderabad"],
+  },
+  {
+    id: "faq_hyderabad-booking",
+    categorySlug: "booking-the-app",
+    question: "How do I book doorstep bike service in Hyderabad?",
+    answer:
+      "Download the MR Bike Doctor app, choose the required bike service, enter your Hyderabad address, and select an available time slot.",
     tags: ["city:hyderabad"],
   },
   {

@@ -4,7 +4,13 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ServiceDetail } from "@/components/services";
 import { DownloadAppCta } from "@/components/shared";
-import { getAllServices, getFaqsByTag, getRelatedServices, getServiceBySlug } from "@/lib/content";
+import {
+  getAllServices,
+  getRelatedServices,
+  getServiceBySlug,
+  getServiceFaqs,
+  getServiceProcess,
+} from "@/lib/content";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -42,7 +48,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
   if (!service) notFound();
 
   const related = getRelatedServices(slug);
-  const faqs = getFaqsByTag(`service:${service.slug}`);
+  const faqs = getServiceFaqs(service);
+  const process = getServiceProcess(service);
 
   return (
     <>
@@ -60,15 +67,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
             path: `/services/${service.slug}`,
             speakable: [SPEAKABLE_SELECTORS.quickAnswer],
           }),
-          ...(service.steps && service.steps.length > 0
-            ? [
-                howToSchema({
-                  name: `How ${service.name} Works`,
-                  description: service.quickAnswer,
-                  steps: service.steps,
-                }),
-              ]
-            : []),
+          howToSchema({
+            name: `How ${service.name} Works`,
+            description: service.quickAnswer,
+            steps: process,
+          }),
           ...(faqs.length > 0
             ? [faqPageSchema(faqs, { speakable: [SPEAKABLE_SELECTORS.faqAnswer] })]
             : []),

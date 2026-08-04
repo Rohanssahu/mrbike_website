@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 
 import {
   ArticleBody,
+  ArticleSummary,
   AuthorByline,
+  EditorialNote,
   estimateReadingTime,
   HubNav,
   PostFaqs,
@@ -16,9 +18,17 @@ import {
 } from "@/components/blog";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Breadcrumbs, DownloadAppCta } from "@/components/shared";
+import { Sources } from "@/components/shared/Sources";
 import { Section } from "@/components/shared/Section";
 import { siteConfig } from "@/config/site";
-import { getAllPosts, getCategoryBySlug, getPostBySlug, getPostsByCategory } from "@/lib/content";
+import {
+  getAllPosts,
+  getCategoryBySlug,
+  getPostBySlug,
+  getPostFaqs,
+  getPostsByCategory,
+  getRelatedPosts,
+} from "@/lib/content";
 import {
   blogPostingSchema,
   breadcrumbSchema,
@@ -57,6 +67,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const postPath = `/blog/${post.categorySlug}/${post.slug}`;
   const readingTimeMinutes = estimateReadingTime(post.sections);
+  const faqs = getPostFaqs(post);
 
   const categoryPosts = getPostsByCategory(post.categorySlug);
   const indexInCategory = categoryPosts.findIndex((p) => p.id === post.id);
@@ -64,7 +75,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const next =
     indexInCategory < categoryPosts.length - 1 ? categoryPosts[indexInCategory + 1] : null;
 
-  const related = categoryPosts.filter((p) => p.id !== post.id).slice(0, 3);
+  const related = getRelatedPosts(post);
 
   return (
     <>
@@ -83,10 +94,11 @@ export default async function PostPage({ params }: PostPageProps) {
             path: postPath,
             authorName: post.author.name,
             datePublished: post.publishedAt,
+            articleSection: category.name,
+            keywords: post.tags,
+            citations: post.sources?.map((source) => source.url),
           }),
-          ...(post.faqs && post.faqs.length > 0
-            ? [faqPageSchema(post.faqs, { speakable: [SPEAKABLE_SELECTORS.faqAnswer] })]
-            : []),
+          faqPageSchema(faqs, { speakable: [SPEAKABLE_SELECTORS.faqAnswer] }),
         ]}
       />
 
@@ -115,10 +127,13 @@ export default async function PostPage({ params }: PostPageProps) {
       <Section>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_280px]">
           <div className="flex flex-col gap-8">
+            <ArticleSummary post={post} />
             <ArticleBody sections={post.sections} />
+            <EditorialNote />
+            {post.sources && <Sources sources={post.sources} />}
             <PostTags tags={post.tags} />
             <ShareButtons title={post.title} url={new URL(postPath, siteConfig.url).toString()} />
-            {post.faqs && post.faqs.length > 0 && <PostFaqs faqs={post.faqs} />}
+            <PostFaqs faqs={faqs} />
             <PostPrevNext previous={previous} next={next} />
           </div>
 

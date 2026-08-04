@@ -4,7 +4,13 @@ import { notFound } from "next/navigation";
 import { BrandDetail } from "@/components/brands";
 import { JsonLd } from "@/components/seo/json-ld";
 import { DownloadAppCta } from "@/components/shared";
-import { getAllBrands, getBrandBySlug, getFaqsByTag, getModelsByBrand } from "@/lib/content";
+import {
+  getAllBrands,
+  getBrandBySlug,
+  getBrandFaqs,
+  getFaqsByTag,
+  getModelsByBrand,
+} from "@/lib/content";
 import {
   articleSchema,
   breadcrumbSchema,
@@ -41,7 +47,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
   if (!brand) notFound();
 
   const models = getModelsByBrand(brand.slug);
-  const faqs = getFaqsByTag(`brand:${brand.slug}`);
+  const faqs = [...getFaqsByTag(`brand:${brand.slug}`), ...getBrandFaqs(brand)];
 
   return (
     <>
